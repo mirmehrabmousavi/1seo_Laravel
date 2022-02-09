@@ -447,11 +447,13 @@ class Analyztic
         $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
         $t=strlen($title);
         if($t > 10 && $t < 70) {
-            $data = 'طول متن :' . $t;
+            $data = 'طول متن : ' . $t;
+            $cssStyle = 'alert alert-success';
         }else{
             $data = 'طول عنوان شما مناسب نیست';
+            $cssStyle = 'alert alert-danger';
         }
-        return [$title,$data];
+        return [$title,$data,$cssStyle];
     }
 
 

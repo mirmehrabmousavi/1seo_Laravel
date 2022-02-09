@@ -73,6 +73,7 @@
                                                 <div class="form-label-group">
                                                     <input type="text" id="inputEmail" class="form-control" placeholder="آدرس سایت" name="url" value="{{ old('url') }}" required autocomplete="url">
                                                     <label for="inputEmail">آدرس سایت</label>
+                                                    <p>آدرس سایت را بدون Http:// وارد کنید</p>
                                                 </div>
                                                 <div class="form-label-group">
                                                     <input type="password" id="inputPassword" class="form-control" placeholder="رمز عبور" name="password" value="{{ old('password') }}" required autocomplete="password">

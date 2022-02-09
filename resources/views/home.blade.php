@@ -83,7 +83,8 @@
                                 <a class="dropdown-item" href="#"><i class="feather icon-user"></i>ویرایش پروفایل</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="feather icon-power"></i> خروج</a>
+                                                     document.getElementById('logout-form').submit();"><i
+                                        class="feather icon-power"></i> خروج</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -126,7 +127,7 @@
                                                                                                 data-i18n="Grid">{{auth()->user()->url}}</span></a>
                         </li>
                         <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                                data-i18n="Grid">tippler.ir</span></a>
+                                                                                          data-i18n="Grid">tippler.ir</span></a>
                         </li>
                         <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
                                                                                           data-i18n="Typography">available.ir</span></a>
@@ -171,7 +172,9 @@
                                         <div class="text-center">
                                             <h1 class="mb-2 text-white">دموی سایت</h1>
                                             <p class="m-auto w-75 mb-2">نمایش دموی سایت انالیز شده</p>
-                                            <img src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{auth()->user()->url}}" class="img-fluid" alt="{{auth()->user()->url}}">
+                                            <img
+                                                src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{auth()->user()->url}}"
+                                                class="img-fluid" alt="{{auth()->user()->url}}">
                                         </div>
                                     </div>
                                 </div>
@@ -621,31 +624,44 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <p>
+                                            <h4>
                                                 {{$siteTitle}}
-                                            </p>
-                                            <p>{{$dataTitle}}</p>
+                                            </h4>
+                                            <div class="{{$cssStyle}} p-1">
+
+                                                <p><i class="feather icon-info"></i>  {{$dataTitle}}</p>
+                                            </div>
                                             <div class="modal-primary mr-1 mb-1 d-inline-block">
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light" data-toggle="modal" data-target="#primary">
+                                                <button type="button"
+                                                        class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
+                                                        data-toggle="modal" data-target="#primary">
                                                     درخواست رفع خطا
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                <div class="modal fade text-left" id="primary" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                                                    <div
+                                                        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                        role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-primary white">
-                                                                <h5 class="modal-title" id="myModalLabel160">درخواست رفع خطا</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <h5 class="modal-title" id="myModalLabel160">درخواست رفع
+                                                                    خطا</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                               درخواست درخواست
+                                                                درخواست درخواست
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">تایید</button>
+                                                                <a href="{{route('request')}}"
+                                                                        class="btn btn-primary waves-effect waves-light"
+                                                                        data-dismiss="modal">تایید
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -653,22 +669,29 @@
                                             </div>
                                             <div class="modal-success mr-1 mb-1 d-inline-block">
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light" data-toggle="modal" data-target="#success">
+                                                <button type="button"
+                                                        class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
+                                                        data-toggle="modal" data-target="#success">
                                                     راهنمای رفع خطا
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                <div class="modal fade text-left" id="success" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
+                                                    <div
+                                                        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                        role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-success white">
-                                                                <h5 class="modal-title" id="myModalLabel110">راهنمای رفع خطا</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <h5 class="modal-title" id="myModalLabel110">راهنمای رفع
+                                                                    خطا</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                               درخواست درخواست
+                                                                درخواست درخواست
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1431,23 +1454,23 @@
 
         if (speedORG <= 1) {
             speed = 95
-        }else if (speedORG<=1.5) {
+        } else if (speedORG <= 1.5) {
             speed = 90
-        }else if (speedORG<=2) {
+        } else if (speedORG <= 2) {
             speed = 80
-        }else if (speedORG<=2.5) {
+        } else if (speedORG <= 2.5) {
             speed = 70
-        }else if (speedORG<=3) {
+        } else if (speedORG <= 3) {
             speed = 60
-        }else if (speedORG<=3.5) {
+        } else if (speedORG <= 3.5) {
             speed = 50
-        }else if (speedORG<=4) {
+        } else if (speedORG <= 4) {
             speed = 40
-        }else if (speedORG<=5) {
+        } else if (speedORG <= 5) {
             speed = 30
-        }else if (speedORG<=6) {
+        } else if (speedORG <= 6) {
             speed = 20
-        }else if (speedORG>=7) {
+        } else if (speedORG >= 7) {
             speed = 10
         }
 

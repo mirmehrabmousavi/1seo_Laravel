@@ -18,7 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Authentication
 Auth::routes();
 
+//Analyze Home
 Route::get('/home' , [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Admin Panel
 Route::get('admin/home', [HomeController::class, 'handleAdmin'])->name('admin')->middleware('admin');

@@ -301,7 +301,7 @@ class Analyztic
 
        /* $pageAuthority = round($json_a->upa, 0); // * Use the round() function to return integer
         $domainAuthority = round($json_a->pda, 0);*/
-        $externalLinks = $json_a->ueid;
+        $externalLinks = 1212/*$json_a->ueid*/;
     /*    $theUrl = $json_a->uu;*/
 
         return $externalLinks;
@@ -440,5 +440,20 @@ class Analyztic
     {
         return $this->CheckHash($this->HashURL($url));
     }
+
+    public function getTitle($url)
+    {
+        $data = file_get_contents($url);
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
+        $t=strlen($title);
+        if($t > 10 && $t < 70) {
+            $data = 'طول متن :' . $t;
+        }else{
+            $data = 'طول عنوان شما مناسب نیست';
+        }
+        return [$title,$data];
+    }
+
+
 
 }

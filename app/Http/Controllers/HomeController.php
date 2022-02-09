@@ -61,11 +61,13 @@ class HomeController extends Controller
         $alexa_rank = $domain->getAlexaRank($url);
         $alexa_rank = ($alexa_rank == '' ? "N/A" : $alexa_rank);
 
+        [$siteTitle,$dataTitle]=$domain->getTitle('http://'.$url);
+
        /* analyze::create([
             'url' => $url,
         ]);*/
 
-        return view('home', compact('url','pageAuthority','domainAuthority','externalLinks','speed','domainAge', 'online','alexa_rank','urlencode'));
+        return view('home', compact('url','pageAuthority','domainAuthority','externalLinks','speed','domainAge', 'online','alexa_rank','urlencode','siteTitle','dataTitle'));
     }
 
     public function handleAdmin()

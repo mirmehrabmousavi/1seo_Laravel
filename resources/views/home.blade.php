@@ -16,7 +16,7 @@
                             <li class="dropdown dropdown-user nav-item">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="user-nav d-sm-flex d-none">
-                                        <h3 class="user-name text-bold-600">dmfx.ir</h3>
+                                        <h3 class="user-name text-bold-600">{{auth()->user()->url}}</h3>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -123,6 +123,9 @@
                                                                                                   data-i18n="Content">سایت ها</span></a>
                     <ul class="menu-content" style="">
                         <li class="active"><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
+                                                                                                data-i18n="Grid">{{auth()->user()->url}}</span></a>
+                        </li>
+                        <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
                                                                                                 data-i18n="Grid">tippler.ir</span></a>
                         </li>
                         <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
@@ -167,7 +170,8 @@
                                         </div>
                                         <div class="text-center">
                                             <h1 class="mb-2 text-white">دموی سایت</h1>
-                                            <p class="m-auto w-75">نمایش دموی سایت انالیز شده</p>
+                                            <p class="m-auto w-75 mb-2">نمایش دموی سایت انالیز شده</p>
+                                            <img src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{auth()->user()->url}}" class="img-fluid" alt="{{auth()->user()->url}}">
                                         </div>
                                     </div>
                                 </div>
@@ -618,9 +622,59 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <p>
-                                                اژانس دیجیتال مارکتینگ فراگستر
+                                                {{$siteTitle}}
                                             </p>
-                                            <div id="detail1" style="display: none" class="alert alert-primary mb-2"
+                                            <p>{{$dataTitle}}</p>
+                                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light" data-toggle="modal" data-target="#primary">
+                                                    درخواست رفع خطا
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-primary white">
+                                                                <h5 class="modal-title" id="myModalLabel160">درخواست رفع خطا</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                               درخواست درخواست
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">تایید</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-success mr-1 mb-1 d-inline-block">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light" data-toggle="modal" data-target="#success">
+                                                    راهنمای رفع خطا
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-success white">
+                                                                <h5 class="modal-title" id="myModalLabel110">راهنمای رفع خطا</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                               درخواست درخواست
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="detail1" style="display: none" class="alert alert-success mb-2"
                                                  role="alert">
                                                 سلام خوبی؟
                                             </div>

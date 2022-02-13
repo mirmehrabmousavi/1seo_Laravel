@@ -703,9 +703,12 @@ class Analyztic
         return [$robots, $check_robots_txt];
     }
 
-    public function sitemap($url)
+    public function getSitemap($url)
     {
+        $site_map=$url.'/sitemap.xml';
+        $check_xml_sitemaps='alert alert-success';
 
+        return [$site_map,$check_xml_sitemaps];
     }
 
     function is_Iframe($html) {
@@ -744,11 +747,11 @@ class Analyztic
         $issetFlash = $this->is_Flash($html);
 
         if($issetFlash==0 ){
-            $check_Flash = 'scoreHigh';
+            $check_Flash = 'alert alert-success';
             $isFlash = 'ایول فایل Flash یافت نشد';
         }
         else{
-            $check_Flash = 'scoreLow';
+            $check_Flash = 'alert alert-danger';
             $isFlash ='اوپس سایت شما دارای فایل Flash می باشد';
         }
 
@@ -797,19 +800,306 @@ class Analyztic
         return [$response_time,$check_load_time];
     }
 
+    function getLanguageID($html) {
+        $pattern = '<html[^>]+lang=[\'"]?(.*?)[\'"]?[\/\s>]';
+        preg_match("#{$pattern}#is", $html, $matches);
+        if(isset($matches[1])) {
+            return trim(mb_substr($matches[1], 0, 5));
+        }
+        $pattern = '<meta[^>]+http-equiv=[\'"]?content-language[\'"]?[^>]+content=[\'"]?(.*?)[\'"]?[\/\s>]';
+        preg_match("#{$pattern}#is", $html, $matches);
+        return isset($matches[1]) ? trim(mb_substr($matches[1], 0, 5)) : null;
+    }
+
     public function getLang($url)
     {
-      /*  $html = file_get_contents($url);
+        $html = file_get_contents($url);
 
-        $getLanguageID= getLanguageID($html);
+        $getLanguageID= $this->getLanguageID($html);
 
         if($getLanguageID != ''){
-            $check_language = 'scoreHigh';
-            $isLanguage = $lang['138'].' '.ucwords($getLanguageID);
+            $check_language = 'alert alert-success';
+            $isLanguage = 'خیلی هم عالیییی ،زبان انتخابی شما'.' '.ucwords($getLanguageID);
         }
         else{
-            $check_language = 'scoreLow';
-            $isLanguage = $lang['243'];
-        }*/
+            $check_language = 'alert alert-danger';
+            $isLanguage = 'وب سایت شما زبان انتخابی ندارد :|';
+        }
+
+        return [$isLanguage,$check_language];
     }
+
+    public function getSSL($url)
+    {
+        $get_redirect = $this->get_redirect($url);
+        if($get_redirect==null){
+            $get_redirect = $url;
+        }
+
+        if (strpos($get_redirect,'https') !== false) {
+            $is_https = 'عالی ،وبسایت شما دارای گواهی اس اس ال است.';
+            $check_https='alert alert-success';
+        } else {
+            $is_https = ':| اوپس ،وبسایت شما از گواهی اس اس ال استفاده نمی کند.';
+            $check_https='alert alert-danger';
+        }
+        return [$is_https,$check_https];
+    }
+
+    function isEmail($html) {
+        $pattern="(?:[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
+        return preg_match("/{$pattern}/is", $html);
+    }
+
+    public function getEmailPrivacy($url)
+    {
+        $html = file_get_contents($url);
+
+        $issetEmail = $this->isEmail($html);
+
+        if($issetEmail == 0){
+            $check_email_security = 'alert alert-success';
+            $ChEmail = 'Good, no email address has been found in plain text.';
+        }
+        else{
+            $check_email_security = 'alert alert-danger';
+            $ChEmail = 'Bad, email address has been found in plain text.';
+        }
+
+        return [$ChEmail,$check_email_security];
+    }
+
+    function checkSafeBrowsing($longUrl) {
+        $safebrowsing[]= null;
+        $safebrowsing['api_key'] = "ABQIAAAAOQY5PG65Sz64pzYOK6KlmhQjd04VwKOOk1G-Nk48V5R2oPhf3g";
+        $safebrowsing['api_url'] = "https://sb-ssl.google.com/safebrowsing/api/lookup";
+
+        $url = $safebrowsing['api_url']."?client=checkURLapp&";
+        $url .= "apikey=".$safebrowsing['api_key']."&appver=1.0&";
+        $url .= "pver=3.0&url=".urlencode($longUrl);
+
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+        $data = curl_exec($ch);
+        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        return $httpStatus;
+    }
+
+    public function getSafeBrowse($url)
+    {
+        $safe_value = $this->checkSafeBrowsing($url);
+
+
+        if($safe_value == 204){
+
+            $check_safe_browsing = 'alert alert-success';
+            $isSafe = 'The website is not blacklisted and looks safe to use.';
+
+        }else if($safe_value == 501){
+
+            $check_safe_browsing = 'alert alert-info';
+            $isSafe = 'Something went wrong on the server. Please try again.';
+
+        }else if($safe_value == 200){
+
+            $check_safe_browsing = 'alert alert-danger';
+            $isSafe = 'The website is blacklisted.';
+
+        }
+        else{
+
+            $check_safe_browsing = 'alert alert-info';
+            $isSafe = 'Please enter URL.';
+
+        }
+        return [$isSafe,$check_safe_browsing];
+    }
+
+    function issetNestedTables($html) {
+        $pattern = "<(td|th)(?:[^>]*)>(.*?)<table(?:[^>]*)>(.*?)</table(?:[^>]*)>(.*?)</(td|th)(?:[^>]*)>";
+        return preg_match("#{$pattern}#is", $html);
+    }
+
+    public function getNestedHTML($url)
+    {
+        $html = file_get_contents($url);
+        $issetNestedTables = $this->issetNestedTables($html);
+
+        if($issetNestedTables == 0)
+        {
+            $isNestedTable = '<p>'.'Excellent, your website doesn\'t use nested tables.'.'</p>';
+            $check_NestedTable='alert alert-success';
+        }else{
+            $isNestedTable = '<p>'.'Bad, your website does use nested tables.'.'</p>';
+            $check_NestedTable='alert alert-info';
+        }
+
+        return [$isNestedTable,$check_NestedTable];
+    }
+
+
+    function getCssCount($html) {
+        $tagPattern = '<link[^>]*>';
+        $cssPattern = '(?=.*\bstylesheet\b)(?=.*\bhref=("[^"]*"|\'[^\']*\')).*';
+        $css_count= 0;
+        preg_match_all("#{$tagPattern}#is", $html, $matches);
+        if(!isset($matches[0])) {
+            return $css_count;
+        }
+        foreach($matches[0] as $tag) {
+            if(preg_match("#{$cssPattern}#is", $tag))
+                $css_count++;
+        }
+        return $css_count;
+    }
+
+
+    function getJsCount($html) {
+        $tagPattern = '<script[^>]*>';
+        $jsPattern = 'src=("[^"]*"|\'[^\']*\')';
+        $js_count = 0;
+        preg_match_all("#{$tagPattern}#is", $html, $matches);
+        if(!isset($matches[0])) {
+            return $js_count ;
+        }
+        foreach($matches[0] as $tag) {
+            if(preg_match("#{$jsPattern}#is", $tag))
+                $js_count++;
+        }
+        return $js_count;
+    }
+
+    function isInlineCss($html) {
+        $pattern = "#<(.+)style=\"[^\"].+\"[^>]*>(.*?)<\/[^>]*>#is";
+        return preg_match("$pattern", $html);
+    }
+
+    public function getSpeedTip($url)
+    {
+        $html = file_get_contents($url);
+
+        $getCssFilesCount = $this->getCssCount($html);
+        $getJsFilesCount = $this->getJsCount($html);
+
+
+        $issetInlineCss = $this->isInlineCss($html);
+
+
+        if($issetInlineCss == 0 && $getJsFilesCount < 7 && $getCssFilesCount < 4){
+            $check_speed_tips = 'alert alert-success';
+        }
+        else{
+            $check_speed_tips = 'alert alert-danger';
+        }
+
+        return [$getCssFilesCount,$getJsFilesCount,$issetInlineCss,$check_speed_tips];
+    }
+
+    public function getGoogleAnalystic($url)
+    {
+        $html = file_get_contents($url);
+
+        $analytics_technologies = null;
+
+        if (preg_match("/\bua-\d{4,9}-\d{1,4}\b/i", $html)){
+            $analytics_technologies = 'Google Analytics was found.';
+            $check_analytics_technologies='alert alert-success';
+        } else {
+            $analytics_technologies = 'Google Analytics was not found.';
+            $check_analytics_technologies='alert alert-danger';
+        }
+        return [$analytics_technologies,$check_analytics_technologies];
+    }
+
+    function Doctype($html)
+    {
+        $doctypes = array(
+            'HTML 5' => '<!DOCTYPE html>',
+            'HTML 4.01 Strict' => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">',
+            'HTML 4.01 Transitional' => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
+            'HTML 4.01 Frameset' => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">',
+            'XHTML 1.0 Strict' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
+            'XHTML 1.0 Transitional' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
+            'XHTML 1.0 Frameset' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">',
+            'XHTML 1.1' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">',
+        );
+        preg_match("#<!DOCTYPE[^>]*>#is", $html, $matches);
+        if (!isset($matches[0])) {
+            return false;
+        }
+    }
+
+    public function getDocType($url)
+    {
+        $html = file_get_contents($url);
+        $getDocument = $this->Doctype($html);
+
+        if ($getDocument ==''){
+            $check_doctype='alert alert-danger';
+            $doctype= 'Not Found Doctype';
+        }else {
+            $check_doctype='alert alert-info';
+            $doctype= $getDocument;
+        }
+        return [$doctype,$check_doctype];
+    }
+
+    function getCharset($html) {
+
+        preg_match('#<meta[^>]+charset=[\'"]?(.*?)[\'"]?[\/\s>]#is', $html, $matches);
+        return isset($matches[1]) ? mb_strtoupper(trim($matches[1])) : null;
+    }
+
+    public function getEncoding($url)
+    {
+        $html = file_get_contents($url);
+        $getMetaTags_class = $this->getCharset($html);
+
+        if ($getMetaTags_class == 'UTF-8'){
+            $check_encoding='alert alert-success';
+            $encoding= 'Good, language/character encoding is specified:  UTF-8';
+        }else {
+            $check_encoding='alert alert-info';
+            $encoding = 'Bad, language/character encoding is specified:  No UTF-8';
+        }
+        return [$encoding,$check_encoding];
+    }
+
+    function getDeprecatedTags($html) {
+        $deprecated = array();
+        $deprectaedTags = array(
+            'acronym', 'applet', 'basefont','listing', 'plaintext','big', 'center', 'dir', 'font', 'frame', 'frameset',
+            'isindex', 'noframes','xmp', 's', 'strike', 'tt', 'u',
+        );
+        $pattern = "<(".implode("|", $deprectaedTags).")( [^>]*)?>";
+        preg_match_all("#{$pattern}#is", $html, $matches);
+        foreach($matches[1] as $tag) {
+            if(isset($deprecated[$tag]))
+                $deprecated[$tag]++;
+            else
+                $deprecated[$tag] = 1;
+        }
+        return $deprecated;
+    }
+
+    public function getDeprecatedHTML($url)
+    {
+        $html = file_get_contents($url);
+        $deprecated= $this->getDeprecatedTags($html);
+
+        if (!empty($deprecated)){
+            $dphtml = 'Good! We haven\'t found deprecated HTML tags in your HTML';
+            $check_dphtml='alert alert-danger';
+        }else {
+            $check_dphtml='alert alert-success';
+            $dphtml= 'Check if web page is using old tag or deprecated HTML tags. Deprecated tags and attributes are those that have been replaced by other, newer HTML constructs.';
+        }
+
+        return [$dphtml,$check_dphtml];
+    }
+
 }

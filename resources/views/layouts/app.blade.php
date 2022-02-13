@@ -51,7 +51,26 @@
 <body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-floating footer-static  "
       data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout">
 
-@yield('content')
+@if(auth()->check())
+
+@include('layouts.header')
+
+@include('layouts.sidebar')
+
+@endif
+
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            @yield('content')
+        </div>
+    </div>
+</div>
 
 <!-- BEGIN: Vendor JS-->
 <script src="/app-assets/vendors/js/vendors.min.js"></script>

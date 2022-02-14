@@ -25,12 +25,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index($url)
     {
-        $urlEncoded = auth()->user()->url;
-        $url = urldecode($urlEncoded);
+        /*$urlEncoded = auth()->user()->url;
+        $url = urldecode($urlEncoded);*/
 
-        $urlEncode = User::find('url');
+        /*Site::create([
+           'sites' => auth()->user()->url
+        ]);*/
+
+        //$this->url=auth()->user()->url;
+
+       /* $urlEncode = User::find('url');*/
+
+        $sites = Site::all();
+
         $domain = new Analyztic();
         $supported_domain = [
             '.com', '.net',
@@ -68,8 +77,10 @@ class HomeController extends Controller
         $alexaRank = $domain->getAlexaRank($url);
         $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
 
-        [$siteTitle,$dataTitle,$cssStyle]=$domain->getTitle('http://'.$url);
-        $description=$domain->getDescription('http://'.$url);
+        [$siteTitle,$dataTitle,$cssStyle,$titleNum]=$domain->getTitle('http://'.$url);
+        if (!empty($description)) {
+            $description=$domain->getDescription('http://'.$url);
+        }
         $altImage=$domain->getAltImage('http://'.$url);
         $missedAltImage=$domain->getMissedAltImage('http://'.$url);
         $gzip=$domain->gzip('http://'.$url);
@@ -96,6 +107,7 @@ class HomeController extends Controller
 
 
         return view('home', compact(
+            'sites',
             'url',
             'pageAuthority',
             'domainAuthority',
@@ -104,11 +116,11 @@ class HomeController extends Controller
             'domainAge',
             'online',
             'alexaRank',
-            'urlEncode',
             'siteTitle',
             'dataTitle',
             'cssStyle',
-            'description',
+            'titleNum',/*
+            'description',*/
             'altImage',
             'missedAltImage',
             'gzip',
@@ -156,7 +168,9 @@ class HomeController extends Controller
 
     public function addSiteView()
     {
-        return view('addSite_view');
+
+        $sites = Site::all();
+        return view('addSite_view',compact('sites'));
     }
 
     public function addSite(Request $request)
@@ -165,7 +179,7 @@ class HomeController extends Controller
             'sites' => $request->site
         ]);
 
-        return redirect()->route('home')->with('success', 'با موفقیت ثبت شد');
+        return redirect()->route('home',['url' => auth()->user()->url])->with('success', 'با موفقیت ثبت شد');
     }
 
     public function handleAdmin()

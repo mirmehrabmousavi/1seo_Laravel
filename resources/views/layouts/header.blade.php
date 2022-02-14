@@ -13,13 +13,9 @@
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none">
-                                    <h3 class="user-name text-bold-600">
-                                        @if(auth()->check())
+                                    <h4 class="user-name text-bold-600"><i class="feather icon-chevron-down"></i>
                                         {{auth()->user()->url}}
-                                        @else
-                                        ...
-                                        @endif
-                                    </h3>
+                                    </h4>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -76,8 +72,7 @@
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                             <div class="user-nav d-sm-flex d-none"><span
-                                    class="user-name text-bold-600">مهراب موسوی</span><span
-                                    class="user-status">در دسترس</span></div>
+                                    class="user-name text-bold-600">{{auth()->user()->name}}</span></div>
                             <span><img class="round" src="/app-assets/images/portrait/small/avatar-s-11.jpg"
                                        alt="avatar"
                                        height="40" width="40"></span>

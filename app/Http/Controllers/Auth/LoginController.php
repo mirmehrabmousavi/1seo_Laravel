@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,8 @@ class LoginController extends Controller
             if (auth()->user()->is_admin == 1) {
                 return redirect()->route('admin');
             }else{
-                return redirect()->route('home');
+                $url = auth()->user()->url;
+                return redirect()->route('home',['url' => $url]);
             }
         }else{
             return redirect()->route('login')

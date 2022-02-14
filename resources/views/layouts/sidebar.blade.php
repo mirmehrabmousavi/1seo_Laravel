@@ -14,31 +14,19 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" navigation-header"><span>بتا ورژن</span>
             </li>
-            <li class="nav-item has-sub"><a href="#"><i class="feather icon-layout"></i><span class="menu-title"
-                                                                                              data-i18n="Content">سایت ها</span></a>
+            <li class="nav-item has-sub"><a href="{{route('home',['url' => auth()->user()->url])}}"><i
+                        class="feather icon-layout"></i><span class="menu-title"
+                                                              data-i18n="Content">آنالیز</span></a>
                 <ul class="menu-content" style="">
-                    <li class="active"><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                            data-i18n="Grid">
-                                  @if(auth()->check())
-                                    {{auth()->user()->url}}
-                                @else
-                                    ...
-                                @endif
-                            </span></a>
-                    </li>
-                    <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                      data-i18n="Grid">tippler.ir</span></a>
-                    </li>
-                    <li class=""><a href="#"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                      data-i18n="Typography">available.ir</span></a>
-                    </li>
+                    @foreach($sites as $site)
+                        <li class="{{ request()->input($site->sites) ? 'active' : '' }}"><a href="{{route('home',['url'=>$site->sites])}}"><i class="feather icon-circle"></i><span class="menu-item"
+                                                                                                                                                                                    data-i18n="Grid">{{$site->sites}}</span></a>
+                        </li>
+                    @endforeach
                     <li class=""><a href="{{route('addSite')}}"><i class="feather icon-plus"></i><span class="menu-item"
-                                                                                    data-i18n="Helper Classes">افزودن سایت</span></a>
+                                                                                                       data-i18n="Helper Classes">افزودن سایت</span></a>
                     </li>
                 </ul>
-            </li>
-            <li class="active nav-item"><a href="{{route('home')}}"><i class="feather icon-database"></i><span class="menu-title"
-                                                                                               data-i18n="Email">آنالیز</span></a>
             </li>
         </ul>
     </div>

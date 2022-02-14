@@ -203,8 +203,7 @@ class Analyztic
 
         // * Assign URL metrics to separate variables
 
-        $pageAuthority = 12/*$json_a->upa*/
-        ; // * Use the round() function to return integer
+        $pageAuthority = $json_a->upa;// * Use the round() function to return integer
         /*$domainAuthority = round($json_a->pda, 0);
         $externalLinks = $json_a->ueid;
         $theUrl = $json_a->uu;*/
@@ -255,7 +254,7 @@ class Analyztic
         // * Assign URL metrics to separate variables
 
         /* $pageAuthority = round($json_a->upa, 0);*/ // * Use the round() function to return integer
-        $domainAuthority = 12/*round($json_a->pda, 0)*/
+        $domainAuthority = round($json_a->pda, 0);
         ;
         /*   $externalLinks = $json_a->ueid;
            $theUrl = $json_a->uu;*/
@@ -307,7 +306,7 @@ class Analyztic
 
         /* $pageAuthority = round($json_a->upa, 0); // * Use the round() function to return integer
          $domainAuthority = round($json_a->pda, 0);*/
-        $externalLinks = 1212/*$json_a->ueid*/
+        $externalLinks = $json_a->ueid;
         ;
         /*    $theUrl = $json_a->uu;*/
 
@@ -451,14 +450,21 @@ class Analyztic
         $data = file_get_contents($url);
         $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
         $t = strlen($title);
-        if ($t > 10 && $t < 70) {
+        $titleNum = 0;
+        if ($t > 10 && $t < 60) {
             $data = 'طول متن : ' . $t;
             $cssStyle = 'alert alert-success';
-        } else {
+            $titleNum = 5;
+        } else if($t > 60 && $t < 100) {
+            $data = 'طول متن : ' . $t;
+            $cssStyle = 'alert alert-warning';
+            $titleNum = 3;
+        }else{
             $data = 'طول عنوان شما مناسب نیست';
             $cssStyle = 'alert alert-danger';
+            $titleNum = 0;
         }
-        return [$title, $data, $cssStyle];
+        return [$title, $data, $cssStyle , $titleNum];
     }
 
     public function getDescription($url)
@@ -1063,7 +1069,7 @@ class Analyztic
             $check_encoding='alert alert-success';
             $encoding= 'Good, language/character encoding is specified:  UTF-8';
         }else {
-            $check_encoding='alert alert-info';
+            $check_encoding='alert alert-danger';
             $encoding = 'Bad, language/character encoding is specified:  No UTF-8';
         }
         return [$encoding,$check_encoding];

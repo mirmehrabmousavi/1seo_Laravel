@@ -1,157 +1,5 @@
 @extends('layouts.app')
 
-@section('style')
-    <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/plugins/extensions/toastr.css">
-@endsection
-{{--
-
-@section('header')
-    <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-dark navbar-shadow">
-        <div class="navbar-wrapper">
-            <div class="navbar-container content">
-                <div class="navbar-collapse" id="navbar-mobile">
-                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a
-                                    class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
-                                        class="ficon feather icon-menu"></i></a></li>
-                        </ul>
-                        <ul class="nav navbar-nav float-right">
-                            <li class="dropdown dropdown-user nav-item">
-                                <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                    <div class="user-nav d-sm-flex d-none">
-                                        <h4 class="user-name text-bold-600"><i class="feather icon-chevron-down"></i>
-                                            {{auth()->user()->url}}
-                                        </h4>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item p-1" href="#">Tippler.ir</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item p-1" href="{{route('addSiteView')}}"> افزودن سایت</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <ul class="nav navbar-nav float-right">
-                        <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i
-                                    class="ficon feather icon-search"></i></a>
-                            <div class="search-input">
-                                <div class="search-input-icon"><i class="feather icon-search primary"></i></div>
-                                <input class="input" type="text" placeholder="جستجو" tabindex="-1"
-                                       data-search="template-list">
-                                <div class="search-input-close"><i class="feather icon-x"></i></div>
-                                <ul class="search-list search-list-main"></ul>
-                            </div>
-                        </li>
-                        <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-                                                                               data-toggle="dropdown"><i
-                                    class="ficon feather icon-bell"></i><span
-                                    class="badge badge-pill badge-primary badge-up">1</span></a>
-                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                                <li class="dropdown-menu-header">
-                                    <div class="dropdown-header m-0 p-2">
-                                        <h3 class="white">1 پیام جدید</h3><span
-                                            class="notification-title">اعلان ها</span>
-                                    </div>
-                                </li>
-                                <li class="scrollable-container media-list">
-                                    <a class="d-flex justify-content-between" href="javascript:void(0)">
-                                        <div class="media d-flex align-items-start">
-                                            <div class="media-left"><i
-                                                    class="feather icon-plus-square font-medium-5 primary"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="primary media-heading">درخواست جدیدی دارید!</h6><small
-                                                    class="notification-text"> امشب میری بیرون؟</small>
-                                            </div>
-                                            <small>
-                                                <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">9 ساعت پیش
-                                                </time>
-                                            </small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center"
-                                                                    href="javascript:void(0)">نمایش تمام اعلان ها</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-user nav-item">
-                            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span
-                                        class="user-name text-bold-600">{{auth()->user()->name}}</span></div>
-                                <span><img class="round" src="/app-assets/images/portrait/small/avatar-s-11.jpg"
-                                           alt="avatar"
-                                           height="40" width="40"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i class="feather icon-user"></i>ویرایش پروفایل</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i
-                                        class="feather icon-power"></i> خروج</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <ul class="main-search-list-defaultlist-other-list d-none">
-        <li class="auto-suggestion d-flex align-items-center justify-content-between cursor-pointer"><a
-                class="d-flex align-items-center justify-content-between w-100 py-50">
-                <div class="d-flex justify-content-start"><span class="mr-75 feather icon-alert-circle"></span><span>No results found.</span>
-                </div>
-            </a></li>
-    </ul>
-    <!-- END: Header-->
-@endsection
-
-@section('sidebar')
-    @auth
-    <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-        <div class="navbar-header">
-            <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
-                        <div class="brand-logo"></div>
-                        <h2 class="brand-text mb-0">آنالیز</h2>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="shadow-bottom"></div>
-        <div class="main-menu-content">
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" navigation-header"><span>بتا ورژن</span>
-                </li>
-                <li class="nav-item has-sub"><a href="{{route('home',['url' => auth()->user()->url])}}"><i
-                            class="feather icon-layout"></i><span class="menu-title"
-                                                                  data-i18n="Content">آنالیز</span></a>
-                    <ul class="menu-content" style="">
-                        @foreach($sites as $site)
-                        <li class="{{ request()->input($site->sites) ? 'active' : '' }}"><a href="{{route('home',['url'=>$site->sites])}}"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                          data-i18n="Grid">{{$site->sites}}</span></a>
-                        </li>
-                        @endforeach
-                        <li class=""><a href="{{route('addSite')}}"><i class="feather icon-plus"></i><span class="menu-item"
-                                                                                                           data-i18n="Helper Classes">افزودن سایت</span></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- END: Main Menu-->
-    @endauth
-
-@endsection
---}}
-
 @section('content')
 
     <!-- Dashboard Analytics Start -->
@@ -175,7 +23,8 @@
                                 <p class="m-auto w-75 mb-2">نمایش دموی سایت انالیز شده</p>
                                 <img
                                     src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}"
-                                    class="img-fluid" alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
+                                    class="img-fluid"
+                                    alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
                             </div>
                         </div>
                     </div>
@@ -260,24 +109,137 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-sm-2 col-12 d-flex flex-column flex-wrap text-center">
-                                    <h1 class="font-large-2 text-bold-700 mt-2 mb-0">163</h1>
-                                    <small>Tickets</small>
+                                    <h1 class="font-large-2 text-bold-700 mt-2 mb-0">23</h1>
+                                    <small>مجموع موارد بررسی شده</small>
                                 </div>
                                 <div class="col-sm-10 col-12 d-flex justify-content-center">
-                                    <div id="support-tracker-chart"></div>
+                                    {{--<div id="support-tracker-chart"></div>--}}
+                                    <div id="support-tracker-chart" style="min-height: 290px;">
+                                        <div id="apexchartsl57ce9la" class="apexcharts-canvas apexchartsl57ce9la light"
+                                             style="width: 300px; height: 290px;">
+                                            <svg id="SvgjsSvg1418" width="300" height="290"
+                                                 xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg"
+                                                 xmlns:data="ApexChartsNS" transform="translate(0, 0)"
+                                                 style="background: transparent;">
+                                                <g id="SvgjsG1420" class="apexcharts-inner apexcharts-graphical"
+                                                   transform="translate(44.5, 20)">
+                                                    <defs id="SvgjsDefs1419">
+                                                        <clipPath id="gridRectMaskl57ce9la">
+                                                            <rect id="SvgjsRect1421" width="215" height="237" x="-1"
+                                                                  y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
+                                                                  stroke-width="0" stroke="none"
+                                                                  stroke-dasharray="0"></rect>
+                                                        </clipPath>
+                                                        <clipPath id="gridRectMarkerMaskl57ce9la">
+                                                            <rect id="SvgjsRect1422" width="215" height="237" x="-1"
+                                                                  y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
+                                                                  stroke-width="0" stroke="none"
+                                                                  stroke-dasharray="0"></rect>
+                                                        </clipPath>
+                                                        <linearGradient id="SvgjsLinearGradient1428" x1="0" y1="1"
+                                                                        x2="1" y2="1">
+                                                            <stop id="SvgjsStop1429" stop-opacity="1"
+                                                                  stop-color="rgba(115,103,240,1)" offset="0"></stop>
+                                                            <stop id="SvgjsStop1430" stop-opacity="1"
+                                                                  stop-color="rgba(255,255,255,1)" offset="1"></stop>
+                                                            <stop id="SvgjsStop1431" stop-opacity="1"
+                                                                  stop-color="rgba(255,255,255,1)" offset="1"></stop>
+                                                        </linearGradient>
+                                                        <linearGradient id="SvgjsLinearGradient1439" x1="0" y1="1"
+                                                                        x2="1" y2="1">
+                                                            <stop id="SvgjsStop1440" stop-opacity="1"
+                                                                  stop-color="rgba(115,103,240,1)" offset="0"></stop>
+                                                            <stop id="SvgjsStop1441" stop-opacity="1"
+                                                                  stop-color="rgba(234,84,85,1)" offset="1"></stop>
+                                                            <stop id="SvgjsStop1442" stop-opacity="1"
+                                                                  stop-color="rgba(234,84,85,1)" offset="1"></stop>
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <g id="SvgjsG1424" class="apexcharts-radialbar">
+                                                        <g id="SvgjsG1425">
+                                                            <g id="SvgjsG1426" class="apexcharts-tracks">
+                                                                <g id="SvgjsG1427"
+                                                                   class="apexcharts-radialbar-track apexcharts-track"
+                                                                   rel="1">
+                                                                    <path id="apexcharts-radialbarTrack-0"
+                                                                          d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"
+                                                                          fill="none" fill-opacity="1"
+                                                                          stroke="rgba(255,255,255,0.85)"
+                                                                          stroke-opacity="1" stroke-linecap="butt"
+                                                                          stroke-width="21.25" stroke-dasharray="0"
+                                                                          class="apexcharts-radialbar-area"
+                                                                          data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"></path>
+                                                                </g>
+                                                            </g>
+                                                            <g id="SvgjsG1433">
+                                                                <g id="SvgjsG1438"
+                                                                   class="apexcharts-series apexcharts-radial-series"
+                                                                   seriesName="CompletedxTickets" rel="1"
+                                                                   data:realIndex="0">
+                                                                    <path id="SvgjsPath1443"
+                                                                          d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"
+                                                                          fill="none" fill-opacity="0.85"
+                                                                          stroke="url(#SvgjsLinearGradient1439)"
+                                                                          stroke-opacity="1" stroke-linecap="butt"
+                                                                          stroke-width="21.25" stroke-dasharray="8"
+                                                                          class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
+                                                                          data:angle="249" data:value="83" index="0"
+                                                                          j="0"
+                                                                          data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"></path>
+                                                                </g>
+                                                                <circle id="SvgjsCircle1434" r="97.5" cx="106.5"
+                                                                        cy="117.5" class="apexcharts-radialbar-hollow"
+                                                                        fill="transparent"></circle>
+                                                                <g id="SvgjsG1435" class="apexcharts-datalabels-group"
+                                                                   transform="translate(0, 0)" style="opacity: 1;">
+                                                                    <text id="SvgjsText1436"
+                                                                          font-family="Helvetica, Arial, sans-serif"
+                                                                          x="106.5" y="117.5" text-anchor="middle"
+                                                                          dominant-baseline="auto" font-size="16px"
+                                                                          font-weight="regular" fill="#ea5455"
+                                                                          class="apexcharts-datalabel-label"
+                                                                          style="font-family: Helvetica, Arial, sans-serif;">
+                                                                        Completed Tickets
+                                                                    </text>
+                                                                    <text id="SvgjsText1437"
+                                                                          font-family="Helvetica, Arial, sans-serif"
+                                                                          x="106.5" y="163.5" text-anchor="middle"
+                                                                          dominant-baseline="auto" font-size="2rem"
+                                                                          font-weight="regular" fill="#99a2ac"
+                                                                          class="apexcharts-datalabel-value"
+                                                                          style="font-family: Helvetica, Arial, sans-serif;">
+                                                                        {{$totalPercent}}%
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <line id="SvgjsLine1444" x1="0" y1="0" x2="213" y2="0"
+                                                          stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1"
+                                                          class="apexcharts-ycrosshairs"></line>
+                                                    <line id="SvgjsLine1445" x1="0" y1="0" x2="213" y2="0"
+                                                          stroke-dasharray="0" stroke-width="0"
+                                                          class="apexcharts-ycrosshairs-hidden"></line>
+                                                </g>
+                                            </svg>
+                                            <div class="apexcharts-legend"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="chart-info d-flex justify-content-between">
                                 <div class="text-center">
-                                    <p class="mb-50">New Tickets</p>
+                                    <p class="mb-50">تعداد خطا ها</p>
                                     <span class="font-large-1">29</span>
                                 </div>
                                 <div class="text-center">
-                                    <p class="mb-50">Open Tickets</p>
+                                    <p class="mb-50">تعداد اخطار</p>
                                     <span class="font-large-1">63</span>
                                 </div>
                                 <div class="text-center">
-                                    <p class="mb-50">Response Time</p>
+                                    <p class="mb-50">تعداد صحیح</p>
                                     <span class="font-large-1">1d</span>
                                 </div>
                             </div>
@@ -615,6 +577,7 @@
         </div>
         <div class="row">
             <div class="container">
+                {{--title--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -629,9 +592,10 @@
                                 <p>
                                     {{$siteTitle}}
                                 </p>
-                                <div class="{{$cssStyle}} p-1">
+                                <div class="{{$titleCssStyle}} p-1">
 
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}  <span style="float: left">امتیاز : {{$titleNum}} از 5</span></p>
+                                    <p><i class="feather icon-info"></i> {{$dataTitle}} <span style="float: left">امتیاز : {{$titleNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -716,6 +680,7 @@
                         </div>
                     </div>
                 </div>
+                {{--description--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -728,11 +693,13 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <p>
-                                    {{--{{$description}}--}}
+                                    {{$description}}
                                 </p>
-                                <div class="{{$cssStyle}} p-1">
 
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
+                                <div class="{{$descCssStyle}} p-1">
+
+                                    <p><i class="feather icon-info"></i> {{$dataDesc}} <span style="float: left">امتیاز : {{$descNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -761,10 +728,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'توضیحات'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -800,6 +771,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
+                                    </div>
+                                @endif
                                 <div id="detail2" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
@@ -808,6 +784,7 @@
                         </div>
                     </div>
                 </div>
+                {{--google preview--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -819,12 +796,12 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <p>
-                                    {{$siteTitle}}
-                                </p>
-                                <div class="{{$cssStyle}} p-1">
-
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
+                                <div class="google-preview">
+                                    <p>{{$siteTitle}}</p>
+                                    <p><span
+                                            class="bold">{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}</span>/
+                                    </p>
+                                    <p>{{$description}}</p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -853,10 +830,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'پیش نمایش گوگل'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -892,6 +873,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
+                                    </div>
+                                @endif
                                 <div id="detail3" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
@@ -900,96 +886,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>عناوین</h4>
-                            <a onclick="myFunction4()"><i class="feather icon-info"></i></a>
-                        </div>
-                        <div class="divider">
-                            <div class="divider-text">Headers</div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <p>Header</p>
-                                <div class="{{$cssStyle}} p-1">
-
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
-                                </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-success mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
-                                        راهنمای رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-success white">
-                                                    <h5 class="modal-title" id="myModalLabel110">راهنمای رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="detail4" style="display: none" class="alert alert-primary mb-2"
-                                     role="alert">
-                                    سلام خوبی؟
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--alt image--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1001,12 +898,10 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <p>
-                                    {{$altImage . ' ' . $missedAltImage}}
-                                </p>
-                                <div class="{{$cssStyle}} p-1">
+                                <div class="{{$checkMissingAlt}} p-1">
 
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
+                                    <p> {{$missingAltImage}} <span style="float: left">امتیاز : {{$altNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1035,10 +930,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'تصویر alt'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1074,6 +973,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
+                                    </div>
+                                @endif
                                 <div id="detail5" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
@@ -1082,6 +986,7 @@
                         </div>
                     </div>
                 </div>
+                {{--ratio--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1093,12 +998,12 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <p>
-                                    {{$siteTitle}}
-                                </p>
-                                <div class="{{$cssStyle}} p-1">
+                                <div class="{{$checkRatio}} p-1">
 
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
+                                    <p><i class="feather icon-info"></i> نسبت متن به کد صفحه شما {{$getRatio}} (سایز متن
+                                        صفحه: {{$textSize}} و سایز کد های صفحه: {{$ratioPageSize}}) <span
+                                            style="float: left">امتیاز : {{$ratioNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1127,10 +1032,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'نسبت متن به کد'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1166,6 +1075,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
+                                    </div>
+                                @endif
                                 <div id="detail6" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
@@ -1174,6 +1088,7 @@
                         </div>
                     </div>
                 </div>
+                {{--gzip--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1185,12 +1100,9 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <p>
-                                    {{$gzip}}
-                                </p>
-                                <div class="{{$cssStyle}} p-1">
-
-                                    <p><i class="feather icon-info"></i> {{$dataTitle}}</p>
+                                <div class="alert alert-success p-1">
+                                    <p><i class="feather icon-info"></i> {{$gzip}} <span style="float: left">امتیاز : {{$gzipNum}} از 4</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1219,10 +1131,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'gzip'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1258,6 +1174,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(\Illuminate\Support\Facades\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
+                                    </div>
+                                @endif
                                 <div id="detail7" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
@@ -1266,6 +1187,7 @@
                         </div>
                     </div>
                 </div>
+                {{--server signature--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1308,10 +1230,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'امضای سرور'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1355,6 +1281,7 @@
                         </div>
                     </div>
                 </div>
+                {{--url Canonicalization--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1367,7 +1294,6 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="{{$check_url_canonicalization}} p-1">
-
                                     <p><i class="feather icon-info"></i> {{$isUrlCanonicalization}}</p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
@@ -1397,10 +1323,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'وضعیت url'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1444,6 +1374,7 @@
                         </div>
                     </div>
                 </div>
+                {{--robot--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1456,8 +1387,8 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="{{$check_robots_txt}} p-1">
-
-                                    <p>{{$robots}} <i class="feather icon-info"></i></p>
+                                    <p>{{$robots}} <span style="float: left">امتیاز : {{$robotsNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1486,10 +1417,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'ربات'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1533,6 +1468,7 @@
                         </div>
                     </div>
                 </div>
+                {{--sitemap--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1545,8 +1481,8 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="{{$check_xml_sitemaps}} p-1">
-
-                                    <p>{{$site_map}} <i class="feather icon-info"></i></p>
+                                    <p>{{$site_map}} <span style="float: left">امتیاز : {{$sitemapNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1575,10 +1511,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'نقشه سایت'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1622,6 +1562,7 @@
                         </div>
                     </div>
                 </div>
+                {{--iframe--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1634,8 +1575,8 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="{{$check_Iframe}} p-1">
-
-                                    <p>{{$isIframe}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$isIframe}} <span style="float: left">امتیاز : {{$iframeNum}} از 4</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1664,10 +1605,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'iframe'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1711,6 +1656,7 @@
                         </div>
                     </div>
                 </div>
+                {{--flash--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1723,8 +1669,8 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="{{$check_Flash}} p-1">
-
-                                    <p>{{$isFlash}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$isFlash}} <span style="float: left">امتیاز : {{$flashNum}} از 4</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1753,10 +1699,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'flash'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1800,6 +1750,7 @@
                         </div>
                     </div>
                 </div>
+                {{--domain length--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1887,6 +1838,7 @@
                         </div>
                     </div>
                 </div>
+                {{--favicon--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1898,7 +1850,8 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <img src="{{$favicon}}" alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
+                                <img src="{{$favicon}}"
+                                     alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
                                 <p>عالی است. وب سایت شما Favicon دارد :)</p>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -1974,6 +1927,7 @@
                         </div>
                     </div>
                 </div>
+                {{--page size--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -1985,9 +1939,10 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <div class="alert alert-info p-1">
+                                <div class="{{$checkPageSize}} p-1">
 
-                                    <p>{{$pageSize}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$pageSize}} <span style="float: left">امتیاز : {{$pageSizeNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2016,10 +1971,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'اندازه صفحه'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2063,6 +2022,7 @@
                         </div>
                     </div>
                 </div>
+                {{--load time--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2076,7 +2036,8 @@
                             <div class="card-body">
                                 <div class="{{$check_load_time}} p-1">
 
-                                    <p>{{$response_time}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$response_time}} <span style="float: left">امتیاز : {{$loadTimeNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2105,10 +2066,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'زمان بارگذاری'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2152,6 +2117,7 @@
                         </div>
                     </div>
                 </div>
+                {{--languagee--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2165,7 +2131,8 @@
                             <div class="card-body">
                                 <div class="{{$check_language}} p-1">
 
-                                    <p>{{$isLanguage}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$isLanguage}} <span style="float: left">امتیاز : {{$langNum}} از 3</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2194,10 +2161,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'زبان سایت'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2241,6 +2212,7 @@
                         </div>
                     </div>
                 </div>
+                {{--ssl--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2254,7 +2226,8 @@
                             <div class="card-body">
                                 <div class="{{$check_https}} p-1">
 
-                                    <p>{{$is_https}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$is_https}} <span style="float: left">امتیاز : {{$sslNum}} از 5</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2283,10 +2256,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'گواهی ssl'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2330,6 +2307,7 @@
                         </div>
                     </div>
                 </div>
+                {{--email privacy--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2419,6 +2397,7 @@
                         </div>
                     </div>
                 </div>
+                {{--safe browse--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2432,7 +2411,8 @@
                             <div class="card-body">
                                 <div class="{{$check_safe_browsing}} p-1">
 
-                                    <p>{{$isSafe}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$isSafe}} <span style="float: left">امتیاز : {{$safeNum}} از 3</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2461,10 +2441,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'مرور ایمن'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2508,6 +2492,7 @@
                         </div>
                     </div>
                 </div>
+                {{--nested html--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2521,7 +2506,8 @@
                             <div class="card-body">
                                 <div class="{{$check_NestedTable}} p-1">
 
-                                    <p>{{$isNestedTable}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$isNestedTable}} <span style="float: left">امتیاز : {{$nestedNum}} از 2</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2550,10 +2536,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'Nested HTML'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2597,6 +2587,7 @@
                         </div>
                     </div>
                 </div>
+                {{--speed tip--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2610,9 +2601,9 @@
                             <div class="card-body">
                                 <div class="{{$check_speed_tips}} p-1">
 
-                                    <p>{{$getCssFilesCount}} <i class="feather icon-info"></i></p>
-                                    <p>{{$getJsFilesCount}} <i class="feather icon-info"></i></p>
-                                    <p>{{$issetInlineCss}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i>{{$getCssFilesCount}}</p>
+                                    <p><i class="feather icon-info"></i>{{$getJsFilesCount}} </p>
+                                    <p><i class="feather icon-info"></i>{{$issetInlineCss}}  </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2641,10 +2632,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'نکات سرعت'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2688,6 +2683,7 @@
                         </div>
                     </div>
                 </div>
+                {{--google analytic--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2701,7 +2697,8 @@
                             <div class="card-body">
                                 <div class="{{$check_analytics}} p-1">
 
-                                    <p>{{$analytics}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$analytics}} <span style="float: left">امتیاز : {{$analyticNum}} از 4</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2730,10 +2727,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'Google Analytic'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2777,6 +2778,7 @@
                         </div>
                     </div>
                 </div>
+                {{--doctype--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2790,7 +2792,8 @@
                             <div class="card-body">
                                 <div class="{{$check_doctype}} p-1">
 
-                                    <p>{{$doctype}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$doctype}} <span style="float: left">امتیاز : {{$doctypeNum}} از 2</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2819,10 +2822,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'Doctype'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2866,6 +2873,7 @@
                         </div>
                     </div>
                 </div>
+                {{--encoding--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2879,7 +2887,8 @@
                             <div class="card-body">
                                 <div class="{{$check_encoding}} p-1">
 
-                                    <p>{{$encoding}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$encoding}} <span style="float: left">امتیاز : {{$encodingNum}} از 2</span>
+                                    </p>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -2908,10 +2917,14 @@
                                                     درخواست درخواست
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
+                                                    <form action="{{route('sendReq',['req'=>'Encoding'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2955,6 +2968,7 @@
                         </div>
                     </div>
                 </div>
+                {{--deprecated html--}}
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -2968,7 +2982,151 @@
                             <div class="card-body">
                                 <div class="{{$check_dphtml}} p-1">
 
-                                    <p>{{$dphtml}} <i class="feather icon-info"></i></p>
+                                    <p><i class="feather icon-info"></i> {{$dphtml}} <span style="float: left">امتیاز : {{$dphtmlNum}} از 2</span>
+                                    </p>
+                                </div>
+                                <div class="modal-primary mr-1 mb-1 d-inline-block">
+                                    <!-- Button trigger modal -->
+                                    <button type="button"
+                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
+                                            data-toggle="modal" data-target="#primary">
+                                        درخواست رفع خطا
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade text-left" id="primary" tabindex="-1"
+                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                                        <div
+                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary white">
+                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
+                                                        خطا</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    درخواست درخواست
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{{route('sendReq',['req'=>'html منسوخ شده'])}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light">
+                                                            تایید
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-success mr-1 mb-1 d-inline-block">
+                                    <!-- Button trigger modal -->
+                                    <button type="button"
+                                            class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
+                                            data-toggle="modal" data-target="#success">
+                                        راهنمای رفع خطا
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                         role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
+                                        <div
+                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-success white">
+                                                    <h5 class="modal-title" id="myModalLabel110">راهنمای رفع
+                                                        خطا</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    درخواست درخواست
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="detail30" style="display: none" class="alert alert-primary mb-2"
+                                     role="alert">
+                                    سلام خوبی؟
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--headers--}}
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>عناوین</h4>
+                            <a onclick="myFunction4()"><i class="feather icon-info"></i></a>
+                        </div>
+                        <div class="divider">
+                            <div class="divider-text">Headers</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped which">
+                                        <thead>
+                                        <tr>
+                                            @foreach ($getheading as $heading => $headings)
+                                                <th>&lt;{{strtoupper($heading)}}&lt;</th>
+                                            @endforeach
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            @foreach($getheading as $headings)
+                                                <th>{{count($headings)}}</th>
+                                            @endforeach
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped which" id="heading">
+                                        <tbody>
+                                        <?php
+                                        $i = 0;
+                                        ?>
+                                        @foreach ($getheading as $heading => $headings)
+                                            <?php
+                                            if (!empty($headings)) {
+                                                foreach ($headings as $h) {
+                                                    $i++;
+                                                    $over_max = 4;
+                                                    if ($i > $over_max) {
+                                                        $cls = 'class="over-max"';
+                                                    } else {
+                                                        $cls = '';
+                                                    }
+                                                    echo '<tr ' . $cls . '><td><span class="bold">&lt;' . mb_strtoupper($heading) . '&gt;</span> ' . $h . '</tr>';
+                                                }
+                                            }
+                                            ?>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    <?php
+                                    if ($i > $over_max) {
+                                        echo '
+                                            <div class="show-header">
+                                                <a href="javascript:void(0)" class="show-more-header">بیشتر</a>
+                                                <a href="javascript:void(0)" class="show-less-header">کمتر</a>
+                                            </div>';
+                                    }
+                                    ?>
                                 </div>
                                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
@@ -3036,7 +3194,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="detail30" style="display: none" class="alert alert-primary mb-2"
+                                <div id="detail4" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
                                     سلام خوبی؟
                                 </div>
@@ -3044,7 +3202,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -3169,5 +3326,25 @@
         );
 
         productChart.render();
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.show-less-header').click(function () {
+                var p = $(this).parent(".show-header");
+
+                $('#heading').find('.over-max').hide();
+                $(this).hide();
+                p.find('.show-more-header').show();
+            });
+            $('.show-more-header').click(function () {
+                var p = $(this).parent(".show-header");
+
+                $('#heading').find('.over-max').show();
+                $(this).hide();
+                p.find('.show-less-header').show();
+            });
+
+        });
     </script>
 @endsection

@@ -202,13 +202,17 @@ class Analyztic
         $json_a = json_decode($content);
 
         // * Assign URL metrics to separate variables
+        $pageAuthority = $json_a->upa;
 
-        $pageAuthority = $json_a->upa;// * Use the round() function to return integer
-        /*$domainAuthority = round($json_a->pda, 0);
-        $externalLinks = $json_a->ueid;
-        $theUrl = $json_a->uu;*/
+        if ($pageAuthority > 30) {
+            $pageAuthNum=5;
+        }else if ($pageAuthority > 10 && $pageAuthority < 30) {
+            $pageAuthNum=3;
+        }else if ($pageAuthority < 10) {
+            $pageAuthNum=0;
+        }
 
-        return $pageAuthority;
+        return [$pageAuthority,$pageAuthNum];
     }
 
     public function domainAuthority($domain)
@@ -252,14 +256,17 @@ class Analyztic
         $json_a = json_decode($content);
 
         // * Assign URL metrics to separate variables
-
-        /* $pageAuthority = round($json_a->upa, 0);*/ // * Use the round() function to return integer
         $domainAuthority = round($json_a->pda, 0);
-        ;
-        /*   $externalLinks = $json_a->ueid;
-           $theUrl = $json_a->uu;*/
 
-        return $domainAuthority;
+        if ($domainAuthority > 30) {
+            $domainAuthNum=5;
+        }else if ($domainAuthority > 10 && $domainAuthority < 30) {
+            $domainAuthNum=3;
+        }else if ($domainAuthority < 10) {
+            $domainAuthNum=0;
+        }
+
+        return [$domainAuthority,$domainAuthNum];
     }
 
     public function externalLinks($domain)
@@ -306,8 +313,7 @@ class Analyztic
 
         /* $pageAuthority = round($json_a->upa, 0); // * Use the round() function to return integer
          $domainAuthority = round($json_a->pda, 0);*/
-        $externalLinks = $json_a->ueid;
-        ;
+        $externalLinks = $json_a->ueid;;
         /*    $theUrl = $json_a->uu;*/
 
         return $externalLinks;
@@ -447,42 +453,75 @@ class Analyztic
 
     public function getTitle($url)
     {
-        $data = file_get_contents($url);
-        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
+        $dataTitle = file_get_contents($url);
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $dataTitle, $matches) ? $matches[1] : null;
         $t = strlen($title);
         $titleNum = 0;
         if ($t > 10 && $t < 60) {
-            $data = 'طول متن : ' . $t;
-            $cssStyle = 'alert alert-success';
+            $dataTitle = 'طول متن : ' . $t;
+            $titleCssStyle = 'alert alert-success';
             $titleNum = 5;
-        } else if($t > 60 && $t < 100) {
-            $data = 'طول متن : ' . $t;
-            $cssStyle = 'alert alert-warning';
+        } else if ($t > 60 && $t < 100) {
+            $dataTitle = 'طول متن : ' . $t;
+            $titleCssStyle = 'alert alert-warning';
             $titleNum = 3;
-        }else{
-            $data = 'طول عنوان شما مناسب نیست';
-            $cssStyle = 'alert alert-danger';
+        } else {
+            $dataTitle = 'طول عنوان شما مناسب نیست';
+            $titleCssStyle = 'alert alert-danger';
             $titleNum = 0;
         }
-        return [$title, $data, $cssStyle , $titleNum];
+        return [$title, $dataTitle, $titleCssStyle, $titleNum];
     }
 
     public function getDescription($url)
     {
         $metatagarray = get_meta_tags($url);
         $description = $metatagarray["description"];
+        $descLen = strlen($description);
 
-        return $description;
+        if ($descLen > 70 && $descLen < 120) {
+            $dataDesc = 'طول متن : ' . $descLen;
+            $descCssStyle = 'alert alert-success';
+            $descNum = 5;
+        } else if ($descLen > 120 && $descLen < 170) {
+            $dataDesc = 'طول متن : ' . $descLen;
+            $descCssStyle = 'alert alert-warning';
+            $descNum = 3;
+        } else {
+            $dataDesc = 'طول توضیحات شما مناسب نیست';
+            $descCssStyle = 'alert alert-danger';
+            $descNum = 0;
+        }
+
+        return [$description, $dataDesc, $descCssStyle, $descNum];
     }
 
-    public function getHeader($url, $headingtag)
+    function get_headings_tag($html)
     {
-        $headingText = '';
-        preg_match_all('|<' . $headingtag . '>(.*)</' . $headingtag . '>|iU', $url, $headings);
-        foreach ($headings[0] as $headh2val) {
-            $headingText .= $headh2val;
+
+        $headings = array(
+            'h1' => array(),
+            'h2' => array(),
+            'h3' => array(),
+            'h4' => array(),
+            'h5' => array(),
+            'h6' => array(),
+        );
+        $pattern = "<(h[1-6]{1})(.+)?>(.*)</h[1-6]{1}(?:[^>]*)>";
+        preg_match_all("#{$pattern}#iUs", $html, $matches);
+        $sizes = isset($matches[1]) ? $matches[1] : array();
+        foreach ($sizes as $id => $size) {
+            $headings[strtolower($size)][] = strip_tags(trim($matches[3][$id]));
         }
-        return $headingText;
+        return $headings;
+    }
+
+    public function getHeader($url)
+    {
+        $html = file_get_contents($url);
+        $getheading = $this->get_headings_tag($html);
+        $headingNum=6;
+        return [$getheading,$headingNum];
     }
 
     public function getAltImage($url)
@@ -492,81 +531,109 @@ class Analyztic
         preg_match_all('/<img(.*?)>/is', $content, $page_images);
         $total_images = count($page_images[1]);
 
-        return $total_images . 'عکس موجود می باشد';
-    }
-
-    public function getMissedAltImage($url)
-    {
-        $content = file_get_contents($url);
-
-        preg_match_all('/<img(.*?)>/is', $content, $page_images);
-        $total_images = count($page_images[1]);
-
         preg_match_all('/<img(.*?)alt="(.*?)"(.*?)>/is', $content, $alt_images);
         $total_alt = count($alt_images[2]);
-
         $missing_alt = $total_images - $total_alt;
 
+        if ($missing_alt > 1 && $missing_alt < 5) {
+            $checkMissingAlt = 'alert alert-warning';
+            $altNum = 3;
+        }else if ($missing_alt > 5){
+            $checkMissingAlt = 'alert alert-danger';
+            $altNum = 0;
+        }else{
+            $checkMissingAlt = 'alert alert-success';
+            $altNum = 5;
+        }
+        $missingAltImage = $total_images . 'عکس موجود می باشد' . $missing_alt . 'عکس بدون ویژگی alt می باشند ';
+        return [$missingAltImage,$checkMissingAlt,$altNum];
+    }
 
-        return $missing_alt . ' alt attributes are empty or missing';
+
+    function ratio_file_get_contents_curl($url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_REFERER, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+
+    function ratio_strip_html_tags($text) {
+        $text = preg_replace(
+            array(
+                '@<head[^>]*?>.*?</head>@siu',
+                '@<style[^>]*?>.*?</style>@siu',
+                '@<script[^>]*?.*?</script>@siu',
+                '@<object[^>]*?.*?</object>@siu',
+                '@<embed[^>]*?.*?</embed>@siu',
+                '@<applet[^>]*?.*?</applet>@siu',
+                '@<noframes[^>]*?.*?</noframes>@siu',
+                '@<noscript[^>]*?.*?</noscript>@siu',
+                '@<noembed[^>]*?.*?</noembed>@siu',
+                '@</?((address)|(blockquote)|(center)|(del))@iu',
+                '@</?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))@iu',
+                '@</?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))@iu',
+                '@</?((table)|(th)|(td)|(caption))@iu',
+                '@</?((form)|(button)|(fieldset)|(legend)|(input))@iu',
+                '@</?((label)|(select)|(optgroup)|(option)|(textarea))@iu',
+                '@</?((frameset)|(frame)|(iframe))@iu',
+                '#<[\/\!]*?[^<>]*?>#siu',         // Strip out HTML tags
+                '#<![\s\S]*?--[ \t\n\r]*>#siu',  // Strip multi-line comments including CDATA
+            ),
+            array(
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
+                "\n\$0", "\n\$0",
+            ), $text);
+        return strip_tags($text);
+    }
+
+
+    function ratio_check_ratio($url) {
+        $real_content = $this->ratio_file_get_contents_curl($url);
+        $page_size = mb_strlen($real_content, '8bit');
+        $content = $this->ratio_strip_html_tags($real_content);
+        $text_size = mb_strlen($content, '8bit');
+        $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", " ", $content);
+
+        $len_real = strlen($real_content);
+        $len_strip = strlen($content);
+        return round((($len_strip/$len_real)*100), 2);
     }
 
     public function getRatio($url)
     {
+        $page_size=0;
+        $text_size=0;
+        $real_content = $this->ratio_file_get_contents_curl($url);
+        $page_size = mb_strlen($real_content, '8bit');
+        $content = $this->ratio_strip_html_tags($real_content);
+        $text_size = mb_strlen($content, '8bit');
+        $getRatio = $this->ratio_check_ratio($url);
 
-        /*  //Get Text to HTML Ratio
-          $page_size=0;
-          $text_size=0;
-          $real_content = ratio_file_get_contents_curl($url);
-          $page_size = mb_strlen($real_content, '8bit');
-          $content = ratio_strip_html_tags($real_content);
-          $text_size = mb_strlen($content, '8bit');
-          $getRatio = ratio_check_ratio($url);*/
+
+        if($getRatio > 8){
+            $ratioNum=5;
+            $checkRatio = 'alert alert-success';
+        }else if ($getRatio >5 && $getRatio < 8){
+            $ratioNum=3;
+            $checkRatio = 'alert alert-warning';
+        }else if ($getRatio < 5) {
+            $ratioNum=0;
+            $checkRatio = 'alert alert-danger';
+        }
+        $getRatio .= '%';
+
+        return [$getRatio,$text_size,$page_size,$checkRatio,$ratioNum];
     }
 
     public function gzip($url)
     {
-        /* if (isset($_GET['gzip_compression_check'])) {
-             //Get Gzip Compression
-
-             $gzip_test = check_compressed($url);
-
-             if ($gzip_test == 'None') {
-
-                 $gzip_enable = false;
-
-             } else {
-
-                 $gzip_enable = true;
-
-             }
-
-             ob_start();
-             Get_Content($url);
-             $output = gzcompress(ob_get_contents());
-             ob_end_clean();
-
-             ob_start();
-             Get_Content($url);
-             $output2 = ob_get_contents();
-             ob_end_clean();
-             $after_gzip = strlen($output);
-             $before_gzip = strlen($output2);
-
-             $convert_before = bytesToSize($before_gzip);
-             $convert_after = bytesToSize($after_gzip);
-
-             $percentage = (($before_gzip - $after_gzip) / ($before_gzip)) * 100;
-
-
-             if ($gzip_enable == true) {
-                 $isGzip = '201';
-
-             } else {
-                 $isGzip = '202';
-             }
-         }*/
-
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -578,10 +645,13 @@ class Analyztic
         $resp = curl_exec($curl);
         curl_close($curl);
 
-        if ($resp)
-            return 'ok';
-        else
-            return 'oops';
+        if ($resp) {
+            $gzipNum=4;
+            return ['عالی سایت شما GZIP است.', $gzipNum];
+        }else {
+            $gzipNum = 0;
+            return ['اوه سایت شما GZIP نیست.', $gzipNum];
+        }
     }
 
     function getDomainName($url)
@@ -682,16 +752,16 @@ class Analyztic
 
         if ($get_redirect == null) {
             $check_url_canonicalization = 'alert alert-success';
-            $isUrlCanonicalization = 'Yes, your site\'s url <a href="http://' . $url_WWW . '" target="_blank" rel="nofollow">' . $url_WWW . '</a> and <a href="http://' . $parsedUrl . '" target="_blank" rel="nofollow">' . $parsedUrl . '</a> resolve to the same URL.';
+            $isUrlCanonicalization = 'Yes, your site\'s url ' . $url_WWW . ' and ' . $parsedUrl . ' resolve to the same URL.';
         } else {
             $parsedRedirect = $this->getDomainName($get_redirect);
 
             if ($parsedRedirect == $parsedUrl) {
                 $check_url_canonicalization = 'alert alert-success';
-                $isUrlCanonicalization = 'Yes, your site\'s url <a href="http://' . $url_WWW . '" target="_blank" rel="nofollow">' . $url_WWW . '</a> and <a href="http://' . $parsedUrl . '" target="_blank" rel="nofollow">' . $parsedUrl . '</a> resolve to the same URL.';
+                $isUrlCanonicalization = 'Yes, your site\'s url ' . $url_WWW . ' and ' . $parsedUrl . ' resolve to the same URL.';
             } elseif ($parsedRedirect == $url_WWW) {
                 $check_url_canonicalization = 'alert alert-success';
-                $isUrlCanonicalization = 'Yes, your site\'s url <a href="http://' . $url_WWW . '" target="_blank" rel="nofollow">' . $url_WWW . '</a> and <a href="http://' . $parsedUrl . '" target="_blank" rel="nofollow">' . $parsedUrl . '</a> resolve to the same URL.';
+                $isUrlCanonicalization = 'Yes, your site\'s url ' . $url_WWW . ' and ' . $parsedUrl . ' resolve to the same URL.';
 
             } else {
                 $isUrlCanonicalization = 'No, your site\'s url ' . $url_WWW . ' and ' . $parsedUrl . ' don\'t resolve to the same URL.';
@@ -704,20 +774,22 @@ class Analyztic
 
     public function robotFile($url)
     {
-        $robots =$url."/robots.txt";
+        $robots = $url . "/robots.txt";
         $check_robots_txt = 'alert alert-success';
-        return [$robots, $check_robots_txt];
+        $robotsNum=5;
+        return [$robots, $check_robots_txt,$robotsNum];
     }
 
     public function getSitemap($url)
     {
-        $site_map=$url.'/sitemap.xml';
-        $check_xml_sitemaps='alert alert-success';
-
-        return [$site_map,$check_xml_sitemaps];
+        $site_map = $url . '/sitemap.xml';
+        $check_xml_sitemaps = 'alert alert-success';
+        $sitemapNum=5;
+        return [$site_map, $check_xml_sitemaps,$sitemapNum];
     }
 
-    function is_Iframe($html) {
+    function is_Iframe($html)
+    {
         $pattern = "#<iframe[^>]+>.*?</iframe>#is";
         return preg_match("$pattern", $html);
     }
@@ -729,19 +801,21 @@ class Analyztic
 
         $issetIframe = $this->is_Iframe($html);
 
-        if($issetIframe==0 ){
+        if ($issetIframe == 0) {
             $check_Iframe = 'alert alert-success';
             $isIframe = 'iFrame در سایت شما یافت نشد :)';
-        }
-        else{
+            $iframeNum=4;
+        } else {
             $check_Iframe = 'alert alert-danger';
             $isIframe = 'متاسفانه iFrame در سایت شما یافت شد :(';
+            $iframeNum=0;
         }
 
-        return [$isIframe,$check_Iframe];
+        return [$isIframe, $check_Iframe,$iframeNum];
     }
 
-    function is_Flash($html) {
+    function is_Flash($html)
+    {
         $pattern = "#<object[^>]*>(.*?)</object>#is";
         return preg_match("$pattern", $html);
     }
@@ -752,21 +826,22 @@ class Analyztic
 
         $issetFlash = $this->is_Flash($html);
 
-        if($issetFlash==0 ){
+        if ($issetFlash == 0) {
             $check_Flash = 'alert alert-success';
             $isFlash = 'ایول فایل Flash یافت نشد';
-        }
-        else{
+            $flashNum=4;
+        } else {
             $check_Flash = 'alert alert-danger';
-            $isFlash ='اوپس سایت شما دارای فایل Flash می باشد';
+            $isFlash = 'اوپس سایت شما دارای فایل Flash می باشد';
+            $flashNum=0;
         }
 
-        return [$isFlash,$check_Flash];
+        return [$isFlash, $check_Flash,$flashNum];
     }
 
     public function urlCheck($url)
     {
-        $url_domain= $this->getDomainName ($url);
+        $url_domain = $this->getDomainName($url);
 
         $ext = strstr($url_domain, '.'); // extension
 
@@ -781,35 +856,51 @@ class Analyztic
 
     public function getFavicon($url)
     {
-        return 'http://www.google.com/s2/favicons?domain='.$url;
+        return 'http://www.google.com/s2/favicons?domain=' . $url;
     }
 
-    public function getPageSize($url){
-        return strlen(file_get_contents($url));
+    public function getPageSize($url)
+    {
+        $pageSize = strlen(file_get_contents($url));
+        if ($pageSize < 300000) {
+            $checkPageSize = 'alert alert-success';
+            $pageSizeNum=5;
+        }elseif ($pageSize > 300000 && $pageSize < 500000) {
+            $checkPageSize = 'alert alert-warning';
+            $pageSizeNum=3;
+        }elseif ($pageSize > 500000) {
+            $checkPageSize = 'alert alert-danger';
+            $pageSizeNum=0;
+        }
+
+        return [$pageSize,$checkPageSize,$pageSizeNum];
     }
 
-    public function getSpeed($url) {
+    public function getSpeed($url)
+    {
         $response_time = $this->getPageSpeed($url);
         $response_time = substr($response_time, 0, 5);
 
 
-
-        if($response_time < 3){
+        if ($response_time < 1) {
             $check_load_time = 'alert alert-success';
-        }else if($response_time > 3 && $response_time < 5){
-            $check_load_time = 'alert alert-info';
-        }
-        else{
+            $loadTimeNum=5;
+        } else if ($response_time > 1 && $response_time < 3) {
+            $check_load_time = 'alert alert-warning';
+            $loadTimeNum=3;
+        } else {
             $check_load_time = 'alert alert-danger';
+            $loadTimeNum=0;
         }
 
-        return [$response_time,$check_load_time];
+        return [$response_time, $check_load_time,$loadTimeNum];
     }
 
-    function getLanguageID($html) {
+    function getLanguageID($html)
+    {
         $pattern = '<html[^>]+lang=[\'"]?(.*?)[\'"]?[\/\s>]';
         preg_match("#{$pattern}#is", $html, $matches);
-        if(isset($matches[1])) {
+        if (isset($matches[1])) {
             return trim(mb_substr($matches[1], 0, 5));
         }
         $pattern = '<meta[^>]+http-equiv=[\'"]?content-language[\'"]?[^>]+content=[\'"]?(.*?)[\'"]?[\/\s>]';
@@ -821,39 +912,43 @@ class Analyztic
     {
         $html = file_get_contents($url);
 
-        $getLanguageID= $this->getLanguageID($html);
+        $getLanguageID = $this->getLanguageID($html);
 
-        if($getLanguageID != ''){
+        if ($getLanguageID != '') {
             $check_language = 'alert alert-success';
-            $isLanguage = 'خیلی هم عالیییی ،زبان انتخابی شما'.' '.ucwords($getLanguageID);
-        }
-        else{
+            $isLanguage = 'خیلی هم عالیییی ،زبان انتخابی شما' . ' ' . ucwords($getLanguageID);
+            $langNum=3;
+        } else {
             $check_language = 'alert alert-danger';
             $isLanguage = 'وب سایت شما زبان انتخابی ندارد :|';
+            $langNum=0;
         }
 
-        return [$isLanguage,$check_language];
+        return [$isLanguage, $check_language,$langNum];
     }
 
     public function getSSL($url)
     {
         $get_redirect = $this->get_redirect($url);
-        if($get_redirect==null){
+        if ($get_redirect == null) {
             $get_redirect = $url;
         }
 
-        if (strpos($get_redirect,'https') !== false) {
+        if (strpos($get_redirect, 'https') !== false) {
             $is_https = 'عالی ،وبسایت شما دارای گواهی اس اس ال است.';
-            $check_https='alert alert-success';
+            $check_https = 'alert alert-success';
+            $sslNum=5;
         } else {
             $is_https = ':| اوپس ،وبسایت شما از گواهی اس اس ال استفاده نمی کند.';
-            $check_https='alert alert-danger';
+            $check_https = 'alert alert-danger';
+            $sslNum=0;
         }
-        return [$is_https,$check_https];
+        return [$is_https, $check_https,$sslNum];
     }
 
-    function isEmail($html) {
-        $pattern="(?:[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
+    function isEmail($html)
+    {
+        $pattern = "(?:[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
         return preg_match("/{$pattern}/is", $html);
     }
 
@@ -863,32 +958,32 @@ class Analyztic
 
         $issetEmail = $this->isEmail($html);
 
-        if($issetEmail == 0){
+        if ($issetEmail == 0) {
             $check_email_security = 'alert alert-success';
             $ChEmail = 'Good, no email address has been found in plain text.';
-        }
-        else{
+        } else {
             $check_email_security = 'alert alert-danger';
             $ChEmail = 'Bad, email address has been found in plain text.';
         }
 
-        return [$ChEmail,$check_email_security];
+        return [$ChEmail, $check_email_security];
     }
 
-    function checkSafeBrowsing($longUrl) {
-        $safebrowsing[]= null;
+    function checkSafeBrowsing($longUrl)
+    {
+        $safebrowsing[] = null;
         $safebrowsing['api_key'] = "ABQIAAAAOQY5PG65Sz64pzYOK6KlmhQjd04VwKOOk1G-Nk48V5R2oPhf3g";
         $safebrowsing['api_url'] = "https://sb-ssl.google.com/safebrowsing/api/lookup";
 
-        $url = $safebrowsing['api_url']."?client=checkURLapp&";
-        $url .= "apikey=".$safebrowsing['api_key']."&appver=1.0&";
-        $url .= "pver=3.0&url=".urlencode($longUrl);
+        $url = $safebrowsing['api_url'] . "?client=checkURLapp&";
+        $url .= "apikey=" . $safebrowsing['api_key'] . "&appver=1.0&";
+        $url .= "pver=3.0&url=" . urlencode($longUrl);
 
         $ch = curl_init();
         $timeout = 5;
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $data = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
@@ -900,32 +995,36 @@ class Analyztic
         $safe_value = $this->checkSafeBrowsing($url);
 
 
-        if($safe_value == 204){
+        if ($safe_value == 204) {
 
             $check_safe_browsing = 'alert alert-success';
             $isSafe = 'The website is not blacklisted and looks safe to use.';
+            $safeNum =3;
 
-        }else if($safe_value == 501){
+        } else if ($safe_value == 501) {
 
             $check_safe_browsing = 'alert alert-info';
             $isSafe = 'Something went wrong on the server. Please try again.';
+            $safeNum =3;
 
-        }else if($safe_value == 200){
+        } else if ($safe_value == 200) {
 
             $check_safe_browsing = 'alert alert-danger';
             $isSafe = 'The website is blacklisted.';
+            $safeNum =0;
 
-        }
-        else{
+        } else {
 
             $check_safe_browsing = 'alert alert-info';
             $isSafe = 'Please enter URL.';
+            $safeNum =3;
 
         }
-        return [$isSafe,$check_safe_browsing];
+        return [$isSafe, $check_safe_browsing,$safeNum];
     }
 
-    function issetNestedTables($html) {
+    function issetNestedTables($html)
+    {
         $pattern = "<(td|th)(?:[^>]*)>(.*?)<table(?:[^>]*)>(.*?)</table(?:[^>]*)>(.*?)</(td|th)(?:[^>]*)>";
         return preg_match("#{$pattern}#is", $html);
     }
@@ -935,51 +1034,55 @@ class Analyztic
         $html = file_get_contents($url);
         $issetNestedTables = $this->issetNestedTables($html);
 
-        if($issetNestedTables == 0)
-        {
-            $isNestedTable = '<p>'.'Excellent, your website doesn\'t use nested tables.'.'</p>';
-            $check_NestedTable='alert alert-success';
-        }else{
-            $isNestedTable = '<p>'.'Bad, your website does use nested tables.'.'</p>';
-            $check_NestedTable='alert alert-info';
+        if ($issetNestedTables == 0) {
+            $isNestedTable = 'Excellent, your website doesn\'t use nested tables.';
+            $check_NestedTable = 'alert alert-success';
+            $nestedNum=2;
+        } else {
+            $isNestedTable = 'Bad, your website does use nested tables.';
+            $check_NestedTable = 'alert alert-info';
+            $nestedNum=2;
         }
 
-        return [$isNestedTable,$check_NestedTable];
+        return [$isNestedTable, $check_NestedTable,$nestedNum];
     }
 
 
-    function getCssCount($html) {
+    function getCssCount($html)
+    {
         $tagPattern = '<link[^>]*>';
         $cssPattern = '(?=.*\bstylesheet\b)(?=.*\bhref=("[^"]*"|\'[^\']*\')).*';
-        $css_count= 0;
+        $css_count = 0;
         preg_match_all("#{$tagPattern}#is", $html, $matches);
-        if(!isset($matches[0])) {
+        if (!isset($matches[0])) {
             return $css_count;
         }
-        foreach($matches[0] as $tag) {
-            if(preg_match("#{$cssPattern}#is", $tag))
+        foreach ($matches[0] as $tag) {
+            if (preg_match("#{$cssPattern}#is", $tag))
                 $css_count++;
         }
         return $css_count;
     }
 
 
-    function getJsCount($html) {
+    function getJsCount($html)
+    {
         $tagPattern = '<script[^>]*>';
         $jsPattern = 'src=("[^"]*"|\'[^\']*\')';
         $js_count = 0;
         preg_match_all("#{$tagPattern}#is", $html, $matches);
-        if(!isset($matches[0])) {
-            return $js_count ;
+        if (!isset($matches[0])) {
+            return $js_count;
         }
-        foreach($matches[0] as $tag) {
-            if(preg_match("#{$jsPattern}#is", $tag))
+        foreach ($matches[0] as $tag) {
+            if (preg_match("#{$jsPattern}#is", $tag))
                 $js_count++;
         }
         return $js_count;
     }
 
-    function isInlineCss($html) {
+    function isInlineCss($html)
+    {
         $pattern = "#<(.+)style=\"[^\"].+\"[^>]*>(.*?)<\/[^>]*>#is";
         return preg_match("$pattern", $html);
     }
@@ -995,14 +1098,15 @@ class Analyztic
         $issetInlineCss = $this->isInlineCss($html);
 
 
-        if($issetInlineCss == 0 && $getJsFilesCount < 7 && $getCssFilesCount < 4){
+        if ($issetInlineCss == 0 && $getJsFilesCount < 7 && $getCssFilesCount < 4) {
             $check_speed_tips = 'alert alert-success';
-        }
-        else{
+            $speedNum=5;
+        } else {
             $check_speed_tips = 'alert alert-danger';
+            $speedNum=3;
         }
 
-        return [$getCssFilesCount,$getJsFilesCount,$issetInlineCss,$check_speed_tips];
+        return [$getCssFilesCount, $getJsFilesCount, $issetInlineCss, $check_speed_tips,$speedNum];
     }
 
     public function getGoogleAnalystic($url)
@@ -1011,14 +1115,16 @@ class Analyztic
 
         $analytics_technologies = null;
 
-        if (preg_match("/\bua-\d{4,9}-\d{1,4}\b/i", $html)){
+        if (preg_match("/\bua-\d{4,9}-\d{1,4}\b/i", $html)) {
             $analytics_technologies = 'Google Analytics was found.';
-            $check_analytics_technologies='alert alert-success';
+            $check_analytics_technologies = 'alert alert-success';
+            $analyticNum=4;
         } else {
             $analytics_technologies = 'Google Analytics was not found.';
-            $check_analytics_technologies='alert alert-danger';
+            $check_analytics_technologies = 'alert alert-danger';
+            $analyticNum=0;
         }
-        return [$analytics_technologies,$check_analytics_technologies];
+        return [$analytics_technologies, $check_analytics_technologies,$analyticNum];
     }
 
     function Doctype($html)
@@ -1044,17 +1150,20 @@ class Analyztic
         $html = file_get_contents($url);
         $getDocument = $this->Doctype($html);
 
-        if ($getDocument ==''){
-            $check_doctype='alert alert-danger';
-            $doctype= 'Not Found Doctype';
-        }else {
-            $check_doctype='alert alert-info';
-            $doctype= $getDocument;
+        if ($getDocument == '') {
+            $check_doctype = 'alert alert-danger';
+            $doctype = 'Not Found Doctype';
+            $doctypeNum=0;
+        } else {
+            $check_doctype = 'alert alert-info';
+            $doctype = $getDocument;
+            $doctypeNum=2;
         }
-        return [$doctype,$check_doctype];
+        return [$doctype, $check_doctype,$doctypeNum];
     }
 
-    function getCharset($html) {
+    function getCharset($html)
+    {
 
         preg_match('#<meta[^>]+charset=[\'"]?(.*?)[\'"]?[\/\s>]#is', $html, $matches);
         return isset($matches[1]) ? mb_strtoupper(trim($matches[1])) : null;
@@ -1065,26 +1174,29 @@ class Analyztic
         $html = file_get_contents($url);
         $getMetaTags_class = $this->getCharset($html);
 
-        if ($getMetaTags_class == 'UTF-8'){
-            $check_encoding='alert alert-success';
-            $encoding= 'Good, language/character encoding is specified:  UTF-8';
-        }else {
-            $check_encoding='alert alert-danger';
+        if ($getMetaTags_class == 'UTF-8') {
+            $check_encoding = 'alert alert-success';
+            $encoding = 'Good, language/character encoding is specified:  UTF-8';
+            $encodingNum=2;
+        } else {
+            $check_encoding = 'alert alert-danger';
             $encoding = 'Bad, language/character encoding is specified:  No UTF-8';
+            $encodingNum=0;
         }
-        return [$encoding,$check_encoding];
+        return [$encoding, $check_encoding,$encodingNum];
     }
 
-    function getDeprecatedTags($html) {
+    function getDeprecatedTags($html)
+    {
         $deprecated = array();
         $deprectaedTags = array(
-            'acronym', 'applet', 'basefont','listing', 'plaintext','big', 'center', 'dir', 'font', 'frame', 'frameset',
-            'isindex', 'noframes','xmp', 's', 'strike', 'tt', 'u',
+            'acronym', 'applet', 'basefont', 'listing', 'plaintext', 'big', 'center', 'dir', 'font', 'frame', 'frameset',
+            'isindex', 'noframes', 'xmp', 's', 'strike', 'tt', 'u',
         );
-        $pattern = "<(".implode("|", $deprectaedTags).")( [^>]*)?>";
+        $pattern = "<(" . implode("|", $deprectaedTags) . ")( [^>]*)?>";
         preg_match_all("#{$pattern}#is", $html, $matches);
-        foreach($matches[1] as $tag) {
-            if(isset($deprecated[$tag]))
+        foreach ($matches[1] as $tag) {
+            if (isset($deprecated[$tag]))
                 $deprecated[$tag]++;
             else
                 $deprecated[$tag] = 1;
@@ -1095,17 +1207,19 @@ class Analyztic
     public function getDeprecatedHTML($url)
     {
         $html = file_get_contents($url);
-        $deprecated= $this->getDeprecatedTags($html);
+        $deprecated = $this->getDeprecatedTags($html);
 
-        if (!empty($deprecated)){
+        if (!empty($deprecated)) {
             $dphtml = 'Good! We haven\'t found deprecated HTML tags in your HTML';
-            $check_dphtml='alert alert-danger';
-        }else {
-            $check_dphtml='alert alert-success';
-            $dphtml= 'Check if web page is using old tag or deprecated HTML tags. Deprecated tags and attributes are those that have been replaced by other, newer HTML constructs.';
+            $check_dphtml = 'alert alert-danger';
+            $dphtmlNum=0;
+        } else {
+            $check_dphtml = 'alert alert-success';
+            $dphtml = 'Check if web page is using old tag or deprecated HTML tags. Deprecated tags and attributes are those that have been replaced by other, newer HTML constructs.';
+            $dphtmlNum=2;
         }
 
-        return [$dphtml,$check_dphtml];
+        return [$dphtml, $check_dphtml,$dphtmlNum];
     }
 
 }

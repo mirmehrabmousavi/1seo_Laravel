@@ -27,17 +27,6 @@ class HomeController extends Controller
      */
     public function index($url)
     {
-        /*$urlEncoded = auth()->user()->url;
-        $url = urldecode($urlEncoded);*/
-
-        /*Site::create([
-           'sites' => auth()->user()->url
-        ]);*/
-
-        //$this->url=auth()->user()->url;
-
-       /* $urlEncode = User::find('url');*/
-
         $sites = Site::all();
 
         $domain = new Analyztic();
@@ -67,102 +56,159 @@ class HomeController extends Controller
         } else {
             $online = 'آفلاین';
         }
-
-        $pageAuthority = $domain->pageAuthority($url);
-        $domainAuthority = $domain->domainAuthority($url);
+        [$pageAuthority,$pageAuthNum] = $domain->pageAuthority($url);
+        [$domainAuthority,$domainAuthNum] = $domain->domainAuthority($url);
         $externalLinks = $domain->externalLinks($url);
-
         $speed = $domain->getPageSpeed($url);
-
         $alexaRank = $domain->getAlexaRank($url);
         $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
-
-        [$siteTitle,$dataTitle,$cssStyle,$titleNum]=$domain->getTitle('http://'.$url);
-        if (!empty($description)) {
-            $description=$domain->getDescription('http://'.$url);
-        }
-        $altImage=$domain->getAltImage('http://'.$url);
-        $missedAltImage=$domain->getMissedAltImage('http://'.$url);
-        $gzip=$domain->gzip('http://'.$url);
+        [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
+        [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
+        [$getheading,$headingNum] = $domain->getHeader('http://'.$url);
+        [$missingAltImage,$checkMissingAlt,$altNum]=$domain->getAltImage('http://'.$url);
+        [$getRatio,$textSize,$ratioPageSize,$checkRatio,$ratioNum]=$domain->getRatio($url);
+        [$gzip,$gzipNum]=$domain->gzip('http://'.$url);
         [$serverCss,$serverSignature]=$domain->serverSignature('http://'.$url);
         [$isUrlCanonicalization,$check_url_canonicalization]=$domain->urlCanonication($url);
-        [$robots,$check_robots_txt]=$domain->robotFile($url);
-        [$site_map,$check_xml_sitemaps]=$domain->getSitemap($url);
-        [$isIframe,$check_Iframe]=$domain->isIframe('http://'.$url);
-        [$isFlash,$check_Flash]=$domain->isFlash('http://'.$url);
+        [$robots,$check_robots_txt,$robotsNum]=$domain->robotFile($url);
+        [$site_map,$check_xml_sitemaps,$sitemapNum]=$domain->getSitemap($url);
+        [$isIframe,$check_Iframe,$iframeNum]=$domain->isIframe('http://'.$url);
+        [$isFlash,$check_Flash,$flashNum]=$domain->isFlash('http://'.$url);
         $urlLength=$domain->urlCheck($url);
         $favicon=$domain->getFavicon($url);
-        $pageSize=$domain->getPageSize('http://'.$url);
-        [$response_time,$check_load_time]=$domain->getSpeed($url);
-        [$isLanguage,$check_language]=$domain->getLang('http://'.$url);
-        [$is_https,$check_https]=$domain->getSSL($url);
+        [$pageSize,$checkPageSize,$pageSizeNum]=$domain->getPageSize('http://'.$url);
+        [$response_time,$check_load_time,$loadTimeNum]=$domain->getSpeed($url);
+        [$isLanguage,$check_language,$langNum]=$domain->getLang('http://'.$url);
+        [$is_https,$check_https,$sslNum]=$domain->getSSL($url);
         [$ChEmail,$check_email_security]=$domain->getEmailPrivacy('http://'.$url);
-        [$isSafe,$check_safe_browsing]=$domain->getSafeBrowse($url);
-        [$isNestedTable,$check_NestedTable]=$domain->getNestedHTML('http://'.$url);
-        [$getCssFilesCount,$getJsFilesCount,$issetInlineCss,$check_speed_tips]=$domain->getSpeedTip('http://'.$url);
-        [$analytics,$check_analytics]=$domain->getGoogleAnalystic('http://'.$url);
-        [$doctype,$check_doctype]=$domain->getDocType('http://'.$url);
-        [$encoding,$check_encoding]=$domain->getEncoding('http://'.$url);
-        [$dphtml,$check_dphtml]=$domain->getDeprecatedHTML('http://'.$url);
+        [$isSafe,$check_safe_browsing,$safeNum]=$domain->getSafeBrowse($url);
+        [$isNestedTable,$check_NestedTable,$nestedNum]=$domain->getNestedHTML('http://'.$url);
+        [$getCssFilesCount,$getJsFilesCount,$issetInlineCss,$check_speed_tips,$speedNum]=$domain->getSpeedTip('http://'.$url);
+        [$analytics,$check_analytics,$analyticNum]=$domain->getGoogleAnalystic('http://'.$url);
+        [$doctype,$check_doctype,$doctypeNum]=$domain->getDocType('http://'.$url);
+        [$encoding,$check_encoding,$encodingNum]=$domain->getEncoding('http://'.$url);
+        [$dphtml,$check_dphtml,$dphtmlNum]=$domain->getDeprecatedHTML('http://'.$url);
 
+        $totalPercent = $pageAuthNum+$domainAuthNum+$titleNum+$descNum+$headingNum+$altNum+$ratioNum+$gzipNum+$robotsNum+$sitemapNum+$iframeNum
+            +$flashNum+$pageSizeNum+$loadTimeNum+$langNum+$sslNum+$safeNum+$nestedNum+$speedNum+$analyticNum+$doctypeNum+$encodingNum+$dphtmlNum;
 
         return view('home', compact(
             'sites',
             'url',
+            //Page Authority
             'pageAuthority',
+            'pageAuthNum',
+            //Domain Authority
             'domainAuthority',
+            'domainAuthNum',
             'externalLinks',
             'speed',
             'domainAge',
             'online',
             'alexaRank',
+            //Title
             'siteTitle',
             'dataTitle',
-            'cssStyle',
-            'titleNum',/*
-            'description',*/
-            'altImage',
-            'missedAltImage',
+            'titleCssStyle',
+            'titleNum',
+            //Desc
+            'description',
+            'dataDesc',
+            'descCssStyle',
+            'descNum',
+            //Headers
+            'getheading',
+            'headingNum',
+            //alt
+            'missingAltImage',
+            'checkMissingAlt',
+            'altNum',
+            //Ratio
+            'getRatio',
+            'textSize',
+            'ratioPageSize',
+            'checkRatio',
+            'ratioNum',
+            //GZIP
             'gzip',
+            'gzipNum',
+            //Server Signature
             'serverCss',
             'serverSignature',
+            //url canonicalization
             'isUrlCanonicalization',
             'check_url_canonicalization',
+            //robot
             'robots',
             'check_robots_txt',
+            'robotsNum',
+            //sitemap
             'site_map',
             'check_xml_sitemaps',
+            'sitemapNum',
+            //iframe
             'isIframe',
             'check_Iframe',
+            'iframeNum',
+            //flash
             'isFlash',
             'check_Flash',
+            'flashNum',
+            //url length
             'urlLength',
+            //favicon
             'favicon',
+            //page size
             'pageSize',
+            'checkPageSize',
+            'pageSizeNum',
+            //load time
             'response_time',
             'check_load_time',
+            'loadTimeNum',
+            //language
             'isLanguage',
             'check_language',
+            'langNum',
+            //ssl
             'is_https',
             'check_https',
+            'sslNum',
+            //email privacy
             'ChEmail',
             'check_email_security',
+            //safe browse
             'isSafe',
             'check_safe_browsing',
+            'safeNum',
+            //nested html
             'isNestedTable',
             'check_NestedTable',
+            'nestedNum',
+            //speed tips
             'getCssFilesCount',
             'getJsFilesCount',
             'issetInlineCss',
             'check_speed_tips',
+            'speedNum',
+            //google analytic
             'analytics',
             'check_analytics',
+            'analyticNum',
+            //doctype
             'doctype',
             'check_doctype',
+            'doctypeNum',
+            //encoding
             'encoding',
             'check_encoding',
+            'encodingNum',
+            //deprecated html
             'dphtml',
             'check_dphtml',
+            'dphtmlNum',
+            //TotalPercent
+            'totalPercent',
         ));
     }
 

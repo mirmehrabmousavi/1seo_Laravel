@@ -28,6 +28,8 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url/*substr(request()->url(), strrpos(request()->url(), 'home/' )+5)*/])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">مارکتینگ پلن</span></a>
+            </li>
         </ul>
     </div>
 </div>

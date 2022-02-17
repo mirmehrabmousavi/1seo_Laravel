@@ -7,6 +7,7 @@ use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -63,7 +64,11 @@ class HomeController extends Controller
         $alexaRank = $domain->getAlexaRank($url);
         $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
         [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
-        [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
+        try {
+            [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
+        } catch (Throwable $e) {
+            report($e);
+        }
         [$getheading,$headingNum] = $domain->getHeader('http://'.$url);
         [$missingAltImage,$checkMissingAlt,$altNum]=$domain->getAltImage('http://'.$url);
         [$getRatio,$textSize,$ratioPageSize,$checkRatio,$ratioNum]=$domain->getRatio($url);
@@ -76,6 +81,11 @@ class HomeController extends Controller
         [$isFlash,$check_Flash,$flashNum]=$domain->isFlash('http://'.$url);
         $urlLength=$domain->urlCheck($url);
         $favicon=$domain->getFavicon($url);
+        if ($favicon) {
+            $favNum=4;
+        }else{
+            $favNum=0;
+        }
         [$pageSize,$checkPageSize,$pageSizeNum]=$domain->getPageSize('http://'.$url);
         [$response_time,$check_load_time,$loadTimeNum]=$domain->getSpeed($url);
         [$isLanguage,$check_language,$langNum]=$domain->getLang('http://'.$url);
@@ -158,6 +168,7 @@ class HomeController extends Controller
             'urlLength',
             //favicon
             'favicon',
+            'favNum',
             //page size
             'pageSize',
             'checkPageSize',
@@ -209,6 +220,83 @@ class HomeController extends Controller
             'dphtmlNum',
             //TotalPercent
             'totalPercent',
+        ));
+    }
+
+    public function marketingPlan($url)
+    {
+        $sites=Site::all();
+        $domain = new Analyztic();
+        [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
+        try {
+            [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
+        } catch (Throwable $e) {
+            report($e);
+        }
+        [$missingAltImage,$checkMissingAlt,$altNum]=$domain->getAltImage('http://'.$url);
+        [$getRatio,$textSize,$ratioPageSize,$checkRatio,$ratioNum]=$domain->getRatio($url);
+        [$gzip,$gzipNum]=$domain->gzip('http://'.$url);
+        [$robots,$check_robots_txt,$robotsNum]=$domain->robotFile($url);
+        [$site_map,$check_xml_sitemaps,$sitemapNum]=$domain->getSitemap($url);
+        [$response_time,$check_load_time,$loadTimeNum]=$domain->getSpeed($url);
+        [$is_https,$check_https,$sslNum]=$domain->getSSL($url);
+        $favicon=$domain->getFavicon($url);
+        if ($favicon) {
+            $favNum=4;
+        }else{
+            $favNum=0;
+        }
+        [$analytics,$check_analytics,$analyticNum]=$domain->getGoogleAnalystic('http://'.$url);
+
+        return view('marketingPlan',compact(
+            'sites',
+            'url',
+            //Title
+            'siteTitle',
+            'dataTitle',
+            'titleCssStyle',
+            'titleNum',
+            //Desc
+            'description',
+            'dataDesc',
+            'descCssStyle',
+            'descNum',
+            //alt
+            'missingAltImage',
+            'checkMissingAlt',
+            'altNum',
+            //Ratio
+            'getRatio',
+            'textSize',
+            'ratioPageSize',
+            'checkRatio',
+            'ratioNum',
+            //GZIP
+            'gzip',
+            'gzipNum',
+            //robot
+            'robots',
+            'check_robots_txt',
+            'robotsNum',
+            //sitemap
+            'site_map',
+            'check_xml_sitemaps',
+            'sitemapNum',
+            //favicon
+            'favicon',
+            'favNum',
+            //load time
+            'response_time',
+            'check_load_time',
+            'loadTimeNum',
+            //ssl
+            'is_https',
+            'check_https',
+            'sslNum',
+            //google analytic
+            'analytics',
+            'check_analytics',
+            'analyticNum',
         ));
     }
 

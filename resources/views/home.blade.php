@@ -22,9 +22,9 @@
                                 <h1 class="mb-2 text-white">دموی سایت</h1>
                                 <p class="m-auto w-75 mb-2">نمایش دموی سایت انالیز شده</p>
                                 <img
-                                    src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}"
+                                    src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{$url}}"
                                     class="img-fluid"
-                                    alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
+                                    alt="{{$url}}">
                             </div>
                         </div>
                     </div>
@@ -38,58 +38,149 @@
                     <div class="card-content">
                         <div class="card-body">
                             <ul class="activity-timeline timeline-left list-unstyled">
-                                <li>
-                                    <div class="timeline-icon bg-primary">
-                                        <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                    </div>
-                                    <div class="timeline-info">
-                                        <p class="font-weight-bold mb-0">Client Meeting</p>
-                                        <span class="font-small-3">Bonbon macaroon jelly beans gummi bears jelly lollipop apple</span>
-                                    </div>
-                                    <small class="text-muted">25 mins ago</small>
-                                </li>
-                                <li>
-                                    <div class="timeline-icon bg-warning">
-                                        <i class="feather icon-alert-circle font-medium-2 align-middle"></i>
-                                    </div>
-                                    <div class="timeline-info">
-                                        <p class="font-weight-bold mb-0">Email Newsletter</p>
-                                        <span class="font-small-3">Cupcake gummi bears soufflé caramels candy</span>
-                                    </div>
-                                    <small class="text-muted">15 days ago</small>
-                                </li>
-                                <li>
-                                    <div class="timeline-icon bg-danger">
-                                        <i class="feather icon-check font-medium-2 align-middle"></i>
-                                    </div>
-                                    <div class="timeline-info">
-                                        <p class="font-weight-bold mb-0">Plan Webinar</p>
-                                        <span
-                                            class="font-small-3">Candy ice cream cake. Halvah gummi bears</span>
-                                    </div>
-                                    <small class="text-muted">20 days ago</small>
-                                </li>
-                                <li>
-                                    <div class="timeline-icon bg-success">
-                                        <i class="feather icon-check font-medium-2 align-middle"></i>
-                                    </div>
-                                    <div class="timeline-info">
-                                        <p class="font-weight-bold mb-0">Launch Website</p>
-                                        <span class="font-small-3">Candy ice cream cake. </span>
-                                    </div>
-                                    <small class="text-muted">25 days ago</small>
-                                </li>
-                                <li>
-                                    <div class="timeline-icon bg-primary">
-                                        <i class="feather icon-check font-medium-2 align-middle"></i>
-                                    </div>
-                                    <div class="timeline-info">
-                                        <p class="font-weight-bold mb-0">Marketing</p>
-                                        <span
-                                            class="font-small-3">Candy ice cream. Halvah bears Cupcake gummi bears.</span>
-                                    </div>
-                                    <small class="text-muted">28 days ago</small>
-                                </li>
+                                @if($titleNum == 3 || $titleNum == 0)
+                                    {{--title--}}
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">عنوان</p>
+                                            <span class="font-small-3">{{$siteTitle}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$titleNum}} از 5</small>
+                                    </li>
+                                @endif
+                                @if($descNum == 3 || $descNum == 0)
+                                    {{--description--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">توضیحات</p>
+                                                <span class="font-small-3">{{$description}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$descNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($altNum == 3 || $altNum == 0)
+                                    {{--alt image--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">تصویر alt</p>
+                                                <span class="font-small-3">{{$missingAltImage}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$altNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($ratioNum == 3 || $ratioNum == 0)
+                                    {{--ratio--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">نسبت متن به کد</p>
+                                                <span class="font-small-3">{{$getRatio}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$ratioNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($gzipNum == 0)
+                                    {{--gzip--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">GZIP</p>
+                                                <span class="font-small-3">{{$gzip}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$gzipNum}} از 4</small>
+                                        </li>
+                                @endif
+                                @if($robotsNum == 3 || $robotsNum == 0)
+                                    {{--robot--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">فایل Robot</p>
+                                                <span class="font-small-3">{{$robots}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$robotsNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($sitemapNum == 3 || $sitemapNum == 0)
+                                    {{--sitemap--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">عنوان</p>
+                                                <span class="font-small-3">{{$sitemap}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$sitemapNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($favNum == 0)
+                                    {{--favicon--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">ایکون سایت</p>
+                                                <span class="font-small-3">{{$favicon}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$favNum}} از 4</small>
+                                        </li>
+                                @endif
+                                @if($loadTimeNum == 3 || $loadTimeNum == 0)
+                                    {{--load time--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">زمان بارگذاری</p>
+                                                <span class="font-small-3">{{$load_time}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$loadTimeNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($sslNum == 3 || $sslNum == 0)
+                                    {{--ssl--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Https(SSL)</p>
+                                                <span class="font-small-3">{{$is_https}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$sslNum}} از 5</small>
+                                        </li>
+                                @endif
+                                @if($analyticNum == 0)
+                                    {{--google analytic--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Google Analytic</p>
+                                                <span class="font-small-3">{{$analytics}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$analyticNum}} از 4</small>
+                                        </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -481,7 +572,7 @@
                         <h4>MOZ</h4>
                     </div>
                     <div class="divider">
-                        <div class="divider-text">My Text</div>
+                        <div class="divider-text">MOZ Info</div>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -498,7 +589,7 @@
                         <div class="card-title mb-2">اطلاعات MOZ</div>
                     </div>
                     <div class="divider">
-                        <div class="divider-text">My Text</div>
+                        <div class="divider-text">MOZ Info</div>
                     </div>
                     <div class="card-body">
                         <table>
@@ -553,7 +644,7 @@
                             <tr>
                                 <td class="font-weight-bold">رتبه صفحه گوگل</td>
                                 <td>
-                                    <div class="badge badge-primary badge-md mr-1 mb-1">NO DATA</div>
+                                    <div class="badge badge-primary badge-md mr-1 mb-1">بدون دیتا</div>
                                 </td>
                             </tr>
                             <tr>

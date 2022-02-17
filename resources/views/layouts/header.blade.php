@@ -14,13 +14,19 @@
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none">
                                     <h4 class="user-name text-bold-600"><i class="feather icon-chevron-down"></i>
-                                        {{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}
+                                        @if (\Illuminate\Support\Str::contains(request()->url(),'addSite')){{--
+                                            /*substr(request()->url(), strrpos(request()->url(), 'home/' )+5)*/--}}
+                                            سایت ها
+                                        @else
+                                            {{$url}}
+                                        @endif
                                     </h4>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @foreach($sites as $site)
-                                <a class="dropdown-item p-1" href="{{route('home',['url'=>$site->sites])}}">{{$site->sites}}</a>
+                                    <a class="dropdown-item p-1"
+                                       href="{{route('home',['url'=>$site->sites])}}">{{$site->sites}}</a>
                                 @endforeach
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item p-1" href="{{route('addSiteView')}}"> افزودن سایت</a>

@@ -23,6 +23,7 @@ Auth::routes();
 
 //Analyze Home
 Route::get('/home/{url}' , [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/marketingPlan/{url}' , [App\Http\Controllers\HomeController::class, 'marketingPlan'])->name('marketing.plan');
 Route::post('/request/{req}' , [App\Http\Controllers\RequestController::class, 'sendReq'])->name('sendReq');
 Route::get('/addSite' , [App\Http\Controllers\HomeController::class, 'addSiteView'])->name('addSiteView');
 Route::post('/addSite' , [App\Http\Controllers\HomeController::class, 'addSite'])->name('addSite');

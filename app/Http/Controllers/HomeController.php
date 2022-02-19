@@ -318,6 +318,7 @@ class HomeController extends Controller
 
     public function handleAdmin()
     {
-        return view('handleAdmin');
+        $sites=Site::all();
+        return view('admin.handleAdmin',compact('sites'));
     }
 }

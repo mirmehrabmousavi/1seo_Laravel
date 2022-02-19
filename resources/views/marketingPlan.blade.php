@@ -4,6 +4,9 @@
     <!-- Dashboard Analytics Start -->
     <section id="dashboard-analytics">
         <div class="row">
+            <div class="divider">
+                <div class="divider-text">سئو تکنیکال</div>
+            </div>
             <div class="container">
                 @if($titleNum == 3 || $titleNum == 0)
                 {{--title--}}

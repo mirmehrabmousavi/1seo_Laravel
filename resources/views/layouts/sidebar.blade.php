@@ -2,7 +2,7 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('home',['url' => $url])}}">
                     <div class="brand-logo"></div>
                     <h2 class="brand-text mb-0">آنالیز</h2>
                 </a>
@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url/*substr(request()->url(), strrpos(request()->url(), 'home/' )+5)*/])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">مارکتینگ پلن</span></a>
+            <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">مارکتینگ پلن</span></a>
             </li>
         </ul>
     </div>

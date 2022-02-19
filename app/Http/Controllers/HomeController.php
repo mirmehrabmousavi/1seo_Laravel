@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
+use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -320,5 +321,42 @@ class HomeController extends Controller
     {
         $sites=Site::all();
         return view('admin.handleAdmin',compact('sites'));
+    }
+
+    public function siteSettings()
+    {
+        return view('admin.siteSettings');
+    }
+
+    public function settingsAdd(Request $request)
+    {
+        Settings::create([
+            'title' => $request['title'],
+            'meta_desc' => $request['meta_desc'],
+            'meta_key' => $request['meta_key'],
+            'email' => $request['email'],
+        ]);
+
+        return redirect(route('settingsManagement'));
+    }
+
+    public function adminAdd(Request $request)
+    {
+
+    }
+
+    public function domainManagement()
+    {
+        return view('admin.domain');
+    }
+
+    public function userManagement()
+    {
+        return view('admin.users');
+    }
+
+    public function requestManagement()
+    {
+        return view('admin.request');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,9 @@ Route::post('/addSite' , [App\Http\Controllers\HomeController::class, 'addSite']
 
 //Admin Panel
 Route::get('admin/home', [HomeController::class, 'handleAdmin'])->name('admin')->middleware('admin');
+Route::get('admin/settings', [HomeController::class, 'siteSettings'])->name('settings.management')->middleware('admin');
+Route::post('admin/settings', [HomeController::class, 'settingsAdd'])->middleware('admin')->name('settings.add');
+Route::post('admin/settings', [HomeController::class, 'adminAdd'])->name('admin.add')->middleware('admin');
+Route::get('admin/domain', [HomeController::class, 'domainManagement'])->name('domain.management')->middleware('admin');
+Route::get('admin/users', [HomeController::class, 'userManagement'])->name('user.management')->middleware('admin');
+Route::get('admin/request', [HomeController::class, 'requestManagement'])->name('request.management')->middleware('admin');

@@ -22,18 +22,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>مهراب</td>
-                                <td>mmmtkarimabadi@gmail.com</td>
-                                <td>09369949693</td>
-                                <td>dmfx.ir</td>
-                                <td>3 ماه قبل</td>
-                                <td>
-                                    <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
-                                    <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>
-                                </td>
-                            </tr>
+                            @foreach($users as $val)
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{$val->name}}</td>
+                                    <td>{{$val->email}}</td>
+                                    <td>{{$val->number}}</td>
+                                    <td>{{$val->url}}</td>
+                                    <td>{{$val->created_at->diffForHumans()}}</td>
+                                    <td>
+                                        <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
+                                        <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

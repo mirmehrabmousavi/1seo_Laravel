@@ -75,8 +75,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        Site::create(['sites' => $data['url']]);
-
         return $user;
     }
 

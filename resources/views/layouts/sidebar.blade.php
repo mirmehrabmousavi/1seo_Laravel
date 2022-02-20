@@ -2,7 +2,13 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('home',['url' => $url])}}">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="
+@if (\Illuminate\Support\Str::contains(request()->url(),'addSite'))
+                    سایت ها
+@elseif(\Illuminate\Support\Str::contains(request()->url(),'admin'))
+                    پنل ادمین
+@else{{route('home',['url' => $url])}}
+@endif">
                     <div class="brand-logo"></div>
                     <h2 class="brand-text mb-0">آنالیز</h2>
                 </a>
@@ -19,8 +25,10 @@
                                                               data-i18n="Content">آنالیز</span></a>
                 <ul class="menu-content" style="">
                     @foreach($sites as $site)
-                        <li class="{{ request()->input($site->sites) ? 'active' : '' }}"><a href="{{route('home',['url'=>$site->sites])}}"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                                                                                                                    data-i18n="Grid">{{$site->sites}}</span></a>
+                        <li class="{{ request()->input($site->sites) ? 'active' : '' }}"><a
+                                href="{{route('home',['url'=>$site->sites])}}"><i class="feather icon-circle"></i><span
+                                    class="menu-item"
+                                    data-i18n="Grid">{{$site->sites}}</span></a>
                         </li>
                     @endforeach
                     <li class=""><a href="{{route('addSite')}}"><i class="feather icon-plus"></i><span class="menu-item"
@@ -28,8 +36,20 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">مارکتینگ پلن</span></a>
+            <li class="nav-item"><a href="
+  @if (\Illuminate\Support\Str::contains(request()->url(),'addSite')){{--
+                                            /*substr(request()->url(), strrpos(request()->url(), 'home/' )+5)*/--}}
+                    سایت ها
+@elseif(\Illuminate\Support\Str::contains(request()->url(),'admin'))
+                    پنل ادمین
+@else
+                {{route('marketing.plan',['url' => $url])}}
+                @endif"><i
+                        class="feather icon-calendar"></i><span class="menu-title"
+                                                                data-i18n="Calender">سئو تکنیکال</span></a>
             </li>
+            <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
+            <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a></li>
         </ul>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Site;
 use App\Providers\RouteServiceProvider;
 use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -54,6 +55,15 @@ class LoginController extends Controller
                 return redirect()->route('admin');
             }else{
                 $url = auth()->user()->url;
+                $email = auth()->user()->email;
+                $num=0;
+                if ($num == 0) {
+                    Site::create([
+                        'sites' => $url,
+                        'user_id' => $email
+                    ]);
+                    $num+=1;
+                }
                 return redirect()->route('home',['url' => $url]);
             }
         }else{

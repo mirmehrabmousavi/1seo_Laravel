@@ -9,5 +9,10 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sites'];
+    protected $fillable = ['sites','user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

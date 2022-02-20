@@ -53,133 +53,133 @@
                                 @endif
                                 @if($descNum == 3 || $descNum == 0)
                                     {{--description--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">توضیحات</p>
-                                                <span class="font-small-3">{{$description}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$descNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">توضیحات</p>
+                                            <span class="font-small-3">{{$description}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$descNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($altNum == 3 || $altNum == 0)
                                     {{--alt image--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">تصویر alt</p>
-                                                <span class="font-small-3">{{$missingAltImage}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$altNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">تصویر alt</p>
+                                            <span class="font-small-3">{{$missingAltImage}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$altNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($ratioNum == 3 || $ratioNum == 0)
                                     {{--ratio--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">نسبت متن به کد</p>
-                                                <span class="font-small-3">{{$getRatio}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$ratioNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">نسبت متن به کد</p>
+                                            <span class="font-small-3">{{$getRatio}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$ratioNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($gzipNum == 0)
                                     {{--gzip--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">GZIP</p>
-                                                <span class="font-small-3">{{$gzip}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$gzipNum}} از 4</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">GZIP</p>
+                                            <span class="font-small-3">{{$gzip}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$gzipNum}} از 4</small>
+                                    </li>
                                 @endif
                                 @if($robotsNum == 3 || $robotsNum == 0)
                                     {{--robot--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">فایل Robot</p>
-                                                <span class="font-small-3">{{$robots}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$robotsNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">فایل Robot</p>
+                                            <span class="font-small-3">{{$robots}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$robotsNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($sitemapNum == 3 || $sitemapNum == 0)
                                     {{--sitemap--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">عنوان</p>
-                                                <span class="font-small-3">{{$sitemap}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$sitemapNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">عنوان</p>
+                                            <span class="font-small-3">{{$sitemap}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$sitemapNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($favNum == 0)
                                     {{--favicon--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">ایکون سایت</p>
-                                                <span class="font-small-3">{{$favicon}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$favNum}} از 4</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">ایکون سایت</p>
+                                            <span class="font-small-3">{{$favicon}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$favNum}} از 4</small>
+                                    </li>
                                 @endif
                                 @if($loadTimeNum == 3 || $loadTimeNum == 0)
                                     {{--load time--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">زمان بارگذاری</p>
-                                                <span class="font-small-3">{{$load_time}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$loadTimeNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">زمان بارگذاری</p>
+                                            <span class="font-small-3">{{$response_time}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$loadTimeNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($sslNum == 3 || $sslNum == 0)
                                     {{--ssl--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">Https(SSL)</p>
-                                                <span class="font-small-3">{{$is_https}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$sslNum}} از 5</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Https(SSL)</p>
+                                            <span class="font-small-3">{{$is_https}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$sslNum}} از 5</small>
+                                    </li>
                                 @endif
                                 @if($analyticNum == 0)
                                     {{--google analytic--}}
-                                        <li>
-                                            <div class="timeline-icon bg-primary">
-                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                            </div>
-                                            <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">Google Analytic</p>
-                                                <span class="font-small-3">{{$analytics}}</span>
-                                            </div>
-                                            <small class="text-muted">امتیاز : {{$analyticNum}} از 4</small>
-                                        </li>
+                                    <li>
+                                        <div class="timeline-icon bg-primary">
+                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Google Analytic</p>
+                                            <span class="font-small-3">{{$analytics}}</span>
+                                        </div>
+                                        <small class="text-muted">امتیاز : {{$analyticNum}} از 4</small>
+                                    </li>
                                 @endif
                             </ul>
                         </div>
@@ -688,56 +688,16 @@
                                     <p><i class="feather icon-info"></i> {{$dataTitle}} <span style="float: left">امتیاز : {{$titleNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'عنوان'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success1">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success1" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -752,20 +712,18 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    منظور از طول عنوان سئو عنوانی می باشد که در title tag یک صفحه وجود
+                                                    دارد.
+                                                    این عنوان باید به طور مختصر و حداکثر در 65 کاراکتر محتوای صفحه شما
+                                                    را توصیف کند.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail1" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    طول عنوان سئو نباید بیشتر از 65 کاراکتر و کمتر از 20 کاراکتر باشد.
                                 </div>
                             </div>
                         </div>
@@ -792,56 +750,16 @@
                                     <p><i class="feather icon-info"></i> {{$dataDesc}} <span style="float: left">امتیاز : {{$descNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'توضیحات'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success2">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success2" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -856,20 +774,18 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    توضیحات اگر بیشتر از 140 کاراکتر باشد در گوگل به صورت کامل نمایش
+                                                    داده نمی شود.
+                                                    بهترین تعداد کاراکتر توضیحات سئو چیزی بین 70 الی 140 کاراکتر می
+                                                    باشد.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail2" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    طول توضیحات سئو باید بین 70 الی 140 کاراکتر باشد.
                                 </div>
                             </div>
                         </div>
@@ -894,56 +810,16 @@
                                     </p>
                                     <p>{{$description}}</p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'پیش نمایش گوگل'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success4">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success4" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -958,20 +834,16 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    یک پیش نمایش خوب و جذاب در گوگل موجب بالا رفتن نرخ مشارکت و کلیک
+                                                    کاربران در نتیجه افزایش چشمگیر بازدید ها می شود.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail3" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    پیش نمایش سایت در گوگل بر روی بالا رفتن نرخ CTR بسیار موثر می باشد.
                                 </div>
                             </div>
                         </div>
@@ -994,56 +866,16 @@
                                     <p> {{$missingAltImage}} <span style="float: left">امتیاز : {{$altNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'تصویر alt'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success5">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success5" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1058,20 +890,18 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    توضیحات تصویر برای زماتنی می باشد که تصویر شما لود نمی شود و به جای
+                                                    آن ALT تصویر نمایش داده می شود.
+                                                    از آنجایی که این توضیحات و یا همان متن جایگزین تصویر برای گوگل دارای
+                                                    اهمیت می باشد. پس بر روی تمامی تصاویر خود قرار دهید.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail5" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    داشتن متن جایگزین تصویر به سئو تصاویر شما کمک بسیاری می نماید.
                                 </div>
                             </div>
                         </div>
@@ -1096,56 +926,16 @@
                                             style="float: left">امتیاز : {{$ratioNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'نسبت متن به کد'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success6">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success6" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1160,20 +950,16 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    با پاک کردن کد های اضافه صفحه خود و همچنین افزایش محتوای متنی در
+                                                    صفحه می توانید نسبت متن به کد صفحه را افزایش دهید.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail6" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    نسبت متن به کد هر چه بیشتر باشد صفحه دارای ارزش محتوایی بیشتری خواهد بود.
                                 </div>
                             </div>
                         </div>
@@ -1195,56 +981,16 @@
                                     <p><i class="feather icon-info"></i> {{$gzip}} <span style="float: left">امتیاز : {{$gzipNum}} از 4</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'gzip'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success7">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success7" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1259,20 +1005,21 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    درخواست درخواست
+                                                    هرچه حجم این فایل‌های استفاده شده در صفحات بیشتر باشه زمان بیشتری
+                                                    صرف لود کامل سایت خواهد شد.
+                                                    بنابراین باید حجم صفحات خودمون را با استفاده از gzip کاهش بدیم.
+                                                    در وردپرس می توانید به سادگی و با استفاده از افزونه Enable Gzip
+                                                    Compression این کار را انجام دهید.
+                                                    اما اگر سایت وردپرسی ندارید و یا نمی هواهید از افزونه استفاده کنید
+                                                    باید به کمک فایل htaccess.در هاست خود این کار را انجام دهید.
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Session::has('message'))
-                                    <div class="alert alert-success">
-                                        <p>{{\Illuminate\Support\Facades\Session::get('message')}}</p>
-                                    </div>
-                                @endif
                                 <div id="detail7" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    با استفاده از GZIP می توان حجم صفحات سایت را کاهش داد.
                                 </div>
                             </div>
                         </div>
@@ -1294,56 +1041,16 @@
 
                                     <p><i class="feather icon-info"></i> {{$serverSignature}}</p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'امضای سرور'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success9">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success9" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1387,56 +1094,16 @@
                                 <div class="{{$check_url_canonicalization}} p-1">
                                     <p><i class="feather icon-info"></i> {{$isUrlCanonicalization}}</p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'وضعیت url'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success10">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success10" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1481,56 +1148,16 @@
                                     <p>{{$robots}} <span style="float: left">امتیاز : {{$robotsNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'ربات'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success11">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success11" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1575,56 +1202,16 @@
                                     <p>{{$site_map}} <span style="float: left">امتیاز : {{$sitemapNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'نقشه سایت'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success12">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success12" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1669,56 +1256,16 @@
                                     <p><i class="feather icon-info"></i> {{$isIframe}} <span style="float: left">امتیاز : {{$iframeNum}} از 4</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'iframe'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success13">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success13" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1763,56 +1310,16 @@
                                     <p><i class="feather icon-info"></i> {{$isFlash}} <span style="float: left">امتیاز : {{$flashNum}} از 4</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'flash'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success14">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success14" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1855,52 +1362,16 @@
                             <div class="card-body">
                                 <h5>{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}</h5>
                                 <p>{{$urlLength}}</p>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success15">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success15" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -1944,52 +1415,16 @@
                                 <img src="{{$favicon}}"
                                      alt="{{substr(request()->url(), strrpos(request()->url(), 'home/' )+5)}}">
                                 <p>عالی است. وب سایت شما Favicon دارد :)</p>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success16">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success16" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2035,56 +1470,16 @@
                                     <p><i class="feather icon-info"></i> {{$pageSize}} <span style="float: left">امتیاز : {{$pageSizeNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'اندازه صفحه'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success18">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success18" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2118,7 +1513,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>زمان بارگذاری</h4>
-                            <a onclick="myFunction18()"><i class="feather icon-info"></i></a>
+                            <a onclick="myFunction188()"><i class="feather icon-info"></i></a>
                         </div>
                         <div class="divider">
                             <div class="divider-text">Load Time</div>
@@ -2130,56 +1525,16 @@
                                     <p><i class="feather icon-info"></i> {{$response_time}} <span style="float: left">امتیاز : {{$loadTimeNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'زمان بارگذاری'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success188">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success188" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2200,9 +1555,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="detail18" style="display: none" class="alert alert-primary mb-2"
+                                <div id="detail188" style="display: none" class="alert alert-primary mb-2"
                                      role="alert">
-                                    سلام خوبی؟
+                                    سلام خوبی؟jhhhhhhj
                                 </div>
                             </div>
                         </div>
@@ -2225,56 +1580,16 @@
                                     <p><i class="feather icon-info"></i> {{$isLanguage}} <span style="float: left">امتیاز : {{$langNum}} از 3</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'زبان سایت'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success19">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success19" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2320,56 +1635,16 @@
                                     <p><i class="feather icon-info"></i> {{$is_https}} <span style="float: left">امتیاز : {{$sslNum}} از 5</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'گواهی ssl'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success20">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success20" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2414,52 +1689,16 @@
 
                                     <p>{{$ChEmail}} <i class="feather icon-info"></i></p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success22">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success22" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2505,56 +1744,16 @@
                                     <p><i class="feather icon-info"></i> {{$isSafe}} <span style="float: left">امتیاز : {{$safeNum}} از 3</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'مرور ایمن'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success23">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success23" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2600,56 +1799,16 @@
                                     <p><i class="feather icon-info"></i> {{$isNestedTable}} <span style="float: left">امتیاز : {{$nestedNum}} از 2</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'Nested HTML'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success24">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success24" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2696,56 +1855,16 @@
                                     <p><i class="feather icon-info"></i>{{$getJsFilesCount}} </p>
                                     <p><i class="feather icon-info"></i>{{$issetInlineCss}}  </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'نکات سرعت'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success26">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success26" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2791,56 +1910,16 @@
                                     <p><i class="feather icon-info"></i> {{$analytics}} <span style="float: left">امتیاز : {{$analyticNum}} از 4</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'Google Analytic'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success27">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success27" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2886,56 +1965,16 @@
                                     <p><i class="feather icon-info"></i> {{$doctype}} <span style="float: left">امتیاز : {{$doctypeNum}} از 2</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'Doctype'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success28">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success28" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -2981,56 +2020,16 @@
                                     <p><i class="feather icon-info"></i> {{$encoding}} <span style="float: left">امتیاز : {{$encodingNum}} از 2</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'Encoding'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success29">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success29" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -3076,56 +2075,16 @@
                                     <p><i class="feather icon-info"></i> {{$dphtml}} <span style="float: left">امتیاز : {{$dphtmlNum}} از 2</span>
                                     </p>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('sendReq',['req'=>'html منسوخ شده'])}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                                class="btn btn-primary waves-effect waves-light">
-                                                            تایید
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success30">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success30" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -3219,52 +2178,16 @@
                                     }
                                     ?>
                                 </div>
-                                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                                    <!-- Button trigger modal -->
-                                    <button type="button"
-                                            class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#primary">
-                                        درخواست رفع خطا
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="primary" tabindex="-1"
-                                         role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-                                        <div
-                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary white">
-                                                    <h5 class="modal-title" id="myModalLabel160">درخواست رفع
-                                                        خطا</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    درخواست درخواست
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{--{{route('request')}}--}}"
-                                                       class="btn btn-primary waves-effect waves-light"
-                                                       data-dismiss="modal">تایید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-success mr-1 mb-1 d-inline-block">
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
-                                            data-toggle="modal" data-target="#success">
+                                            data-toggle="modal" data-target="#success4">
                                         راهنمای رفع خطا
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade text-left" id="success" tabindex="-1"
+                                    <div class="modal fade text-left" id="success4" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
                                         <div
                                             class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -3311,6 +2234,16 @@
         </p>
     </footer>
     <!-- END: Footer-->
+    <div class="btn-group dropup mr-1 mb-1 show">
+        <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Drop up
+        </button>
+        <div class="dropdown-menu show" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -140px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="#">Option 1</a>
+            <a class="dropdown-item disabled" href="#">Option 2</a>
+            <a class="dropdown-item" href="#">Option 3</a>
+        </div>
+    </div>
 @endsection
 
 @section('script')

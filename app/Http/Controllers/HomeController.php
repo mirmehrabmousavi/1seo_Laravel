@@ -6,7 +6,7 @@ use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Request;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -311,7 +311,8 @@ class HomeController extends Controller
     public function addSite(Request $request)
     {
         Site::create([
-            'sites' => $request->site
+            'sites' => $request['site'],
+            'user_id' => auth()->user()->email,
         ]);
 
         return redirect()->route('home',['url' => auth()->user()->url])->with('success', 'با موفقیت ثبت شد');
@@ -347,16 +348,19 @@ class HomeController extends Controller
 
     public function domainManagement()
     {
-        return view('admin.domain');
+        $domains = Site::all();
+        return view('admin.domain',compact('domains'));
     }
 
     public function userManagement()
     {
-        return view('admin.users');
+        $users = User::all();
+        return view('admin.users',compact('users'));
     }
 
     public function requestManagement()
     {
-        return view('admin.request');
+        $requests = Request::all();
+        return view('admin.request',compact('requests'));
     }
 }

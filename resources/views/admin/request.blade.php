@@ -14,22 +14,26 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">درخواست دهنده</th>
+                                <th scope="col">شماره تماس</th>
                                 <th scope="col">عنوان درخواست</th>
                                 <th scope="col">تاریخ</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>مهراب</td>
-                                <td>title</td>>
-                                <td>3 ماه قبل</td>
-                                <td>
-                                    <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
-                                    <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>
-                                </td>
-                            </tr>
+                            @foreach($requests as $val)
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>مهراب</td>
+                                    <td>09369949693</td>
+                                    <td>{{$val->request}}</td>
+                                    <td>{{$val->created_at->diffForHumans()}}</td>
+                                    <td>
+                                        <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
+                                        <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

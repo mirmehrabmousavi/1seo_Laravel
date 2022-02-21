@@ -2221,7 +2221,6 @@
     </section>
     <!-- Dashboard Analytics end -->
 
-
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
@@ -2234,16 +2233,6 @@
         </p>
     </footer>
     <!-- END: Footer-->
-    <div class="btn-group dropup mr-1 mb-1 show">
-        <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Drop up
-        </button>
-        <div class="dropdown-menu show" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -140px, 0px); top: 0px; left: 0px; will-change: transform;">
-            <a class="dropdown-item" href="#">Option 1</a>
-            <a class="dropdown-item disabled" href="#">Option 2</a>
-            <a class="dropdown-item" href="#">Option 3</a>
-        </div>
-    </div>
 @endsection
 
 @section('script')

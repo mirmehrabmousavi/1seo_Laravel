@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="text" id="first-name-vertical" class="form-control" name="site"
+                                        <input type="text" id="first-name-vertical" class="form-control" name="sites"
                                                placeholder="آدرس سایت را وارد کنید">
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">

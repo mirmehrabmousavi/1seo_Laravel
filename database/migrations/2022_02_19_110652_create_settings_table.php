@@ -18,7 +18,6 @@ class CreateSettingsTable extends Migration
             $table->string('title');
             $table->string('meta_desc');
             $table->string('meta_key');
-            $table->string('email');
             $table->timestamps();
         });
     }

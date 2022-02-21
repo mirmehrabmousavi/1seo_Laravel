@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -56,13 +57,12 @@ class LoginController extends Controller
             }else{
                 $url = auth()->user()->url;
                 $email = auth()->user()->email;
-                $num=0;
-                if ($num == 0) {
+                $site = Site::where('sites',$url)->get();
+               if(!Str::contains($site, $url)) {
                     Site::create([
                         'sites' => $url,
                         'user_id' => $email
                     ]);
-                    $num+=1;
                 }
                 return redirect()->route('home',['url' => $url]);
             }

@@ -10,28 +10,24 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-vertical" action="{{route('settings.add')}}" method="POST">
+                            <form class="form form-vertical" action="{{route('settings.add',$settings)}}" method="POST">
                                 @csrf
+                                @method('patch')
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="first-name-vertical" class="form-control" name="title" placeholder="عنوان سایت">
+                                                <input type="text" id="first-name-vertical" class="form-control" name="title" value="{{$settings->title}}" placeholder="عنوان سایت">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="email-id-vertical" class="form-control" name="meta_desc" placeholder="متا توضیحات">
+                                                <input type="text" id="email-id-vertical" class="form-control" name="meta_desc" value="{{$settings->meta_desc}}" placeholder="متا توضیحات">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="contact-info-vertical" class="form-control" name="meta_key" placeholder="متا کلمات کلیدی">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <input type="email" id="password-vertical" class="form-control" name="email" placeholder="ایمیل">
+                                                <input type="text" id="contact-info-vertical" class="form-control" name="meta_key" value="{{$settings->meta_key}}" placeholder="متا کلمات کلیدی">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -52,27 +48,29 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="" class="form form-vertical" method="POST">
+                            <form action="{{route('admin.add',$user)}}" class="form form-vertical" method="POST">
+                                @csrf
+                                @method('patch')
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="first-name-vertical" class="form-control" name="name" placeholder="نام">
+                                                <input type="text" id="first-name-vertical" class="form-control" name="name" value="{{$user->name}}" placeholder="نام">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="email" id="email-id-vertical" class="form-control" name="email" placeholder="ایمیل">
+                                                <input type="email" id="email-id-vertical" class="form-control" name="email" value="{{$user->email}}" placeholder="ایمیل">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="number" id="email-id-vertical" class="form-control" name="number" placeholder="شماره تماس">
+                                                <input type="number" id="email-id-vertical" class="form-control" name="number" value="{{$user->number}}" placeholder="شماره تماس">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="email-id-vertical" class="form-control" name="url" placeholder="آدرس سایت">
+                                                <input type="text" id="email-id-vertical" class="form-control" name="url" value="{{$user->url}}" placeholder="آدرس سایت">
                                             </div>
                                         </div>
                                         <div class="divider">
@@ -85,7 +83,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="password" id="password-vertical" class="form-control" name="confirmed_password" placeholder="تایید رمز عبور">
+                                                <input type="password" id="password-vertical" class="form-control" name="password_confirmation" placeholder="تایید رمز عبور">
                                             </div>
                                         </div>
                                         <div class="col-12">

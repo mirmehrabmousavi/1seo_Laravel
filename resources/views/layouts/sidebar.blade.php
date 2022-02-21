@@ -31,10 +31,13 @@
                                     data-i18n="Grid">{{$site->sites}}</span></a>
                         </li>
                     @endforeach
-                    <li class=""><a href="{{route('addSite')}}"><i class="feather icon-plus"></i><span class="menu-item"
+                    <li class=""><a href="{{route('addSiteView')}}"><i class="feather icon-plus"></i><span class="menu-item"
                                                                                                        data-i18n="Helper Classes">افزودن سایت</span></a>
                     </li>
                 </ul>
+            </li>
+
+            <li class=" navigation-header"><span>مارکتینگ پلن</span>
             </li>
             <li class="nav-item"><a href="
   @if (\Illuminate\Support\Str::contains(request()->url(),'addSite')){{--

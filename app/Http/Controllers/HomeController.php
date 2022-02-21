@@ -6,7 +6,8 @@ use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
-use App\Models\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -310,10 +311,14 @@ class HomeController extends Controller
 
     public function addSite(Request $request)
     {
-        Site::create([
-            'sites' => $request['site'],
+/*        Site::create([
+            'sites' => $request->sites,
             'user_id' => auth()->user()->email,
-        ]);
+        ]);*/
+        $site=new Site();
+        $site->sites = \request('sites');
+        $site->user_id = auth()->user()->email;
+        $site->save();
 
         return redirect()->route('home',['url' => auth()->user()->url])->with('success', 'با موفقیت ثبت شد');
     }
@@ -324,26 +329,47 @@ class HomeController extends Controller
         return view('admin.handleAdmin',compact('sites'));
     }
 
-    public function siteSettings()
+    public function siteSettings(Settings $settings)
     {
-        return view('admin.siteSettings');
+        $user = Auth::user();
+        return view('admin.siteSettings',compact('user','settings'));
     }
 
-    public function settingsAdd(Request $request)
+    public function updateUser(User $user)
     {
-        Settings::create([
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'number' => 'required|unique:users',
+            'url' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->number = request('number');
+        $user->url = request('url');
+        $user->password = bcrypt(request('password'));
+
+        $user->save();
+
+        return back();
+    }
+
+    public function settingsAdd(Settings $settings)
+    {
+        /*Settings::create([
             'title' => $request['title'],
             'meta_desc' => $request['meta_desc'],
             'meta_key' => $request['meta_key'],
             'email' => $request['email'],
-        ]);
+        ]);*/
+        $settings->title = \request('title');
+        $settings->meta_desc = \request('meta_desc');
+        $settings->meta_key = \request('meta_key');
+        $settings->save();
 
-        return redirect(route('settingsManagement'));
-    }
-
-    public function adminAdd(Request $request)
-    {
-
+        return redirect(route('settings.management'));
     }
 
     public function domainManagement()
@@ -356,6 +382,12 @@ class HomeController extends Controller
     {
         $users = User::all();
         return view('admin.users',compact('users'));
+    }
+
+    public function showUser()
+    {
+        $user = Auth::user();
+        return view('admin.show_user',compact('user'));
     }
 
     public function requestManagement()

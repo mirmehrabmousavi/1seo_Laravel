@@ -18,7 +18,6 @@ class CreateSitesTable extends Migration
             $table->string('sites');
             $table->string('user_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

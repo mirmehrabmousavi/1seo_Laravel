@@ -27,8 +27,7 @@
                                 <td>{{$val->user_id}}</td>
                                 <td>{{$val->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
-                                    <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>
+                                    <a href="{{route('home',auth()->user()->url)}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -194,7 +194,7 @@
                         <h4 class="card-title text-center">سلامت سئو سایت</h4>
                     </div>
                     <div class="divider">
-                        <div class="divider-text">My Text</div>
+                        <div class="divider-text">Seo Health</div>
                     </div>
                     <div class="card-content">
                         <div class="card-body pt-0">
@@ -344,7 +344,7 @@
                         <h4 class="card-title">نمایش کل خطا ها</h4>
                     </div>
                     <div class="divider">
-                        <div class="divider-text">My Text</div>
+                        <div class="divider-text">Show Errors</div>
                     </div>
                     <div class="card-content">
                         <div class="card-body py-0" style="position: relative;">

@@ -309,12 +309,8 @@ class HomeController extends Controller
         return view('addSite_view',compact('sites'));
     }
 
-    public function addSite(Request $request)
+    public function addSite()
     {
-/*        Site::create([
-            'sites' => $request->sites,
-            'user_id' => auth()->user()->email,
-        ]);*/
         $site=new Site();
         $site->sites = \request('sites');
         $site->user_id = auth()->user()->email;
@@ -358,12 +354,6 @@ class HomeController extends Controller
 
     public function settingsAdd(Settings $settings)
     {
-        /*Settings::create([
-            'title' => $request['title'],
-            'meta_desc' => $request['meta_desc'],
-            'meta_key' => $request['meta_key'],
-            'email' => $request['email'],
-        ]);*/
         $settings->title = \request('title');
         $settings->meta_desc = \request('meta_desc');
         $settings->meta_key = \request('meta_key');
@@ -392,7 +382,6 @@ class HomeController extends Controller
 
     public function requestManagement()
     {
-        $requests = Request::all();
-        return view('admin.request',compact('requests'));
+
     }
 }

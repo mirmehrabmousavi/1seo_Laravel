@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
+use App\Models\InitSeo;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
@@ -21,6 +22,15 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $url = \auth()->user()->url;
+        $email = \auth()->user()->email;
+        $site = Site::where('sites',$url)->get();
+        if(!Str::contains($site, $url)) {
+            Site::create([
+                'sites' => $url,
+                'user_id' => $email
+            ]);
+        }
     }
 
     /**
@@ -302,11 +312,11 @@ class HomeController extends Controller
         ));
     }
 
-    public function addSiteView()
+    public function addSiteView($url)
     {
 
         $sites = Site::all();
-        return view('addSite_view',compact('sites'));
+        return view('addSite_view',compact('sites','url'));
     }
 
     public function addSite()
@@ -316,7 +326,7 @@ class HomeController extends Controller
         $site->user_id = auth()->user()->email;
         $site->save();
 
-        return redirect()->route('home',['url' => auth()->user()->url])->with('success', 'با موفقیت ثبت شد');
+        return redirect()->route('home',['url' => \request('sites')])->with('success', 'با موفقیت ثبت شد');
     }
 
     public function handleAdmin()
@@ -384,4 +394,5 @@ class HomeController extends Controller
     {
 
     }
+
 }

@@ -9,10 +9,15 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sites','user_id'];
+    protected $fillable = ['id','sites','user_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function initSeo()
+    {
+        return $this->belongsTo(InitSeo::class);
     }
 }

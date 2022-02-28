@@ -31,7 +31,7 @@
                                     data-i18n="Grid">{{$site->sites}}</span></a>
                         </li>
                     @endforeach
-                    <li class=""><a href="{{route('addSiteView')}}"><i class="feather icon-plus"></i><span class="menu-item"
+                    <li class=""><a href="{{route('addSiteView',['url'=>$url])}}"><i class="feather icon-plus"></i><span class="menu-item"
                                                                                                        data-i18n="Helper Classes">افزودن سایت</span></a>
                     </li>
                 </ul>
@@ -39,19 +39,9 @@
 
             <li class=" navigation-header"><span>مارکتینگ پلن</span>
             </li>
-            <li class="nav-item"><a href="
-  @if (\Illuminate\Support\Str::contains(request()->url(),'addSite')){{--
-                                            /*substr(request()->url(), strrpos(request()->url(), 'home/' )+5)*/--}}
-                    سایت ها
-@elseif(\Illuminate\Support\Str::contains(request()->url(),'admin'))
-                    پنل ادمین
-@else
-                {{route('marketing.plan',['url' => $url])}}
-                @endif"><i
-                        class="feather icon-calendar"></i><span class="menu-title"
-                                                                data-i18n="Calender">سئو تکنیکال</span></a>
+            <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو تکنیکال</span></a>
             </li>
-            <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
+            <li class="nav-item"><a href="{{route('internal.seo',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
             <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a></li>
         </ul>
     </div>

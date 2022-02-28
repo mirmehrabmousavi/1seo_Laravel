@@ -23,10 +23,17 @@ Route::get('/', function () {
 Auth::routes();
 
 //Analyze Home
+
+//HomeController
 Route::get('/home/{url}' , [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/addSite/{url}' , [App\Http\Controllers\HomeController::class, 'addSiteView'])->name('addSiteView');
+Route::post('/addSite/{url}' , [App\Http\Controllers\HomeController::class, 'addSite'])->name('addSite');
+//TechSeo Controller
 Route::get('/marketingPlan/{url}' , [App\Http\Controllers\HomeController::class, 'marketingPlan'])->name('marketing.plan');
-Route::get('/addSite' , [App\Http\Controllers\HomeController::class, 'addSiteView'])->name('addSiteView');
-Route::post('/addSite' , [App\Http\Controllers\HomeController::class, 'addSite'])->name('addSite');
+//InitSeo Controller
+Route::get('/initSeo/{url}' , [App\Http\Controllers\InitSeoController::class, 'initSeo'])->name('internal.seo');
+Route::post('/initSeo/{url}' , [App\Http\Controllers\InitSeoController::class, 'initSeoStore'])->name('internal.seo.store');
+Route::get('/initSeo/index/{url}' , [App\Http\Controllers\InitSeoController::class, 'initSeoIndex'])->name('internal.seo.index');
 
 //Adm in Template
 

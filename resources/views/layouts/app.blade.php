@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <title>Seo Analyzer</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/front-end/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="/app-assets/css-rtl/app.css">

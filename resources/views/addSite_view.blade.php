@@ -8,7 +8,7 @@
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <form class="form form-vertical" action="{{route('addSite')}}" method="POST">
+                    <form class="form form-vertical" action="{{route('addSite',['url'=>$url])}}" method="POST">
                         @csrf
                         <div class="form-body">
                             <div class="row">

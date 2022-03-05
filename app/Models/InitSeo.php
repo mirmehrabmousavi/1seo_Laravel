@@ -9,7 +9,7 @@ class InitSeo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['site_id','type_site','keyword_site','local_site'];
+    protected $fillable = ['user_id','site_id','type_site','keyword_site','local_site'];
 
     public function site()
     {

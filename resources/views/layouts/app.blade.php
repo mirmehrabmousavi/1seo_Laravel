@@ -9,6 +9,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <title>Seo Analyzer</title>
+    <link rel=“canonical” href=“https://1seo.site/” />
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="/front-end/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/tether-theme-arrows.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/tether.min.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/shepherd-theme-default.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/animate/animate.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->

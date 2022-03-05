@@ -32,8 +32,7 @@
                         </li>
                     @endforeach
                     <li class=""><a href="{{route('addSiteView',['url'=>$url])}}"><i class="feather icon-plus"></i><span class="menu-item"
-                                                                                                       data-i18n="Helper Classes">افزودن سایت</span></a>
-                    </li>
+                                                                                                       data-i18n="Helper Classes">افزودن سایت</span></a></li>
                 </ul>
             </li>
 
@@ -41,7 +40,7 @@
             </li>
             <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو تکنیکال</span></a>
             </li>
-            <li class="nav-item"><a href="{{route('internal.seo',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
+            <li class="nav-item"><a href="{{route('internal.seo', ['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
             <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a></li>
         </ul>
     </div>

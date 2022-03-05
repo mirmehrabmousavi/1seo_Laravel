@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $url = \auth()->user()->url;
+      /*  $url = \auth()->user()->url;
         $email = \auth()->user()->email;
         $site = Site::where('sites',$url)->get();
         if(!Str::contains($site, $url)) {
@@ -30,7 +30,7 @@ class HomeController extends Controller
                 'sites' => $url,
                 'user_id' => $email
             ]);
-        }
+        }*/
     }
 
     /**
@@ -234,165 +234,4 @@ class HomeController extends Controller
             'totalPercent',
         ));
     }
-
-    public function marketingPlan($url)
-    {
-        $sites=Site::all();
-        $domain = new Analyztic();
-        [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
-        try {
-            [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
-        } catch (Throwable $e) {
-            report($e);
-        }
-        [$missingAltImage,$checkMissingAlt,$altNum]=$domain->getAltImage('http://'.$url);
-        [$getRatio,$textSize,$ratioPageSize,$checkRatio,$ratioNum]=$domain->getRatio($url);
-        [$gzip,$gzipNum]=$domain->gzip('http://'.$url);
-        [$robots,$check_robots_txt,$robotsNum]=$domain->robotFile($url);
-        [$site_map,$check_xml_sitemaps,$sitemapNum]=$domain->getSitemap($url);
-        [$response_time,$check_load_time,$loadTimeNum]=$domain->getSpeed($url);
-        [$is_https,$check_https,$sslNum]=$domain->getSSL($url);
-        $favicon=$domain->getFavicon($url);
-        if ($favicon) {
-            $favNum=4;
-        }else{
-            $favNum=0;
-        }
-        [$analytics,$check_analytics,$analyticNum]=$domain->getGoogleAnalystic('http://'.$url);
-
-        return view('marketingPlan',compact(
-            'sites',
-            'url',
-            //Title
-            'siteTitle',
-            'dataTitle',
-            'titleCssStyle',
-            'titleNum',
-            //Desc
-            'description',
-            'dataDesc',
-            'descCssStyle',
-            'descNum',
-            //alt
-            'missingAltImage',
-            'checkMissingAlt',
-            'altNum',
-            //Ratio
-            'getRatio',
-            'textSize',
-            'ratioPageSize',
-            'checkRatio',
-            'ratioNum',
-            //GZIP
-            'gzip',
-            'gzipNum',
-            //robot
-            'robots',
-            'check_robots_txt',
-            'robotsNum',
-            //sitemap
-            'site_map',
-            'check_xml_sitemaps',
-            'sitemapNum',
-            //favicon
-            'favicon',
-            'favNum',
-            //load time
-            'response_time',
-            'check_load_time',
-            'loadTimeNum',
-            //ssl
-            'is_https',
-            'check_https',
-            'sslNum',
-            //google analytic
-            'analytics',
-            'check_analytics',
-            'analyticNum',
-        ));
-    }
-
-    public function addSiteView($url)
-    {
-
-        $sites = Site::all();
-        return view('addSite_view',compact('sites','url'));
-    }
-
-    public function addSite()
-    {
-        $site=new Site();
-        $site->sites = \request('sites');
-        $site->user_id = auth()->user()->email;
-        $site->save();
-
-        return redirect()->route('home',['url' => \request('sites')])->with('success', 'با موفقیت ثبت شد');
-    }
-
-    public function handleAdmin()
-    {
-        $sites=Site::all();
-        return view('admin.handleAdmin',compact('sites'));
-    }
-
-    public function siteSettings(Settings $settings)
-    {
-        $user = Auth::user();
-        return view('admin.siteSettings',compact('user','settings'));
-    }
-
-    public function updateUser(User $user)
-    {
-        $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'number' => 'required|unique:users',
-            'url' => 'required',
-            'password' => 'required|min:6|confirmed'
-        ]);
-
-        $user->name = request('name');
-        $user->email = request('email');
-        $user->number = request('number');
-        $user->url = request('url');
-        $user->password = bcrypt(request('password'));
-
-        $user->save();
-
-        return back();
-    }
-
-    public function settingsAdd(Settings $settings)
-    {
-        $settings->title = \request('title');
-        $settings->meta_desc = \request('meta_desc');
-        $settings->meta_key = \request('meta_key');
-        $settings->save();
-
-        return redirect(route('settings.management'));
-    }
-
-    public function domainManagement()
-    {
-        $domains = Site::all();
-        return view('admin.domain',compact('domains'));
-    }
-
-    public function userManagement()
-    {
-        $users = User::all();
-        return view('admin.users',compact('users'));
-    }
-
-    public function showUser()
-    {
-        $user = Auth::user();
-        return view('admin.show_user',compact('user'));
-    }
-
-    public function requestManagement()
-    {
-
-    }
-
 }

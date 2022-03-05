@@ -15,10 +15,11 @@ class CreateInitSeosTable extends Migration
     {
         Schema::create('init_seos', function (Blueprint $table) {
             $table->id();
-            $table->string('site_id');
+            $table->string('user_id')->unique();
+            $table->string('site_id')->unique();
             $table->string('type_site');
-            $table->string('keyword_site');
-            $table->string('local_site');
+            $table->text('keyword_site');
+            $table->text('local_site');
             $table->timestamps();
 
         });

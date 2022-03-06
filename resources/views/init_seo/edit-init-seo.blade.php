@@ -6,7 +6,7 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">اطلاعات زیر را تکمیل کنید</h4>
+                        <h4 class="card-title">ویرایش کلمات کلیدی</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -24,15 +24,8 @@
                                                 <select class="custom-select form-control" id="type" name="type_site"
                                                         required>
                                                     @if($init_seo->type_site)
-                                                        <option value="{{$init_Seo->type_site}}"
-                                                                selected>{{$init_Seo->type_site}}</option>
-                                                    @else
-                                                        <option value="ecommerce">فروشگاهی</option>
-                                                        <option value="service">خدماتی</option>
-                                                        <option value="directory">دایرکتوری</option>
-                                                        <option value="corporate">شرکتی</option>
-                                                        <option value="personal">شخصی</option>
-                                                        <option value="indicative">خبری</option>
+                                                        <option value="{{$init_seo->type_site}}"
+                                                                disabled selected>{{$init_seo->type_site}}</option>
                                                     @endif
                                                 </select>
                                             </div>
@@ -63,10 +56,6 @@
                                         <div class="col-md-8">
                                             <button type="submit"
                                                     class="btn btn-primary mr-1 mb-1 waves-effect waves-light">ثبت
-                                            </button>
-                                            <button type="reset"
-                                                    class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">
-                                                ریست
                                             </button>
                                         </div>
                                     </div>

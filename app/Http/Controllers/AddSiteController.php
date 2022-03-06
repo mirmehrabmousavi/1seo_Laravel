@@ -29,12 +29,13 @@ class AddSiteController extends Controller
 
     public function addSiteView($url)
     {
-
         $sites = Site::all();
-        return view('add-site.addSite_view',compact('sites','url'));
+        $site_fi = Site::all()->first();
+        $sites_ex = Site::where('sites','<>',auth()->user()->url)->paginate(10);
+        return view('add-site.addSite_view',compact('sites','site_fi','sites_ex','url'));
     }
 
-    public function addSite($url)
+    public function addSite()
     {
         $site=new Site();
         $site->sites = \request('sites');
@@ -42,5 +43,12 @@ class AddSiteController extends Controller
         $site->save();
 
         return redirect()->route('home',['url' => \request('sites')])->with('success', 'با موفقیت ثبت شد');
+    }
+
+    public function delSite($url ,$id)
+    {
+        $site = Site::find($id);
+        $site->delete();
+        return redirect()->back();
     }
 }

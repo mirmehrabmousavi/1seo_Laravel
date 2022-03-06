@@ -22,7 +22,7 @@
                             <tbody>
                             @foreach($domains as $val)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{$loop->index+1}}</th>
                                 <td>{{$val->sites}}</td>
                                 <td>{{$val->user_id}}</td>
                                 <td>{{$val->created_at->diffForHumans()}}</td>

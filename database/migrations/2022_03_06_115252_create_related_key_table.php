@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInitSeosTable extends Migration
+class CreateRelatedKeyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateInitSeosTable extends Migration
      */
     public function up()
     {
-        Schema::create('init_seos', function (Blueprint $table) {
+        Schema::create('related_key', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('site_id')->unique();
-            $table->string('type_site');
-            $table->text('keyword_site');
-            $table->text('local_site');
+            $table->string('keyword_id');
+            $table->text('related_site');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +28,6 @@ class CreateInitSeosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('init_seos');
+        Schema::dropIfExists('related_key');
     }
 }

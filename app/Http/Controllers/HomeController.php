@@ -22,15 +22,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-      /*  $url = \auth()->user()->url;
-        $email = \auth()->user()->email;
-        $site = Site::where('sites',$url)->get();
-        if(!Str::contains($site, $url)) {
-            Site::create([
-                'sites' => $url,
-                'user_id' => $email
-            ]);
-        }*/
     }
 
     /**
@@ -40,6 +31,15 @@ class HomeController extends Controller
      */
     public function index($url)
     {
+        $baseUrl = \auth()->user()->url;
+        $email = \auth()->user()->email;
+        $site = Site::where('sites',$baseUrl)->get();
+        if(!Str::contains($site, $baseUrl)) {
+            Site::create([
+                'sites' => $baseUrl,
+                'user_id' => $email
+            ]);
+        }
         $sites = Site::all();
 
         $domain = new Analyztic();

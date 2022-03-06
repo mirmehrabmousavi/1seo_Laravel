@@ -18,7 +18,9 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <a href="{{route('edit.init.seo',['url' => $url,'id' => $init_seo->id])}}" class="btn mb-1 btn-primary btn-lg btn-block waves-effect waves-light">مدیریت کلمات کلیدی</a>
+                                        <a href="{{route('edit.init.seo',['url' => $url,'id' => $init_seo_id->id])}}"
+                                           class="btn mb-1 btn-primary btn-lg btn-block waves-effect waves-light">مدیریت
+                                            کلمات کلیدی</a>
                                     </div>
                                 </div>
                             </div>
@@ -28,6 +30,12 @@
             </div>
         </div>
     </section>
+
+        {{--{{$init_seo->keyword_site}}--}}
+
+          {{--  @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)
+            <p>{{$val}}</p>
+            @endforeach--}}
 
     <section id="alert-colors">
         <div class="row">
@@ -43,29 +51,40 @@
                             <p>
                                 فعالیت های روزانه ات اینجا به نمایش گذاشته می شه :)
                             </p>
+                            @foreach($init_seo as $in)
+                            @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)
                             <div class="alert alert-light" role="alert">
-                                <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
+                                <h4 class="alert-heading"><span class="float-right">{{$in->created_at->diffForHumans()}}</span>فعالیت {{$loop->index+1}}</h4>
 
                                 <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
+                                    یه محتوا با کلمه کلیدی <span style="color: red">{{$val/*[$loop->index]*/}}</span> بنویس و داخل سایتت قرار بده بعدش یه لینک با کلمه <span style="color: green">{{$siteTitle}}</span> بده به صفحه اصلی سایتت. :)
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-primary white">
                                                         <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
                                                         gummi
                                                         bears cupcake dessert.
                                                     </div>
@@ -75,7 +94,112 @@
                                     </div>
                                     <div class="col-lg-9 col-md-12"></div>
                                     <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1" id="confirm-color">انجام دادم</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                id="confirm-color">انجام دادم
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @foreach(explode("\r\n",$init_seo_local->local_site) as $local_val)
+                            <div class="alert alert-light" role="alert">
+                                <h4 class="alert-heading"><span class="float-right">{{$in->created_at->diffForHumans()}}</span>فعالیت {{$loop->index+1}}</h4>
+
+                                <p class="mb-0">
+                                    یه محتوا با کلمه کلیدی <span style="color: red">{{$local_val/*[$loop->index]*/}}</span> بنویس و داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span style="color: green">{{$val}}</span> بده به صفحه <span style="color: green">{{$val}}</span> ساخته بودی. :)
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-12">
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-primary white">
+                                                        <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
+                                                        gummi
+                                                        bears cupcake dessert.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12"></div>
+                                    <div class="col-lg-2 col-md-12">
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                id="confirm-color">انجام دادم
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            @endforeach
+                            @endforeach
+                            {{--<div class="alert alert-dark" role="alert">
+                                <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
+
+                                <p class="mb-0">
+                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در
+                                    شهرک غرب بسازی :)
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-12">
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-primary white">
+                                                        <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
+                                                        gummi
+                                                        bears cupcake dessert.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12"></div>
+                                    <div class="col-lg-2 col-md-12">
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">
+                                            انجام شد
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -83,25 +207,35 @@
                                 <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
 
                                 <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
+                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در
+                                    شهرک غرب بسازی :)
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-primary white">
                                                         <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
                                                         gummi
                                                         bears cupcake dessert.
                                                     </div>
@@ -111,7 +245,10 @@
                                     </div>
                                     <div class="col-lg-9 col-md-12"></div>
                                     <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">انجام شد</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">
+                                            انجام شد
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -119,25 +256,35 @@
                                 <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
 
                                 <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
+                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در
+                                    شهرک غرب بسازی :)
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-primary white">
                                                         <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
                                                         gummi
                                                         bears cupcake dessert.
                                                     </div>
@@ -147,7 +294,10 @@
                                     </div>
                                     <div class="col-lg-9 col-md-12"></div>
                                     <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">انجام شد</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">
+                                            انجام شد
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -155,25 +305,35 @@
                                 <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
 
                                 <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
+                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در
+                                    شهرک غرب بسازی :)
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-primary white">
                                                         <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
                                                         gummi
                                                         bears cupcake dessert.
                                                     </div>
@@ -183,7 +343,10 @@
                                     </div>
                                     <div class="col-lg-9 col-md-12"></div>
                                     <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">انجام شد</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">
+                                            انجام شد
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -191,25 +354,35 @@
                                 <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
 
                                 <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
+                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در
+                                    شهرک غرب بسازی :)
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1"
+                                                data-toggle="modal" data-target="#success">راهنما
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel110" style="display: none;"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                 role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-primary white">
                                                         <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
+                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate
+                                                        bar icing. Pudding jelly beans
+                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie
+                                                        lollipop cake I love sweet
                                                         gummi
                                                         bears cupcake dessert.
                                                     </div>
@@ -219,46 +392,13 @@
                                     </div>
                                     <div class="col-lg-9 col-md-12"></div>
                                     <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">انجام شد</button>
+                                        <button type="button"
+                                                class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">
+                                            انجام شد
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="alert alert-dark" role="alert">
-                                <h4 class="alert-heading"><span class="float-right">تاریخ</span>فعالیت اول</h4>
-
-                                <p class="mb-0">
-                                    سلام خوبی؟ امروز کاری که باید انجام بدی اینه که یه محتوا در رابطه با تعمیر موبایل در شهرک غرب بسازی :)
-                                </p>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-12">
-                                        <button type="button" class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1" data-toggle="modal" data-target="#success">راهنما</button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-primary white">
-                                                        <h5 class="modal-title" id="myModalLabel110">Success Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
-                                                        carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet
-                                                        gummi
-                                                        bears cupcake dessert.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-9 col-md-12"></div>
-                                    <div class="col-lg-2 col-md-12">
-                                        <button type="button" class="btn bg-gradient-success btn-block mr-1 mb-1 waves-effect waves-light mt-1 disabled">انجام شد</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>

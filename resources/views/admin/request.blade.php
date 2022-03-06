@@ -23,7 +23,7 @@
                             <tbody>
                             @foreach($requests as $val)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$loop->index+1}}</th>
                                     <td>مهراب</td>
                                     <td>09369949693</td>
                                     <td>{{$val->request}}</td>

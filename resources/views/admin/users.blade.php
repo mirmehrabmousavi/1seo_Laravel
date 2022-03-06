@@ -24,7 +24,7 @@
                             <tbody>
                             @foreach($users as $val)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$loop->index+1}}</th>
                                     <td>{{$val->name}}</td>
                                     <td>{{$val->email}}</td>
                                     <td>{{$val->number}}</td>

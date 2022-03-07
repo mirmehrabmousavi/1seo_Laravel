@@ -15,4 +15,8 @@ class InitSeo extends Model
     {
         return $this->hasOne(Site::class);
     }
+
+    public function relatedKey() {
+        return $this->hasMany(RelatedKey::class);
+    }
 }

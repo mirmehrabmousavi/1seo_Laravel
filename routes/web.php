@@ -35,8 +35,13 @@ Route::group([['middleware' => 'auth']], function () {
     //InitSeo Controller
     Route::get('/initSeo/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeo'])->name('internal.seo');
     Route::post('/initSeo/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoStore'])->name('internal.seo.store');
+    //RelatedKey Entering
+    Route::get('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelated'])->name('internal.seo.related');
+    Route::post('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelatedStore'])->name('internal.seo.related.store');
+    //InitSeo Index
     Route::get('/initSeo/index/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoIndex'])->name('internal.seo.index');
-    Route::get('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');/*Edit & Update InitSeo*/
+    //Edit & Update InitSeo
+    Route::get('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');
     Route::patch('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'updateInitSeo'])->name('update.init.seo');
 });
 

@@ -12,4 +12,9 @@ class RelatedKey extends Model
     protected $table = 'related_key';
 
     protected $fillable = ['keyword_id','related_site'];
+
+    public function initSeo()
+    {
+        return $this->belongsTo(InitSeo::class);
+    }
 }

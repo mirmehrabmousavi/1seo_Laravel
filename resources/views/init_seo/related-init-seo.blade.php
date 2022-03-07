@@ -3,7 +3,7 @@
 @section('content')
     <section id="basic-horizontal-layouts">
         <div class="row">
-            <div class="col-md-12 col-12">
+            <div class="col-md-9 col-9">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">اطلاعات زیر را تکمیل کنید</h4>
@@ -49,11 +49,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="basic-horizontal-layouts">
-        <div class="row">
-            <div class="col-md-12 col-12">
+            <div class="col-md-3 col-3">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -61,12 +57,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <ul>
-                                            @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)
-                                                <li>{{$val}}
+                                            @foreach($related_key as $rk)
+                                                <li>{{$rk->keyword_id}}
                                                     <ul>
-                                                        {{-- @foreach()--}}
-                                                        <li>salam</li>
-                                                        {{--@endforeach--}}
+                                                        @foreach(explode("\r\n",$rk->related_site) as $val)
+                                                            <li>{{$val}}</li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                             @endforeach
@@ -91,7 +87,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <a href="{{redirect(route('internal.seo.index',['url' => $url]))}}"
+                                        <a href="{{route('internal.seo.index',['url' => $url])}}"
                                            class="btn mb-1 btn-primary btn-lg btn-block waves-effect waves-light">تکمیل
                                             کردم</a>
                                     </div>

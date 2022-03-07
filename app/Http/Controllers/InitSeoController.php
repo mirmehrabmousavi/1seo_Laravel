@@ -7,7 +7,9 @@ use App\Models\InitSeo;
 use App\Models\RelatedKey;
 use App\Models\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Toaster;
 
 class InitSeoController extends Controller
 {
@@ -35,14 +37,14 @@ class InitSeoController extends Controller
         $sites = Site::all();
         $init_seo = InitSeo::all();
 
-        $site_id = InitSeo::where('site_id',$url)->first();
+        $site_id = InitSeo::where('site_id', $url)->first();
 
-        $init_seo_key = InitSeo::where('site_id',$url)->first();
+        $init_seo_key = InitSeo::where('site_id', $url)->first();
 
         if ($site_id) {
-            return redirect(route('internal.seo.index',['url' => $url]));
-        }else{
-            return view('init_seo.internal-seo', compact('url', 'sites', 'init_seo','init_seo_key'));
+            return redirect(route('internal.seo.index', ['url' => $url]));
+        } else {
+            return view('init_seo.internal-seo', compact('url', 'sites', 'init_seo', 'init_seo_key'));
         }
     }
 
@@ -62,41 +64,50 @@ class InitSeoController extends Controller
         $init_seo->local_site = $request->local_site;
         $init_seo->save();
 
-        return redirect(route('internal.seo.index', ['url' => $url]));
+        return redirect(route('internal.seo.related', ['url' => $url]));
     }
 
     public function initSeoRelated($url)
     {
         $sites = Site::all();
-        $init_seo_key = InitSeo::where('site_id',$url)->first();
-        return view('init_seo.related-init-seo',compact('url','sites','init_seo_key'));
+        $init_seo_key = InitSeo::where('site_id', $url)->first();
+        $rel_key = DB::table('related_key')->where('keyword_id', '=', $init_seo_key->keyword_site)->get();
+        $related_key = DB::table('related_key')->get();
+        $related_key_id = DB::table('related_key')->pluck('keyword_id');
+
+        return view('init_seo.related-init-seo', compact('url', 'sites', 'init_seo_key', 'related_key', 'related_key_id', 'rel_key'));
     }
 
-    public function initSeoRelatedStore($url,Request $request)
+    public function initSeoRelatedStore($url, Request $request)
     {
         $this->validate($request, [
             'keyword_id' => 'required',
             'related_site' => 'required',
         ]);
 
-        $related_key = new RelatedKey();
-        $related_key->keyword_id = $request->keyword_id;
-        $related_key->related_site = $request->related_site;
-        $related_key->save();
+        try{
+            $related_key = new RelatedKey();
+            $related_key->keyword_id = $request->keyword_id;
+            $related_key->related_site = $request->related_site;
+            $related_key->save();
+        } catch(\Throwable $e) {
+            report($e);
+        }
 
-        return redirect(route('internal.seo.related',['url' => $url]));
+        return redirect(route('internal.seo.related', ['url' => $url]));
     }
 
     public function initSeoIndex($url)
     {
         $init_seo = InitSeo::all();
-        $init_seo_id = InitSeo::where('site_id',$url)->first();
-        $init_seo_key = InitSeo::where('site_id',$url)->first();
-        $init_seo_local = InitSeo::where('site_id',$url)->first();
+        $init_seo_id = InitSeo::where('site_id', $url)->first();
+        $init_seo_key = InitSeo::where('site_id', $url)->first();
+        $init_seo_local = InitSeo::where('site_id', $url)->first();
+        $related_key = DB::table('related_key')->get();
         $domain = new Analyztic();
-        [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
+        [$siteTitle, $dataTitle, $titleCssStyle, $titleNum] = $domain->getTitle('http://' . $url);
         $sites = Site::all();
-        return view('init_seo.internal-seo-index', compact('url', 'sites','init_seo','init_seo_key','init_seo_local', 'init_seo_id','siteTitle'));
+        return view('init_seo.internal-seo-index', compact('url', 'sites', 'init_seo', 'init_seo_key', 'init_seo_local', 'init_seo_id', 'siteTitle', 'related_key'));
     }
 
     public function editInitSeo($url, $id)
@@ -120,7 +131,7 @@ class InitSeoController extends Controller
         return view('init_seo.edit-init-seo', compact('init_seo', 'url', 'sites'));
     }
 
-    public function updateInitSeo($url, $id , Request $request)
+    public function updateInitSeo($url, $id, Request $request)
     {
         $request->validate([
             'type_site' => 'required',
@@ -130,10 +141,10 @@ class InitSeoController extends Controller
 
         $initSeo = InitSeo::find($id);
         $initSeo->update($request->all());
-       /* $initSeo->type_site = $request->input('type_site');
-        $initSeo->keyword_site = $request->input('keyword_site');
-        $initSeo->local_site = $request->input('local_site');
-        $initSeo->update();*/
+        /* $initSeo->type_site = $request->input('type_site');
+         $initSeo->keyword_site = $request->input('keyword_site');
+         $initSeo->local_site = $request->input('local_site');
+         $initSeo->update();*/
 
         return redirect(route('internal.seo.index', ['url' => $url]));
     }

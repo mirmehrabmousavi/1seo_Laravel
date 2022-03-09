@@ -71,11 +71,9 @@ class InitSeoController extends Controller
     {
         $sites = Site::all();
         $init_seo_key = InitSeo::where('site_id', $url)->first();
-        $rel_key = DB::table('related_key')->where('keyword_id', '=', $init_seo_key->keyword_site)->get();
         $related_key = DB::table('related_key')->get();
-        $related_key_id = DB::table('related_key')->pluck('keyword_id');
 
-        return view('init_seo.related-init-seo', compact('url', 'sites', 'init_seo_key', 'related_key', 'related_key_id', 'rel_key'));
+        return view('init_seo.related-init-seo', compact('url', 'sites', 'init_seo_key', 'related_key'));
     }
 
     public function initSeoRelatedStore($url, Request $request)
@@ -103,7 +101,7 @@ class InitSeoController extends Controller
         $init_seo_id = InitSeo::where('site_id', $url)->first();
         $init_seo_key = InitSeo::where('site_id', $url)->first();
         $init_seo_local = InitSeo::where('site_id', $url)->first();
-        $related_key = DB::table('related_key')->get();
+        $related_key = DB::table('related_key')->/*paginate(1)*/get();
         $domain = new Analyztic();
         [$siteTitle, $dataTitle, $titleCssStyle, $titleNum] = $domain->getTitle('http://' . $url);
         $sites = Site::all();
@@ -112,18 +110,6 @@ class InitSeoController extends Controller
 
     public function editInitSeo($url, $id)
     {
-        /* function getKeywordSuggestionsFromGoogle($keyword)
-        {
-            $keywords = array();
-            $data = file_get_contents('http://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=' . urlencode($keyword));
-            if (($data = json_decode($data, true)) !== null) {
-                $keywords = $data[1];
-            }
-
-            return $keywords;
-        }
-
-        $suggest =getKeywordSuggestionsFromGoogle('money');*/
 
         $init_seo = InitSeo::find($id);
         $sites = Site::all();
@@ -140,6 +126,9 @@ class InitSeoController extends Controller
         ]);
 
         $initSeo = InitSeo::find($id);
+      /*  InitSeo::update([
+            ''
+        ]);*/
         $initSeo->update($request->all());
         /* $initSeo->type_site = $request->input('type_site');
          $initSeo->keyword_site = $request->input('keyword_site');

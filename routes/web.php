@@ -43,6 +43,8 @@ Route::group([['middleware' => 'auth']], function () {
     //Edit & Update InitSeo
     Route::get('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');
     Route::patch('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'updateInitSeo'])->name('update.init.seo');
+    //OffSeo Controller
+    Route::get('/OffSeo/index/{url}', [\App\Http\Controllers\OffSeoController::class, 'OffSeoIndex'])->name('off.seo.index');
 });
 
 //Adm in Template

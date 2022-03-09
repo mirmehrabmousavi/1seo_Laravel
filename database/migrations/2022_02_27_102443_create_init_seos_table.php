@@ -20,6 +20,7 @@ class CreateInitSeosTable extends Migration
             $table->string('type_site');
             $table->text('keyword_site');
             $table->text('local_site');
+            $table->integer('time')->default(0);
             $table->timestamps();
 
         });

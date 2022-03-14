@@ -21,7 +21,7 @@
                             @foreach($off_seo_action as $osa)
                                 <div class="alert alert-light" role="alert">
                                     <h4 class="alert-heading"><span
-                                            class="float-right">{{$osa->created_at->diffForHumans()}}</span>  فعالیت {{$loop->index+1}}
+                                            class="float-right">{{$osa->created_at->diffForHumans()}}</span>  فعالیت {{$osa->id}}
                                     </h4>
                                     <p class="mb-0">{!! $osa->action !!}</p>
                                     <div class="row">

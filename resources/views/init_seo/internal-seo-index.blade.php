@@ -48,7 +48,7 @@
                             @foreach($init_seo_action as $actions)
                             <div class="alert alert-light" role="alert">
                                 <h4 class="alert-heading"><span
-                                        class="float-right">{{$actions->created_at->diffForHumans()}}</span>فعالیت {{$loop->index+1}}
+                                        class="float-right">{{$actions->created_at->diffForHumans()}}</span>فعالیت {{$actions->id}}
                                 </h4>
                                 <p class="mb-0">{!! $actions->action !!}</p>
                                 <div class="row">

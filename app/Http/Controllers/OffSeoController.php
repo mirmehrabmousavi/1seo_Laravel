@@ -254,7 +254,7 @@ class OffSeoController extends Controller
             }
         }
 
-        $off_seo_action = OffSeoAction::latest()->paginate(5);
+        $off_seo_action = OffSeoAction::where('baseurl',$url)->latest()->paginate(5);
 
         return view('off_seo.off-seo-index', compact('url', 'sites', 'off_seo', 'off_seo_', 'siteTitle', 'related_key','off_seo_action'));
     }

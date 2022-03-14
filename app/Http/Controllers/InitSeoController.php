@@ -116,7 +116,7 @@ class InitSeoController extends Controller
                     'baseurl' => $url
                 ]);
                 foreach (explode("\r\n", $init_seo_->local_site) as $local) {
-                     InitSeoAction::create([
+                    InitSeoAction::create([
                         'action' => '
                                             یه محتوا با کلمه کلیدی <span
                                                 style="color: red">' . $local . ' در '.$key. '</span> بنویس و

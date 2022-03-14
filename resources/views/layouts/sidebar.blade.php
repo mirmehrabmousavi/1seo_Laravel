@@ -41,7 +41,7 @@
             <li class="nav-item"><a href="{{route('marketing.plan',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو تکنیکال</span></a>
             </li>
             <li class="nav-item"><a href="{{route('internal.seo', ['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو داخلی</span></a></li>
-            <li class="nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a></li>
+            <li class="nav-item"><a href="{{route('off.seo.index',['url' => $url])}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a></li>
         </ul>
     </div>
 </div>

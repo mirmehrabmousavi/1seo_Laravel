@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\InitSeo;
+use App\Models\InitSeoAction;
 use App\Models\RelatedKey;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use RealRashid\SweetAlert\Toaster;
 
 class InitSeoController extends Controller
 {
@@ -83,12 +83,12 @@ class InitSeoController extends Controller
             'related_site' => 'required',
         ]);
 
-        try{
+        try {
             $related_key = new RelatedKey();
             $related_key->keyword_id = $request->keyword_id;
             $related_key->related_site = $request->related_site;
             $related_key->save();
-        } catch(\Throwable $e) {
+        } catch (\Throwable $e) {
             report($e);
         }
 
@@ -98,14 +98,58 @@ class InitSeoController extends Controller
     public function initSeoIndex($url)
     {
         $init_seo = InitSeo::all();
-        $init_seo_id = InitSeo::where('site_id', $url)->first();
-        $init_seo_key = InitSeo::where('site_id', $url)->first();
-        $init_seo_local = InitSeo::where('site_id', $url)->first();
-        $related_key = DB::table('related_key')->/*paginate(1)*/get();
+        $init_seo_ = InitSeo::where('site_id', $url)->first();
+        $related_key = DB::table('related_key')->/*paginate(1)*/ get();
         $domain = new Analyztic();
         [$siteTitle, $dataTitle, $titleCssStyle, $titleNum] = $domain->getTitle('http://' . $url);
         $sites = Site::all();
-        return view('init_seo.internal-seo-index', compact('url', 'sites', 'init_seo', 'init_seo_key', 'init_seo_local', 'init_seo_id', 'siteTitle', 'related_key'));
+        $init_seo_action = InitSeoAction::all();
+        if ($init_seo_action->isEmpty()) {
+            foreach (explode("\r\n", $init_seo_->keyword_site) as $key) {
+                InitSeoAction::create([
+                    'action' => '
+                                        یه محتوا با کلمه کلیدی <span
+                                            style="color: red">' . $key . '</span> بنویس و داخل سایتت
+                                        قرار بده بعدش یه لینک با کلمه <span
+                                            style="color: green">' . $siteTitle . '</span> بده به صفحه اصلی سایتت. :)
+                                    ',
+                    'baseurl' => $url
+                ]);
+                foreach (explode("\r\n", $init_seo_->local_site) as $local) {
+                     InitSeoAction::create([
+                        'action' => '
+                                            یه محتوا با کلمه کلیدی <span
+                                                style="color: red">' . $local . ' در '.$key. '</span> بنویس و
+                                            داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span
+                                                style="color: green">' . $key . '</span> بده به صفحه <span
+                                                style="color: green">' . $key . '</span> ساخته بودی. :)
+                                        ',
+                        'baseurl' => $url
+                    ]);
+                    foreach ($related_key as $related_val) {
+                        foreach (explode("\r\n", $related_val->related_site) as $related_site) {
+                            InitSeoAction::create([
+                                'action' => '
+                                                    یه محتوا با کلمه کلیدی <span
+                                                        style="color: red">' . $related_site . '</span>
+                                                    بنویس
+                                                    و داخل سایتت قرار بده بعدش یه لینک با کلمه <span
+                                                        style="color: green">' . $key . '</span> بده به صفحه
+                                                    ' . $key . ' که قبلا ساختی. و همچنین یه لینک دیگه با
+                                                    عنوان <span
+                                                        style="color: blue">' . $key . ' در ' . $local . '</span> بده به
+                                                    صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که
+                                                    ساخته بودی. :)
+                                                ',
+                                'baseurl' => $url
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+        $init_seo_action = InitSeoAction::latest()->paginate(5);
+        return view('init_seo.internal-seo-index', compact('url', 'sites', 'init_seo', 'init_seo_', 'siteTitle', 'related_key', 'init_seo_action'));
     }
 
     public function editInitSeo($url, $id)
@@ -126,10 +170,8 @@ class InitSeoController extends Controller
         ]);
 
         $initSeo = InitSeo::find($id);
-      /*  InitSeo::update([
-            ''
-        ]);*/
         $initSeo->update($request->all());
+
         /* $initSeo->type_site = $request->input('type_site');
          $initSeo->keyword_site = $request->input('keyword_site');
          $initSeo->local_site = $request->input('local_site');

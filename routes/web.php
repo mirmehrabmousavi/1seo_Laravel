@@ -25,24 +25,24 @@ Auth::routes();
 
 //HomeController
 Route::group([['middleware' => 'auth']], function () {
-    Route::get('/home/{url}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/{url}', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //Add Site Controller
-    Route::get('/addSite/{url}', [App\Http\Controllers\AddSiteController::class, 'addSiteView'])->name('addSiteView');
-    Route::post('/addSite/{url}', [App\Http\Controllers\AddSiteController::class, 'addSite'])->name('addSite');
-    Route::delete('/delSite/{url}/{id}', [App\Http\Controllers\AddSiteController::class, 'delSite'])->name('delSite');
+    Route::get('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSiteView'])->name('addSiteView');
+    Route::post('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSite'])->name('addSite');
+    Route::delete('/delSite/{url}/{id}', [\App\Http\Controllers\AddSiteController::class, 'delSite'])->name('delSite');
     //TechSeo Controller
-    Route::get('/marketingPlan/{url}', [App\Http\Controllers\TechSeoController::class, 'marketingPlan'])->name('marketing.plan');
+    Route::get('/marketingPlan/{url}', [\App\Http\Controllers\TechSeoController::class, 'marketingPlan'])->name('marketing.plan');
     //InitSeo Controller
-    Route::get('/initSeo/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeo'])->name('internal.seo');
-    Route::post('/initSeo/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoStore'])->name('internal.seo.store');
+    Route::get('/initSeo/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeo'])->name('internal.seo');
+    Route::post('/initSeo/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoStore'])->name('internal.seo.store');
     //RelatedKey Entering
-    Route::get('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelated'])->name('internal.seo.related');
-    Route::post('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelatedStore'])->name('internal.seo.related.store');
+    Route::get('/initSeo/related/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoRelated'])->name('internal.seo.related');
+    Route::post('/initSeo/related/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoRelatedStore'])->name('internal.seo.related.store');
     //InitSeo Index
-    Route::get('/initSeo/index/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoIndex'])->name('internal.seo.index');
+    Route::get('/initSeo/index/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoIndex'])->name('internal.seo.index');
     //Edit & Update InitSeo
-    Route::get('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');
-    Route::patch('/initSeo/index/{url}/edit/{id}', [App\Http\Controllers\InitSeoController::class, 'updateInitSeo'])->name('update.init.seo');
+    Route::get('/initSeo/index/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');
+    Route::patch('/initSeo/index/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'updateInitSeo'])->name('update.init.seo');
     //OffSeo Controller
     Route::get('/offSeo/index/{url}', [\App\Http\Controllers\OffSeoController::class, 'OffSeoIndex'])->name('off.seo.index');
 });
@@ -62,5 +62,5 @@ Route::group(['prefix' => 'admin', ['middleware' => 'admin']], function () {
 });
 
 
-Route::get('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelated'])->name('internal.seo.related');
-Route::post('/initSeo/related/{url}', [App\Http\Controllers\InitSeoController::class, 'initSeoRelatedStore'])->name('internal.seo.related.store');
+Route::get('/initSeo/related/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoRelated'])->name('internal.seo.related');
+Route::post('/initSeo/related/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoRelatedStore'])->name('internal.seo.related.store');

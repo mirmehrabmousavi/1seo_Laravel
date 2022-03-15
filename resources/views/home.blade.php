@@ -33,153 +33,180 @@
             <div class="col-lg-6 col-12">
                 <div class="card" style="height: 583.562px;">
                     <div class="card-header">
-                        <h4 class="card-title">Activity Timeline</h4>
+                        <h4 class="card-title">تایم لاین</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
                             <ul class="activity-timeline timeline-left list-unstyled">
-                                @if($titleNum == 3 || $titleNum == 0)
-                                    {{--title--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">عنوان</p>
-                                            <span class="font-small-3">{{$siteTitle}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$titleNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($descNum == 3 || $descNum == 0)
-                                    {{--description--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">توضیحات</p>
-                                            <span class="font-small-3">{{$description}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$descNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($altNum == 3 || $altNum == 0)
-                                    {{--alt image--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">تصویر alt</p>
-                                            <span class="font-small-3">{{$missingAltImage}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$altNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($ratioNum == 3 || $ratioNum == 0)
-                                    {{--ratio--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">نسبت متن به کد</p>
-                                            <span class="font-small-3">{{$getRatio}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$ratioNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($gzipNum == 0)
-                                    {{--gzip--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">GZIP</p>
-                                            <span class="font-small-3">{{$gzip}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$gzipNum}} از 4</small>
-                                    </li>
-                                @endif
-                                @if($robotsNum == 3 || $robotsNum == 0)
-                                    {{--robot--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">فایل Robot</p>
-                                            <span class="font-small-3">{{$robots}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$robotsNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($sitemapNum == 3 || $sitemapNum == 0)
-                                    {{--sitemap--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">عنوان</p>
-                                            <span class="font-small-3">{{$sitemap}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$sitemapNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($favNum == 0)
-                                    {{--favicon--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">ایکون سایت</p>
-                                            <span class="font-small-3">{{$favicon}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$favNum}} از 4</small>
-                                    </li>
-                                @endif
-                                @if($loadTimeNum == 3 || $loadTimeNum == 0)
-                                    {{--load time--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">زمان بارگذاری</p>
-                                            <span class="font-small-3">{{$response_time}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$loadTimeNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($sslNum == 3 || $sslNum == 0)
-                                    {{--ssl--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">Https(SSL)</p>
-                                            <span class="font-small-3">{{$is_https}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$sslNum}} از 5</small>
-                                    </li>
-                                @endif
-                                @if($analyticNum == 0)
-                                    {{--google analytic--}}
-                                    <li>
-                                        <div class="timeline-icon bg-primary">
-                                            <i class="feather icon-plus font-medium-2 align-middle"></i>
-                                        </div>
-                                        <div class="timeline-info">
-                                            <p class="font-weight-bold mb-0">Google Analytic</p>
-                                            <span class="font-small-3">{{$analytics}}</span>
-                                        </div>
-                                        <small class="text-muted">امتیاز : {{$analyticNum}} از 4</small>
-                                    </li>
+                                @if($initseo->isEmpty() && $offseo->isEmpty())
+                                    @if($titleNum == 3 || $titleNum == 0)
+                                        {{--title--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">عنوان</p>
+                                                <span class="font-small-3">{{$siteTitle}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$titleNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($descNum == 3 || $descNum == 0)
+                                        {{--description--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">توضیحات</p>
+                                                <span class="font-small-3">{{$description}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$descNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($altNum == 3 || $altNum == 0)
+                                        {{--alt image--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">تصویر alt</p>
+                                                <span class="font-small-3">{{$missingAltImage}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$altNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($ratioNum == 3 || $ratioNum == 0)
+                                        {{--ratio--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">نسبت متن به کد</p>
+                                                <span class="font-small-3">{{$getRatio}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$ratioNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($gzipNum == 0)
+                                        {{--gzip--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">GZIP</p>
+                                                <span class="font-small-3">{{$gzip}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$gzipNum}} از 4</small>
+                                        </li>
+                                    @endif
+                                    @if($robotsNum == 3 || $robotsNum == 0)
+                                        {{--robot--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">فایل Robot</p>
+                                                <span class="font-small-3">{{$robots}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$robotsNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($sitemapNum == 3 || $sitemapNum == 0)
+                                        {{--sitemap--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">عنوان</p>
+                                                <span class="font-small-3">{{$sitemap}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$sitemapNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($favNum == 0)
+                                        {{--favicon--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">ایکون سایت</p>
+                                                <span class="font-small-3">{{$favicon}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$favNum}} از 4</small>
+                                        </li>
+                                    @endif
+                                    @if($loadTimeNum == 3 || $loadTimeNum == 0)
+                                        {{--load time--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">زمان بارگذاری</p>
+                                                <span class="font-small-3">{{$response_time}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$loadTimeNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($sslNum == 3 || $sslNum == 0)
+                                        {{--ssl--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Https(SSL)</p>
+                                                <span class="font-small-3">{{$is_https}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$sslNum}} از 5</small>
+                                        </li>
+                                    @endif
+                                    @if($analyticNum == 0)
+                                        {{--google analytic--}}
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Google Analytic</p>
+                                                <span class="font-small-3">{{$analytics}}</span>
+                                            </div>
+                                            <small class="text-muted">امتیاز : {{$analyticNum}} از 4</small>
+                                        </li>
+                                    @endif
+                                @else
+                                    @foreach($initseo as $init)
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">سئو داخلی</p>
+                                                <span class="font-small-3">{!! $init->action !!}</span>
+                                            </div>
+                                            <small class="text-muted">{{$init->baseurl}}</small>
+                                        </li>
+                                    @endforeach
+                                    @foreach($offseo as $off)
+                                        <li>
+                                            <div class="timeline-icon bg-primary">
+                                                <i class="feather icon-plus font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">سئو خارجی</p>
+                                                <span class="font-small-3">{!! $off->action !!}</span>
+                                            </div>
+                                            <small class="text-muted">{{$off->baseurl}}</small>
+                                        </li>
+                                    @endforeach
                                 @endif
                             </ul>
                         </div>
@@ -204,7 +231,7 @@
                                     <small>مجموع موارد بررسی شده</small>
                                 </div>
                                 <div class="col-sm-10 col-12 d-flex justify-content-center">
-                                    {{--<div id="support-tracker-chart"></div>--}}
+                                    {{-- <div id="support-tracker-chart"></div>--}}
                                     <div id="support-tracker-chart" style="min-height: 290px;">
                                         <div id="apexchartsl57ce9la" class="apexcharts-canvas apexchartsl57ce9la light"
                                              style="width: 300px; height: 290px;">
@@ -331,7 +358,7 @@
                                 </div>
                                 <div class="text-center">
                                     <p class="mb-50">تعداد صحیح</p>
-                                    <span class="font-large-1">1d</span>
+                                    <span class="font-large-1">12</span>
                                 </div>
                             </div>
                         </div>

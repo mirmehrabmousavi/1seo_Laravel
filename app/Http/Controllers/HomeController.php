@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\InitSeo;
+use App\Models\InitSeoAction;
+use App\Models\OffSeoAction;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Throwable;
@@ -114,7 +117,12 @@ class HomeController extends Controller
         $totalPercent = $pageAuthNum+$domainAuthNum+$titleNum+$descNum+$headingNum+$altNum+$ratioNum+$gzipNum+$robotsNum+$sitemapNum+$iframeNum
             +$flashNum+$pageSizeNum+$loadTimeNum+$langNum+$sslNum+$safeNum+$nestedNum+$speedNum+$analyticNum+$doctypeNum+$encodingNum+$dphtmlNum;
 
+        $initseo = InitSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
+        $offseo = OffSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
+
         return view('home', compact(
+            'initseo',
+            'offseo',
             'sites',
             'url',
             //Page Authority

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\InitSeo;
 use App\Models\OffSeoAction;
+use Illuminate\Http\Request;
 use App\Models\Site;
 use Illuminate\Support\Facades\DB;
 
@@ -75,8 +76,8 @@ class OffSeoController extends Controller
         $blogs = array('imag.blog','blogfa.com','blog.ir','rozblog.ir','virgool.io');
         $threeblog = array('imag.blog','blogfa.com','blog.ir','rozblog.ir');
 
-        $off_seo_action = OffSeoAction::all();
-        if($off_seo_action->isEmpty()) {
+        $off_seo_action = OffSeoAction::where('baseurl',$url)->first();
+        if(empty($off_seo_action)) {
             foreach($blogs as $blog) {
                 OffSeoAction::create([
                     'action' => '
@@ -257,5 +258,21 @@ class OffSeoController extends Controller
         $off_seo_action = OffSeoAction::where('baseurl',$url)->latest()->paginate(5);
 
         return view('off_seo.off-seo-index', compact('url', 'sites', 'off_seo', 'off_seo_', 'siteTitle', 'related_key','off_seo_action'));
+    }
+
+    public function addUrl($url,$id,Request $request)
+    {
+        $request->validate([
+            'url' => 'required',
+        ]);
+
+        $done = '1';
+        $offseoaction = OffSeoAction::find($id);
+
+        $offseoaction->url = $request->url;
+        $offseoaction->done = $done;
+        $offseoaction->update();
+
+        return redirect(route('off.seo.index', ['url' => $url]));
     }
 }

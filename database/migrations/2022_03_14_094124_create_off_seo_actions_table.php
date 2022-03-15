@@ -18,6 +18,7 @@ class CreateOffSeoActionsTable extends Migration
             $table->text('action');
             $table->string('baseurl');
             $table->string('url')->nullable();
+            $table->string('done')->default('0');
             $table->timestamps();
         });
     }

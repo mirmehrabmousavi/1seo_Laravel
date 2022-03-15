@@ -15,6 +15,7 @@ class CreateRelatedKeyTable extends Migration
     {
         Schema::create('related_key', function (Blueprint $table) {
             $table->id();
+            $table->string('site_id');
             $table->string('keyword_id')->unique();
             $table->text('related_site');
             $table->timestamps();

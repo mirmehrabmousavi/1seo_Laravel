@@ -71,7 +71,7 @@ class InitSeoController extends Controller
     {
         $sites = Site::all();
         $init_seo_key = InitSeo::where('site_id', $url)->first();
-        $related_key = DB::table('related_key')->get();
+        $related_key = DB::table('related_key')->where('site_id',$url)->get();
 
         return view('init_seo.related-init-seo', compact('url', 'sites', 'init_seo_key', 'related_key'));
     }
@@ -85,6 +85,7 @@ class InitSeoController extends Controller
 
         try {
             $related_key = new RelatedKey();
+            $related_key->site_id = $url;
             $related_key->keyword_id = $request->keyword_id;
             $related_key->related_site = $request->related_site;
             $related_key->save();
@@ -95,16 +96,44 @@ class InitSeoController extends Controller
         return redirect(route('internal.seo.related', ['url' => $url]));
     }
 
+    public function editInitSeo($url, $id)
+    {
+
+        $init_seo = InitSeo::find($id);
+        $sites = Site::all();
+
+        return view('init_seo.edit-init-seo', compact('init_seo', 'url', 'sites'));
+    }
+
+    public function updateInitSeo($url, $id, Request $request)
+    {
+        $request->validate([
+            'type_site' => 'required',
+            'keyword_site' => 'required',
+            'local_site' => 'required',
+        ]);
+
+        $initSeo = InitSeo::find($id);
+        $initSeo->update($request->all());
+
+        /* $initSeo->type_site = $request->input('type_site');
+         $initSeo->keyword_site = $request->input('keyword_site');
+         $initSeo->local_site = $request->input('local_site');
+         $initSeo->update();*/
+
+        return redirect(route('internal.seo.index', ['url' => $url]));
+    }
+
     public function initSeoIndex($url)
     {
         $init_seo = InitSeo::all();
         $init_seo_ = InitSeo::where('site_id', $url)->first();
-        $related_key = DB::table('related_key')->/*paginate(1)*/ get();
+        $related_key = DB::table('related_key')->get();
         $domain = new Analyztic();
         [$siteTitle, $dataTitle, $titleCssStyle, $titleNum] = $domain->getTitle('http://' . $url);
         $sites = Site::all();
-        $init_seo_action = InitSeoAction::all();
-        if ($init_seo_action->isEmpty()) {
+        $init_seo_action = InitSeoAction::where('baseurl',$url)->first();
+        if (empty($init_seo_action)) {
             foreach (explode("\r\n", $init_seo_->keyword_site) as $key) {
                 InitSeoAction::create([
                     'action' => '
@@ -152,30 +181,18 @@ class InitSeoController extends Controller
         return view('init_seo.internal-seo-index', compact('url', 'sites', 'init_seo', 'init_seo_', 'siteTitle', 'related_key', 'init_seo_action'));
     }
 
-    public function editInitSeo($url, $id)
-    {
-
-        $init_seo = InitSeo::find($id);
-        $sites = Site::all();
-
-        return view('init_seo.edit-init-seo', compact('init_seo', 'url', 'sites'));
-    }
-
-    public function updateInitSeo($url, $id, Request $request)
+    public function addUrl($url,$id,Request $request)
     {
         $request->validate([
-            'type_site' => 'required',
-            'keyword_site' => 'required',
-            'local_site' => 'required',
+            'url' => 'required',
         ]);
 
-        $initSeo = InitSeo::find($id);
-        $initSeo->update($request->all());
+        $done = '1';
+        $initseoaction = InitSeoAction::find($id);
 
-        /* $initSeo->type_site = $request->input('type_site');
-         $initSeo->keyword_site = $request->input('keyword_site');
-         $initSeo->local_site = $request->input('local_site');
-         $initSeo->update();*/
+        $initseoaction->url = $request->url;
+        $initseoaction->done = $done;
+        $initseoaction->update();
 
         return redirect(route('internal.seo.index', ['url' => $url]));
     }

@@ -41,6 +41,8 @@ Route::group([['middleware' => 'auth']], function () {
     //Edit & Update InitSeo
     Route::get('/initSeo/index/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'editInitSeo'])->name('edit.init.seo');
     Route::patch('/initSeo/index/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'updateInitSeo'])->name('update.init.seo');
+    Route::get('/initSeo/related/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'editInitSeoRelated'])->name('edit.init.seo.related');
+    Route::patch('/initSeo/related/{url}/edit/{id}', [\App\Http\Controllers\InitSeoController::class, 'updateInitSeoRelated'])->name('update.init.seo.related');
     //Add URL
     Route::patch('/initSeo/addUrl/{url}/{id}',[\App\Http\Controllers\InitSeoController::class, 'addUrl'])->name('init.seo.add.url');
     Route::patch('/offSeo/addUrl/{url}/{id}',[\App\Http\Controllers\OffSeoController::class, 'addUrl'])->name('off.seo.add.url');

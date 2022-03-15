@@ -98,30 +98,48 @@ class InitSeoController extends Controller
 
     public function editInitSeo($url, $id)
     {
-
         $init_seo = InitSeo::find($id);
         $sites = Site::all();
-
         return view('init_seo.edit-init-seo', compact('init_seo', 'url', 'sites'));
     }
 
     public function updateInitSeo($url, $id, Request $request)
     {
         $request->validate([
-            'type_site' => 'required',
             'keyword_site' => 'required',
             'local_site' => 'required',
         ]);
 
         $initSeo = InitSeo::find($id);
-        $initSeo->update($request->all());
+         //$initSeo->type_site = $request->type_site;
+         $initSeo->keyword_site = $request->keyword_site;
+         $initSeo->local_site = $request->local_site;
+         $initSeo->update();
 
-        /* $initSeo->type_site = $request->input('type_site');
-         $initSeo->keyword_site = $request->input('keyword_site');
-         $initSeo->local_site = $request->input('local_site');
-         $initSeo->update();*/
+        return redirect(route('edit.init.seo.related', ['url' => $url,'id' => $id]));
+    }
 
-        return redirect(route('internal.seo.index', ['url' => $url]));
+    public function editInitSeoRelated($url, $id)
+    {
+        $sites = Site::all();
+        $init_seo_key = InitSeo::where('site_id', $url)->first();
+        $related_key = DB::table('related_key')->where('site_id',$url)->get();
+        return view('init_seo.edit-related-init-seo', compact('id','init_seo_key','related_key', 'url', 'sites'));
+    }
+
+    public function updateInitSeoRelated($url, $id, Request $request)
+    {
+        $request->validate([
+            'keyword_id' => 'required',
+            'related_site' => 'required',
+        ]);
+
+        $relatedKey = RelatedKey::find($id);
+        $relatedKey->keyword_id = $request->keyword_id;
+        $relatedKey->related_site = $request->related_site;
+        $relatedKey->update();
+
+        return redirect(route('edit.init.seo.related' , ['url' => $url,'id' => $id]));
     }
 
     public function initSeoIndex($url)

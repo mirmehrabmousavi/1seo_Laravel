@@ -9,6 +9,7 @@ use App\Models\OffSeoAction;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;

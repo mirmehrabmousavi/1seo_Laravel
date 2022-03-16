@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <!-- Dashboard Analytics Start -->
     <section id="dashboard-analytics">
         <div class="row">
@@ -227,124 +226,124 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-sm-2 col-12 d-flex flex-column flex-wrap text-center">
-                                    <h1 class="font-large-2 text-bold-700 mt-2 mb-0">23</h1>
+                                    <h1 class="font-large-2 text-bold-700 mt-2 mb-0">41</h1>
                                     <small>مجموع موارد بررسی شده</small>
                                 </div>
                                 <div class="col-sm-10 col-12 d-flex justify-content-center">
-                                    {{-- <div id="support-tracker-chart"></div>--}}
-                                    <div id="support-tracker-chart" style="min-height: 290px;">
-                                        <div id="apexchartsl57ce9la" class="apexcharts-canvas apexchartsl57ce9la light"
-                                             style="width: 300px; height: 290px;">
-                                            <svg id="SvgjsSvg1418" width="300" height="290"
-                                                 xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                 xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg"
-                                                 xmlns:data="ApexChartsNS" transform="translate(0, 0)"
-                                                 style="background: transparent;">
-                                                <g id="SvgjsG1420" class="apexcharts-inner apexcharts-graphical"
-                                                   transform="translate(44.5, 20)">
-                                                    <defs id="SvgjsDefs1419">
-                                                        <clipPath id="gridRectMaskl57ce9la">
-                                                            <rect id="SvgjsRect1421" width="215" height="237" x="-1"
-                                                                  y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
-                                                                  stroke-width="0" stroke="none"
-                                                                  stroke-dasharray="0"></rect>
-                                                        </clipPath>
-                                                        <clipPath id="gridRectMarkerMaskl57ce9la">
-                                                            <rect id="SvgjsRect1422" width="215" height="237" x="-1"
-                                                                  y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
-                                                                  stroke-width="0" stroke="none"
-                                                                  stroke-dasharray="0"></rect>
-                                                        </clipPath>
-                                                        <linearGradient id="SvgjsLinearGradient1428" x1="0" y1="1"
-                                                                        x2="1" y2="1">
-                                                            <stop id="SvgjsStop1429" stop-opacity="1"
-                                                                  stop-color="rgba(115,103,240,1)" offset="0"></stop>
-                                                            <stop id="SvgjsStop1430" stop-opacity="1"
-                                                                  stop-color="rgba(255,255,255,1)" offset="1"></stop>
-                                                            <stop id="SvgjsStop1431" stop-opacity="1"
-                                                                  stop-color="rgba(255,255,255,1)" offset="1"></stop>
-                                                        </linearGradient>
-                                                        <linearGradient id="SvgjsLinearGradient1439" x1="0" y1="1"
-                                                                        x2="1" y2="1">
-                                                            <stop id="SvgjsStop1440" stop-opacity="1"
-                                                                  stop-color="rgba(115,103,240,1)" offset="0"></stop>
-                                                            <stop id="SvgjsStop1441" stop-opacity="1"
-                                                                  stop-color="rgba(234,84,85,1)" offset="1"></stop>
-                                                            <stop id="SvgjsStop1442" stop-opacity="1"
-                                                                  stop-color="rgba(234,84,85,1)" offset="1"></stop>
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <g id="SvgjsG1424" class="apexcharts-radialbar">
-                                                        <g id="SvgjsG1425">
-                                                            <g id="SvgjsG1426" class="apexcharts-tracks">
-                                                                <g id="SvgjsG1427"
-                                                                   class="apexcharts-radialbar-track apexcharts-track"
-                                                                   rel="1">
-                                                                    <path id="apexcharts-radialbarTrack-0"
-                                                                          d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"
-                                                                          fill="none" fill-opacity="1"
-                                                                          stroke="rgba(255,255,255,0.85)"
-                                                                          stroke-opacity="1" stroke-linecap="butt"
-                                                                          stroke-width="21.25" stroke-dasharray="0"
-                                                                          class="apexcharts-radialbar-area"
-                                                                          data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"></path>
-                                                                </g>
+                                    {{-- <div id="support-tracker-chart"></div>--}}{{--
+                                    <div id="support-tracker-chart" style="min-height: 290px;">--}}
+                                    <div id="apexchartsl57ce9la" class="apexcharts-canvas apexchartsl57ce9la light"
+                                         style="width: 300px; height: 290px;">
+                                        <svg id="SvgjsSvg1418" width="300" height="290"
+                                             xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg"
+                                             xmlns:data="ApexChartsNS" transform="translate(0, 0)"
+                                             style="background: transparent;">
+                                            <g id="SvgjsG1420" class="apexcharts-inner apexcharts-graphical"
+                                               transform="translate(44.5, 20)">
+                                                <defs id="SvgjsDefs1419">
+                                                    <clipPath id="gridRectMaskl57ce9la">
+                                                        <rect id="SvgjsRect1421" width="215" height="237" x="-1"
+                                                              y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
+                                                              stroke-width="0" stroke="none"
+                                                              stroke-dasharray="0"></rect>
+                                                    </clipPath>
+                                                    <clipPath id="gridRectMarkerMaskl57ce9la">
+                                                        <rect id="SvgjsRect1422" width="215" height="237" x="-1"
+                                                              y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
+                                                              stroke-width="0" stroke="none"
+                                                              stroke-dasharray="0"></rect>
+                                                    </clipPath>
+                                                    <linearGradient id="SvgjsLinearGradient1428" x1="0" y1="1"
+                                                                    x2="1" y2="1">
+                                                        <stop id="SvgjsStop1429" stop-opacity="1"
+                                                              stop-color="rgba(115,103,240,1)" offset="0"></stop>
+                                                        <stop id="SvgjsStop1430" stop-opacity="1"
+                                                              stop-color="rgba(255,255,255,1)" offset="1"></stop>
+                                                        <stop id="SvgjsStop1431" stop-opacity="1"
+                                                              stop-color="rgba(255,255,255,1)" offset="1"></stop>
+                                                    </linearGradient>
+                                                    <linearGradient id="SvgjsLinearGradient1439" x1="0" y1="1"
+                                                                    x2="1" y2="1">
+                                                        <stop id="SvgjsStop1440" stop-opacity="1"
+                                                              stop-color="rgba(115,103,240,1)" offset="0"></stop>
+                                                        <stop id="SvgjsStop1441" stop-opacity="1"
+                                                              stop-color="rgba(234,84,85,1)" offset="1"></stop>
+                                                        <stop id="SvgjsStop1442" stop-opacity="1"
+                                                              stop-color="rgba(234,84,85,1)" offset="1"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <g id="SvgjsG1424" class="apexcharts-radialbar">
+                                                    <g id="SvgjsG1425">
+                                                        <g id="SvgjsG1426" class="apexcharts-tracks">
+                                                            <g id="SvgjsG1427"
+                                                               class="apexcharts-radialbar-track apexcharts-track"
+                                                               rel="1">
+                                                                <path id="apexcharts-radialbarTrack-0"
+                                                                      d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"
+                                                                      fill="none" fill-opacity="1"
+                                                                      stroke="rgba(255,255,255,0.85)"
+                                                                      stroke-opacity="1" stroke-linecap="butt"
+                                                                      stroke-width="21.25" stroke-dasharray="0"
+                                                                      class="apexcharts-radialbar-area"
+                                                                      data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 163.0625 215.4691238031146"></path>
                                                             </g>
-                                                            <g id="SvgjsG1433">
-                                                                <g id="SvgjsG1438"
-                                                                   class="apexcharts-series apexcharts-radial-series"
-                                                                   seriesName="CompletedxTickets" rel="1"
-                                                                   data:realIndex="0">
-                                                                    <path id="SvgjsPath1443"
-                                                                          d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"
-                                                                          fill="none" fill-opacity="0.85"
-                                                                          stroke="url(#SvgjsLinearGradient1439)"
-                                                                          stroke-opacity="1" stroke-linecap="butt"
-                                                                          stroke-width="21.25" stroke-dasharray="8"
-                                                                          class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
-                                                                          data:angle="249" data:value="83" index="0"
-                                                                          j="0"
-                                                                          data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"></path>
-                                                                </g>
-                                                                <circle id="SvgjsCircle1434" r="97.5" cx="106.5"
-                                                                        cy="117.5" class="apexcharts-radialbar-hollow"
-                                                                        fill="transparent"></circle>
-                                                                <g id="SvgjsG1435" class="apexcharts-datalabels-group"
-                                                                   transform="translate(0, 0)" style="opacity: 1;">
-                                                                    <text id="SvgjsText1436"
-                                                                          font-family="Helvetica, Arial, sans-serif"
-                                                                          x="106.5" y="117.5" text-anchor="middle"
-                                                                          dominant-baseline="auto" font-size="16px"
-                                                                          font-weight="regular" fill="#ea5455"
-                                                                          class="apexcharts-datalabel-label"
-                                                                          style="font-family: Helvetica, Arial, sans-serif;">
-                                                                        Completed Tickets
-                                                                    </text>
-                                                                    <text id="SvgjsText1437"
-                                                                          font-family="Helvetica, Arial, sans-serif"
-                                                                          x="106.5" y="163.5" text-anchor="middle"
-                                                                          dominant-baseline="auto" font-size="2rem"
-                                                                          font-weight="regular" fill="#99a2ac"
-                                                                          class="apexcharts-datalabel-value"
-                                                                          style="font-family: Helvetica, Arial, sans-serif;">
-                                                                        {{$totalPercent}}%
-                                                                    </text>
-                                                                </g>
+                                                        </g>
+                                                        <g id="SvgjsG1433">
+                                                            <g id="SvgjsG1438"
+                                                               class="apexcharts-series apexcharts-radial-series"
+                                                               seriesName="CompletedxTickets" rel="1"
+                                                               data:realIndex="0">
+                                                                <path id="SvgjsPath1443"
+                                                                      d="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"
+                                                                      fill="none" fill-opacity="0.85"
+                                                                      stroke="url(#SvgjsLinearGradient1439)"
+                                                                      stroke-opacity="1" stroke-linecap="butt"
+                                                                      stroke-width="21.25" stroke-dasharray="8"
+                                                                      class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
+                                                                      data:angle="249" data:value="83" index="0"
+                                                                      j="0"
+                                                                      data:pathOrig="M 49.93749999999995 215.4691238031146 A 113.125 113.125 0 1 1 218.23224352982496 135.1966488576761"></path>
+                                                            </g>
+                                                            <circle id="SvgjsCircle1434" r="97.5" cx="106.5"
+                                                                    cy="117.5" class="apexcharts-radialbar-hollow"
+                                                                    fill="transparent"></circle>
+                                                            <g id="SvgjsG1435" class="apexcharts-datalabels-group"
+                                                               transform="translate(0, 0)" style="opacity: 1;">
+                                                                <text id="SvgjsText1436"
+                                                                      font-family="Helvetica, Arial, sans-serif"
+                                                                      x="106.5" y="117.5" text-anchor="middle"
+                                                                      dominant-baseline="auto" font-size="16px"
+                                                                      font-weight="regular" fill="#ea5455"
+                                                                      class="apexcharts-datalabel-label"
+                                                                      style="font-family: Helvetica, Arial, sans-serif;">
+                                                                    نمره سایت
+                                                                </text>
+                                                                <text id="SvgjsText1437"
+                                                                      font-family="Helvetica, Arial, sans-serif"
+                                                                      x="106.5" y="163.5" text-anchor="middle"
+                                                                      dominant-baseline="auto" font-size="2rem"
+                                                                      font-weight="regular" fill="#99a2ac"
+                                                                      class="apexcharts-datalabel-value"
+                                                                      style="font-family: Helvetica, Arial, sans-serif;">
+                                                                    {{$totalPercent}}%
+                                                                </text>
                                                             </g>
                                                         </g>
                                                     </g>
-                                                    <line id="SvgjsLine1444" x1="0" y1="0" x2="213" y2="0"
-                                                          stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1"
-                                                          class="apexcharts-ycrosshairs"></line>
-                                                    <line id="SvgjsLine1445" x1="0" y1="0" x2="213" y2="0"
-                                                          stroke-dasharray="0" stroke-width="0"
-                                                          class="apexcharts-ycrosshairs-hidden"></line>
                                                 </g>
-                                            </svg>
-                                            <div class="apexcharts-legend"></div>
-                                        </div>
+                                                <line id="SvgjsLine1444" x1="0" y1="0" x2="213" y2="0"
+                                                      stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1"
+                                                      class="apexcharts-ycrosshairs"></line>
+                                                <line id="SvgjsLine1445" x1="0" y1="0" x2="213" y2="0"
+                                                      stroke-dasharray="0" stroke-width="0"
+                                                      class="apexcharts-ycrosshairs-hidden"></line>
+                                            </g>
+                                        </svg>
+                                        <div class="apexcharts-legend"></div>
                                     </div>
+                                    {{--</div>--}}
                                 </div>
                             </div>
                             <div class="chart-info d-flex justify-content-between">
@@ -563,28 +562,28 @@
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">New</span>
+                                    <span class="text-bold-600">تعداد صحیح</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>890</span>
+                                    <span>13</span>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">Returning</span>
+                                    <span class="text-bold-600">اخطار ها</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>258</span>
+                                    <span>25</span>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-danger"></i>
-                                    <span class="text-bold-600">Referrals</span>
+                                    <span class="text-bold-600">خطا ها</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>149</span>
+                                    <span>14</span>
                                 </div>
                             </li>
                         </ul>

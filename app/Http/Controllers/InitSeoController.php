@@ -182,7 +182,7 @@ class InitSeoController extends Controller
                                                     بنویس
                                                     و داخل سایتت قرار بده بعدش یه لینک با کلمه <span
                                                         style="color: green">' . $key . '</span> بده به صفحه
-                                                    ' . $key . ' که قبلا ساختی. و همچنین یه لینک دیگه با
+                                                    <span style="color : green">' . $key . '</span> که قبلا ساختی. و همچنین یه لینک دیگه با
                                                     عنوان <span
                                                         style="color: blue">' . $key . ' در ' . $local . '</span> بده به
                                                     صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که

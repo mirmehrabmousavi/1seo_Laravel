@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <title>Seo Analyzer</title>
-    <link rel=“canonical” href=“https://1seo.site/” />
+    <link rel=“canonical” href=“https://1seo.site/”/>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="/front-end/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -44,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/custom-rtl.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/style-rtl.css">
     <!-- END: Custom CSS-->
+
     @yield('style')
 </head>
 <!-- END: Head-->
@@ -54,9 +55,9 @@
 
 @if(auth()->check())
 
-@include('layouts.header')
+    @include('layouts.header')
 
-@include('layouts.sidebar')
+    @include('layouts.sidebar')
 
 @endif
 
@@ -72,7 +73,6 @@
         </div>
     </div>
 </div>
-
 <!-- BEGIN: Vendor JS-->
 <script src="/app-assets/vendors/js/vendors.min.js"></script>
 <!-- BEGIN Vendor JS-->
@@ -392,7 +392,6 @@
     }
 
 </script>
-
 @yield('script')
 
 <script src="{{ asset('js/app.js') }}"></script>

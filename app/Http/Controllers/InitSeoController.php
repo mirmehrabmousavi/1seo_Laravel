@@ -116,6 +116,57 @@ class InitSeoController extends Controller
          $initSeo->local_site = $request->local_site;
          $initSeo->update();
 
+        $init_seo_ = InitSeo::where('site_id', $url)->first();
+        $related_key = DB::table('related_key')->get();
+        $domain = new Analyztic();
+        [$siteTitle, $dataTitle, $titleCssStyle, $titleNum] = $domain->getTitle('http://' . $url);
+
+        $init_seo_action = InitSeoAction::where('baseurl',$url)->first();/*
+        if (empty($init_seo_action)) {*/
+            foreach (explode("\r\n", $init_seo_->keyword_site) as $key) {
+                InitSeoAction::create([
+                    'action' => '
+                                        یه محتوا با کلمه کلیدی <span
+                                            style="color: red">' . $key . '</span> بنویس و داخل سایتت
+                                        قرار بده بعدش یه لینک با کلمه <span
+                                            style="color: green">' . $siteTitle . '</span> بده به صفحه اصلی سایتت. :)
+                                    ',
+                    'baseurl' => $url
+                ]);
+                foreach (explode("\r\n", $init_seo_->local_site) as $local) {
+                    InitSeoAction::create([
+                        'action' => '
+                                            یه محتوا با کلمه کلیدی <span
+                                                style="color: red">' . $local . ' در '.$key. '</span> بنویس و
+                                            داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span
+                                                style="color: green">' . $key . '</span> بده به صفحه <span
+                                                style="color: green">' . $key . '</span> ساخته بودی. :)
+                                        ',
+                        'baseurl' => $url
+                    ]);
+                    foreach ($related_key as $related_val) {
+                        foreach (explode("\r\n", $related_val->related_site) as $related_site) {
+                            InitSeoAction::create([
+                                'action' => '
+                                                    یه محتوا با کلمه کلیدی <span
+                                                        style="color: red">' . $related_site . '</span>
+                                                    بنویس
+                                                    و داخل سایتت قرار بده بعدش یه لینک با کلمه <span
+                                                        style="color: green">' . $key . '</span> بده به صفحه
+                                                    <span style="color : green">' . $key . '</span> که قبلا ساختی. و همچنین یه لینک دیگه با
+                                                    عنوان <span
+                                                        style="color: blue">' . $key . ' در ' . $local . '</span> بده به
+                                                    صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که
+                                                    ساخته بودی. :)
+                                                ',
+                                'baseurl' => $url
+                            ]);
+                        }
+                    }
+                }
+            }/*
+        }*/
+
         return redirect(route('edit.init.seo.related', ['url' => $url,'id' => $id]));
     }
 

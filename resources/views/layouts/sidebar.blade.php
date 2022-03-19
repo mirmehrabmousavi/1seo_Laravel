@@ -9,8 +9,7 @@
                     پنل ادمین
 @else{{route('home',['url' => $url])}}
 @endif">
-                    <div class="brand-logo"></div>
-                    <h2 class="brand-text mb-0">آنالیز</h2>
+                    <img src="/app-assets/images/logo300.png" height="35" width="70">
                 </a>
             </li>
         </ul>
@@ -18,7 +17,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" navigation-header"><span>بتا ورژن</span>
+            <li class=" navigation-header"><span>ورژن v1.0.1</span>
             </li>
             <li class="nav-item has-sub"><a href="{{route('home',['url' => auth()->user()->url])}}"><i
                         class="feather icon-layout"></i><span class="menu-title"

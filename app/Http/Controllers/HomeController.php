@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
-use App\Models\InitSeo;
 use App\Models\InitSeoAction;
 use App\Models\OffSeoAction;
-use App\Models\Settings;
 use App\Models\Site;
-use App\Models\User;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -31,7 +24,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return string
      */
     public function index($url)
     {

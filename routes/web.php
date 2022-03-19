@@ -16,20 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 //Authentication
 Auth::routes();
 
 //Seo Analyzer
 Route::group([['middleware' => 'auth']], function () {
-    Route::get('/home/{url}', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/{url}', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('page-cache');
     //Add Site Controller
     Route::get('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSiteView'])->name('addSiteView');
     Route::post('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSite'])->name('addSite');
     Route::delete('/delSite/{url}/{id}', [\App\Http\Controllers\AddSiteController::class, 'delSite'])->name('delSite');
     //TechSeo Controller
-    Route::get('/marketingPlan/{url}', [\App\Http\Controllers\TechSeoController::class, 'marketingPlan'])->name('marketing.plan');
+    Route::get('/marketingPlan/{url}', [\App\Http\Controllers\TechSeoController::class, 'marketingPlan'])->name('marketing.plan')->middleware('page-cache');
     //InitSeo Controller
     Route::get('/initSeo/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeo'])->name('internal.seo');
     Route::post('/initSeo/{url}', [\App\Http\Controllers\InitSeoController::class, 'initSeoStore'])->name('internal.seo.store');

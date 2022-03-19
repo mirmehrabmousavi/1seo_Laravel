@@ -45,6 +45,7 @@
                         <div class="row m-0">
                             <div class="col-lg-6 d-lg-block d-none text-center align-self-center pl-0 pr-3 py-0">
                                 <img src="/app-assets/images/pages/register.jpg" alt="branding logo">
+                                <p style="color: #0b0b0b" class="pt-3">بعد از ثبت نام عملیات ورود به سایت ممکن است تا چند دقیقه طول بکشد. <span style="color:darkgreen">پس لطفا صبر کنید</span>.</p>
                             </div>
                             <div class="col-lg-6 col-12 p-0">
                                 <div class="card rounded-0 mb-0 p-2">

@@ -28,7 +28,8 @@
                                         <div class="row">
                                             <div class="col-lg-1 col-md-12">
                                                 <a href="http://1seo.site/mag/"
-                                                   class="btn bg-gradient-primary btn-block mr-1 mb-1 waves-effect waves-light mt-1">راهنما
+                                                   class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">
+                                                    راهنما
                                                 </a>
                                             </div>
                                             <div class="col-lg-9 col-md-12"></div>

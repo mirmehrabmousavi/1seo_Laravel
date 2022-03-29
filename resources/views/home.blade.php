@@ -349,250 +349,22 @@
                             <div class="chart-info d-flex justify-content-between">
                                 <div class="text-center">
                                     <p class="mb-50">تعداد خطا ها</p>
-                                    <span class="font-large-1">29</span>
+                                    <span class="font-large-1">{{$error_num}}</span>
                                 </div>
                                 <div class="text-center">
                                     <p class="mb-50">تعداد اخطار</p>
-                                    <span class="font-large-1">63</span>
+                                    <span class="font-large-1">{{{$warning_num}}}</span>
                                 </div>
                                 <div class="text-center">
                                     <p class="mb-50">تعداد صحیح</p>
-                                    <span class="font-large-1">12</span>
+                                    <span class="font-large-1">{{$correct_num}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">نمایش کل خطا ها</h4>
-                    </div>
-                    <div class="divider">
-                        <div class="divider-text">Show Errors</div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body py-0" style="position: relative;">
-                            <div id="customer-chart" style="min-height: 287.805px;">
-                                <div id="apexchartsjm2r4xvr"
-                                     class="apexcharts-canvas apexchartsjm2r4xvr light"
-                                     style="width: 459px; height: 287.805px;">
-                                    <svg id="SvgjsSvg1866" width="459" height="287.8048780487805"
-                                         xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg"
-                                         xmlns:data="ApexChartsNS" transform="translate(0, 0)"
-                                         style="background: transparent;">
-                                        <g id="SvgjsG1868" class="apexcharts-inner apexcharts-graphical"
-                                           transform="translate(94, 0)">
-                                            <defs id="SvgjsDefs1867">
-                                                <clipPath id="gridRectMaskjm2r4xvr">
-                                                    <rect id="SvgjsRect1869" width="278" height="300"
-                                                          x="-2.5"
-                                                          y="-2.5" rx="0" ry="0" fill="#ffffff" opacity="1"
-                                                          stroke-width="0" stroke="none"
-                                                          stroke-dasharray="0"></rect>
-                                                </clipPath>
-                                                <clipPath id="gridRectMarkerMaskjm2r4xvr">
-                                                    <rect id="SvgjsRect1870" width="275" height="297" x="-1"
-                                                          y="-1" rx="0" ry="0" fill="#ffffff" opacity="1"
-                                                          stroke-width="0" stroke="none"
-                                                          stroke-dasharray="0"></rect>
-                                                </clipPath>
-                                                <radialGradient id="SvgjsRadialGradient1876"
-                                                                gradientUnits="userSpaceOnUse" cx="136.5"
-                                                                cy="147.5" r="133.90243902439025">
-                                                    <stop id="SvgjsStop1877" stop-opacity="1"
-                                                          stop-color="rgba(115,103,240,1)"
-                                                          offset="0"></stop>
-                                                    <stop id="SvgjsStop1878" stop-opacity="1"
-                                                          stop-color="rgba(169,162,246,1)"
-                                                          offset="1"></stop>
-                                                    <stop id="SvgjsStop1879" stop-opacity="1"
-                                                          stop-color="rgba(169,162,246,1)"
-                                                          offset="1"></stop>
-                                                </radialGradient>
-                                                <radialGradient id="SvgjsRadialGradient1882"
-                                                                gradientUnits="userSpaceOnUse" cx="136.5"
-                                                                cy="147.5" r="133.90243902439025">
-                                                    <stop id="SvgjsStop1883" stop-opacity="1"
-                                                          stop-color="rgba(255,159,67,1)" offset="0"></stop>
-                                                    <stop id="SvgjsStop1884" stop-opacity="1"
-                                                          stop-color="rgba(255,192,133,1)"
-                                                          offset="1"></stop>
-                                                    <stop id="SvgjsStop1885" stop-opacity="1"
-                                                          stop-color="rgba(255,192,133,1)"
-                                                          offset="1"></stop>
-                                                </radialGradient>
-                                                <radialGradient id="SvgjsRadialGradient1888"
-                                                                gradientUnits="userSpaceOnUse" cx="136.5"
-                                                                cy="147.5" r="133.90243902439025">
-                                                    <stop id="SvgjsStop1889" stop-opacity="1"
-                                                          stop-color="rgba(234,84,85,1)" offset="0"></stop>
-                                                    <stop id="SvgjsStop1890" stop-opacity="1"
-                                                          stop-color="rgba(242,146,146,1)"
-                                                          offset="1"></stop>
-                                                    <stop id="SvgjsStop1891" stop-opacity="1"
-                                                          stop-color="rgba(242,146,146,1)"
-                                                          offset="1"></stop>
-                                                </radialGradient>
-                                            </defs>
-                                            <g id="SvgjsG1872" class="apexcharts-pie"
-                                               data:innerTranslateX="0"
-                                               data:innerTranslateY="-25">
-                                                <g id="SvgjsG1873" transform="translate(0, -5) scale(1)">
-                                                    <g id="SvgjsG1874" class="apexcharts-slices">
-                                                        <g id="SvgjsG1875"
-                                                           class="apexcharts-series apexcharts-pie-series"
-                                                           seriesName="New" rel="1" data:realIndex="0">
-                                                            <path id="SvgjsPath1880"
-                                                                  d="M 136.5 13.597560975609753 A 133.90243902439025 133.90243902439025 0 1 1 39.47404931191406 239.78124440943384 L 136.5 147.5 L 136.5 13.597560975609753"
-                                                                  fill="url(#SvgjsRadialGradient1876)"
-                                                                  fill-opacity="1" stroke="#ffffff"
-                                                                  stroke-opacity="1" stroke-linecap="butt"
-                                                                  stroke-width="5" stroke-dasharray="0"
-                                                                  class="apexcharts-pie-area apexcharts-pie-slice-0"
-                                                                  index="0" j="0"
-                                                                  data:angle="226.43573381950776"
-                                                                  data:startAngle="0" data:strokeWidth="5"
-                                                                  data:value="690"
-                                                                  data:pathOrig="M 136.5 13.597560975609753 A 133.90243902439025 133.90243902439025 0 1 1 39.47404931191406 239.78124440943384 L 136.5 147.5 L 136.5 13.597560975609753"></path>
-                                                        </g>
-                                                        <g id="SvgjsG1881"
-                                                           class="apexcharts-series apexcharts-pie-series"
-                                                           seriesName="Returning" rel="2"
-                                                           data:realIndex="1">
-                                                            <path id="SvgjsPath1886"
-                                                                  d="M 39.47404931191406 239.78124440943384 A 133.90243902439025 133.90243902439025 0 0 1 35.600645488235514 59.4705535869399 L 136.5 147.5 L 39.47404931191406 239.78124440943384"
-                                                                  fill="url(#SvgjsRadialGradient1882)"
-                                                                  fill-opacity="1" stroke="#ffffff"
-                                                                  stroke-opacity="1" stroke-linecap="butt"
-                                                                  stroke-width="5" stroke-dasharray="0"
-                                                                  class="apexcharts-pie-area apexcharts-pie-slice-1"
-                                                                  index="0" j="1"
-                                                                  data:angle="84.6672743846855"
-                                                                  data:startAngle="226.43573381950776"
-                                                                  data:strokeWidth="5" data:value="258"
-                                                                  data:pathOrig="M 39.47404931191406 239.78124440943384 A 133.90243902439025 133.90243902439025 0 0 1 35.600645488235514 59.4705535869399 L 136.5 147.5 L 39.47404931191406 239.78124440943384"></path>
-                                                        </g>
-                                                        <g id="SvgjsG1887"
-                                                           class="apexcharts-series apexcharts-pie-series"
-                                                           seriesName="Referrals" rel="3"
-                                                           data:realIndex="2">
-                                                            <path id="SvgjsPath1892"
-                                                                  d="M 35.600645488235514 59.4705535869399 A 133.90243902439025 133.90243902439025 0 0 1 136.47662961574437 13.597563015060501 L 136.5 147.5 L 35.600645488235514 59.4705535869399"
-                                                                  fill="url(#SvgjsRadialGradient1888)"
-                                                                  fill-opacity="1" stroke="#ffffff"
-                                                                  stroke-opacity="1" stroke-linecap="butt"
-                                                                  stroke-width="5" stroke-dasharray="0"
-                                                                  class="apexcharts-pie-area apexcharts-pie-slice-2"
-                                                                  index="0" j="2"
-                                                                  data:angle="48.89699179580674"
-                                                                  data:startAngle="311.10300820419326"
-                                                                  data:strokeWidth="5" data:value="149"
-                                                                  data:pathOrig="M 35.600645488235514 59.4705535869399 A 133.90243902439025 133.90243902439025 0 0 1 136.47662961574437 13.597563015060501 L 136.5 147.5 L 35.600645488235514 59.4705535869399"></path>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                            <line id="SvgjsLine1893" x1="0" y1="0" x2="273" y2="0"
-                                                  stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1"
-                                                  class="apexcharts-ycrosshairs"></line>
-                                            <line id="SvgjsLine1894" x1="0" y1="0" x2="273" y2="0"
-                                                  stroke-dasharray="0" stroke-width="0"
-                                                  class="apexcharts-ycrosshairs-hidden"></line>
-                                        </g>
-                                    </svg>
-                                    <div class="apexcharts-legend"></div>
-                                    <div class="apexcharts-tooltip dark">
-                                        <div class="apexcharts-tooltip-series-group"><span
-                                                class="apexcharts-tooltip-marker"
-                                                style="background-color: rgb(115, 103, 240);"></span>
-                                            <div class="apexcharts-tooltip-text"
-                                                 style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
-                                                <div class="apexcharts-tooltip-y-group"><span
-                                                        class="apexcharts-tooltip-text-label"></span><span
-                                                        class="apexcharts-tooltip-text-value"></span></div>
-                                                <div class="apexcharts-tooltip-z-group"><span
-                                                        class="apexcharts-tooltip-text-z-label"></span><span
-                                                        class="apexcharts-tooltip-text-z-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="apexcharts-tooltip-series-group"><span
-                                                class="apexcharts-tooltip-marker"
-                                                style="background-color: rgb(255, 159, 67);"></span>
-                                            <div class="apexcharts-tooltip-text"
-                                                 style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
-                                                <div class="apexcharts-tooltip-y-group"><span
-                                                        class="apexcharts-tooltip-text-label"></span><span
-                                                        class="apexcharts-tooltip-text-value"></span></div>
-                                                <div class="apexcharts-tooltip-z-group"><span
-                                                        class="apexcharts-tooltip-text-z-label"></span><span
-                                                        class="apexcharts-tooltip-text-z-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="apexcharts-tooltip-series-group"><span
-                                                class="apexcharts-tooltip-marker"
-                                                style="background-color: rgb(234, 84, 85);"></span>
-                                            <div class="apexcharts-tooltip-text"
-                                                 style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
-                                                <div class="apexcharts-tooltip-y-group"><span
-                                                        class="apexcharts-tooltip-text-label"></span><span
-                                                        class="apexcharts-tooltip-text-value"></span></div>
-                                                <div class="apexcharts-tooltip-z-group"><span
-                                                        class="apexcharts-tooltip-text-z-label"></span><span
-                                                        class="apexcharts-tooltip-text-z-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="resize-triggers">
-                                <div class="expand-trigger">
-                                    <div style="width: 502px; height: 289px;"></div>
-                                </div>
-                                <div class="contract-trigger"></div>
-                            </div>
-                        </div>
-                        <ul class="list-group list-group-flush customer-info">
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">تعداد صحیح</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>13</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">اخطار ها</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>25</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-danger"></i>
-                                    <span class="text-bold-600">خطا ها</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>14</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row match-height">
-            <div class="col-lg-4 col-12">
+            <div class="col-lg-6 com-md-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
                         <h4>MOZ</h4>
@@ -609,7 +381,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-12 ">
+        </div>
+        <div class="row match-height">
+            <div class="col-md-6 col-12 ">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title mb-2">اطلاعات MOZ</div>
@@ -649,7 +423,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-12 ">
+            <div class="col-md-6 col-12 ">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title mb-2">اطلاعات کلی</div>

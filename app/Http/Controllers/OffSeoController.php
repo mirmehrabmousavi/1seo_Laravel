@@ -253,6 +253,183 @@ class OffSeoController extends Controller
                     'baseurl' => $url,
                 ]);
             }
+        }else{
+            OffSeoAction::truncate();
+            foreach($blogs as $blog) {
+                OffSeoAction::create([
+                    'action' => '
+                                        برو تو سایت <span style="color : green">'.$blog.'</span> ثبت نام کن با عنوان
+                                        مشابه <span style="color : red">'.$siteTitle.'</span> یه حساب کاربری ایجاد
+                                        کن اطلاعات حسابت از جمله آدرس، شماره تلفن، درباره ما، و سایر موارد مورد نیاز
+                                        رو تکمیل کن. :)
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
+
+            foreach($threeblog as $b) {
+                foreach(explode("\r\n",$off_seo_->keyword_site) as $key) {
+                    OffSeoAction::create([
+                        'action' => '
+                                            محتوایی رو که با کلمه کلیدی <span
+                                                style="color : green">'.$key.'</span> ساخته بودی با یه
+                                            تغییر کوچک در نگارش محتوا
+                                            داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                            و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                            منبع کوتاه کننده لینک آخر محتوا بزار. :)
+                                        ',
+                        'baseurl' => $url,
+                    ]);
+                }
+                foreach(explode("\r\n",$off_seo_->local_site) as $local) {
+                    OffSeoAction::create([
+                        'action' => '
+                                            محتوایی رو که با کلمه کلیدی <span
+                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                            تغییر کوچک در نگارش محتوا
+                                            داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                            و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                            منبع کوتاه کننده لینک آخر محتوا بزار. :)
+                                        ',
+                        'baseurl' => $url,
+                    ]);
+                }
+                foreach($related_key as $related_val) {
+                    foreach(explode("\r\n",$related_val->related_site) as $rel) {
+                        OffSeoAction::create([
+                            'action' => '
+                                                محتوایی رو که با کلمه کلیدی <span
+                                                    style="color : green">'.$rel.'</span> ساخته بودی با یه
+                                                تغییر کوچک در نگارش محتوا
+                                                داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                                و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                                منبع کوتاه کننده لینک آخر محتوا بزار. :)
+                                            ',
+                            'baseurl' => $url,
+                        ]);
+                    }
+                }
+            }
+
+            foreach($threeblog as $b) {
+                foreach(explode("\r\n",$off_seo_->keyword_site) as $key) {
+                    OffSeoAction::create([
+                        'action' => '
+                                            محتوایی رو که با کلمه کلیدی <span
+                                                style="color : green">'.$key.'</span> ساخته بودی با یه
+                                            تغییر کوچک در نگارش محتوا
+                                            داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                            و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                            منبع کوتاه کننده لینک آخر محتوا بزار و همچنین یه لینک کوتاه از کلمه کلیدی
+                                            <span style="color:blue">'.$key.'</span> بساز و کلمه
+                                            کلیدی اصلی محتواتو لینک بده به صفحه <span style="color:blue">'.$key.'</span>
+                                            . :)
+                                        ',
+                        'baseurl' => $url,
+                    ]);
+                }
+                foreach(explode("\r\n",$off_seo_->local_site) as $local) {
+                    OffSeoAction::create([
+                        'action' => '
+                                            محتوایی رو که با کلمه کلیدی <span
+                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                            تغییر کوچک در نگارش محتوا
+                                            داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                            و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                            منبع کوتاه کننده لینک آخر محتوا بزار و همچنین یه لینک کوتاه از کلمه کلیدی
+                                            <span style="color:blue">'.$key.'</span> بساز و کلمه
+                                            کلیدی اصلی محتواتو لینک بده به صفحه <span style="color:blue">'.$key.'</span>
+                                            . :)
+                                        ',
+                        'baseurl' => $url,
+                    ]);
+                }
+                foreach($related_key as $related_val) {
+                    foreach(explode("\r\n",$related_val->related_site) as $rel) {
+                        OffSeoAction::create([
+                            'action' => '
+                                                محتوایی رو که با کلمه کلیدی <span
+                                                    style="color : green">'.$rel.'</span> ساخته بودی با یه
+                                                تغییر کوچک در نگارش محتوا
+                                                داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
+                                                و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
+                                                منبع کوتاه کننده لینک آخر محتوا بزار و همچنین یه لینک کوتاه از کلمه
+                                                کلیدی <span style="color:blue">'.$key.'</span> بساز و کلمه
+                                                کلیدی اصلی محتواتو لینک بده به صفحه <span
+                                                    style="color:blue">'.$key.'</span> . :)
+                                            ',
+                            'baseurl' => $url,
+                        ]);
+                    }
+                }
+            }
+
+            foreach(explode("\r\n",$off_seo_->keyword_site) as $key) {
+                OffSeoAction::create([
+                    'action' => '
+                                        محتوایی با کللمه کلیدی <span style="color: green">'.$key.'</span> که
+                                        ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
+                                            href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
+
+            foreach(explode("\r\n",$off_seo_->local_site) as $local) {
+                OffSeoAction::create([
+                    'action' => '
+                                        محتوایی با کللمه کلیدی <span style="color: green">' . $local . ' در '.$key. '</span>
+                                        که ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
+                                            href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
+
+            foreach($related_key as $related_val) {
+                foreach(explode("\r\n",$related_val->related_site) as $rel) {
+                    OffSeoAction::create([
+                        'action' => '
+                                            محتوایی با کللمه کلیدی <span style="color: green">'.$rel.'</span> که
+                                            ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
+                                                href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
+                                        ',
+                        'baseurl' => $url,
+                    ]);
+                }
+            }
+
+            foreach($profileLink as $pl) {
+                OffSeoAction::create([
+                    'action' => '
+                                        برو داخل سایت <a href="'.$pl.'">'.$pl.'</a> طبق راهنما یک پروفایل درست کنو آدرس
+                                        سایت خودتو قرار بده.
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
+
+            foreach($social as $so) {
+                OffSeoAction::create([
+                    'action' => '
+                                        برو داخل <a href="'.$so.'">'.$so.'</a> یه حساب کاربری به اسم <span
+                                            style="color: red">'.$siteTitle.'</span> بساز. :)
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
+
+            foreach(explode("\r\n",$off_seo_->keyword_site) as $offseo) {
+                OffSeoAction::create([
+                    'action' => '
+                                        یه محتوا با موضوع <span style="color: green">'.$offseo.'</span> بنویس و به عنوان
+                                        ریپورتاژ در یکی از سایت های خبری منتشر کن و یه لینک با کلمه کلیدی <span
+                                            style="color: green">'.$offseo.'</span> به صفحه <span
+                                            style="color: green">'.$offseo.'</span> بده. :)
+                                    ',
+                    'baseurl' => $url,
+                ]);
+            }
         }
 
         $off_seo_action = OffSeoAction::where('baseurl',$url)->latest()->paginate(5);

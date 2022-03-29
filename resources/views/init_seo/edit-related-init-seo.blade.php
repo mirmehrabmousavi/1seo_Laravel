@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <section id="basic-horizontal-layouts">
         <div class="row">
             <div class="col-md-9 col-9">
@@ -10,50 +11,37 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{route('update.init.seo.related',['url' => $url,'id' => $id])}}"
-                                  method="POST"
-                                  class="form form-horizontal">
-                                @csrf
-                                @method('patch')
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="type">
-                                                    نوع سایت
-                                                </label>
-                                                <select class="custom-select form-control" id="type" name="keyword_id">
-                                                    @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)
-                                                        <option value="{{$val}}">{{$val}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group row">
-                                                <div class="col-md-4">
-                                                    <span>کلمات مرتبط سایت</span>
-                                                </div>
+                            @foreach($related_key as $rk)
+                                <form action="{{route('update.init.seo.related',['url' => $url,'id' => $rk->id])}}"
+                                      method="POST"
+                                      class="form form-horizontal">
+                                    @csrf
+                                    @method('PATCH')
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>کلمات مرتبط سایت : {{$rk->keyword_id}}</span>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <textarea name="related_site" data-length=200
+                                                              class="form-control char-textarea" id="keyword"
+                                                              rows="6" placeholder="هر کلمه در یک سطر"
+                                                              required>@foreach(explode("\r",$rk->related_site) as $value){{$value}}@endforeach</textarea>
 
-                                                <textarea name="related_site" data-length=200
-                                                          class="form-control char-textarea" id="keyword"
-                                                          rows="6" placeholder="هر کلمه در یک سطر" required>
-                                                    @foreach($related_key as $rk)
-                                                        @foreach(explode("\r\n",$rk->related_site) as $val)
-                                                            {{$val}}
-                                                        @endforeach
-                                                    @endforeach
-                                                </textarea>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <button type="submit"
-                                                    class="btn btn-primary mr-1 mb-1 waves-effect waves-light">ثبت
-                                            </button>
+                                            <div class="col-md-8">
+                                                <button type="submit"
+                                                        class="btn btn-primary mr-1 mb-1 waves-effect waves-light">ثبت
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -108,4 +96,20 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script>
+        function setTextarea(t) {
+            var optionValue = t.value;
+            @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)
+            if (optionValue === {{$val}}) {
+                {{$res = \App\Models\RelatedKey::where('keyword_id',$val)->first()}}
+                document.getElementById('keyword').innerHTML = {{$res}};
+            } else {
+                document.getElementById('keyword').innerHTML = ' ';
+            }
+            @endforeach
+        };
+    </script>
 @endsection

@@ -111,8 +111,192 @@ class HomeController extends Controller
         $totalPercent = $pageAuthNum+$domainAuthNum+$titleNum+$descNum+$headingNum+$altNum+$ratioNum+$gzipNum+$robotsNum+$sitemapNum+$iframeNum
             +$flashNum+$pageSizeNum+$loadTimeNum+$langNum+$sslNum+$safeNum+$nestedNum+$speedNum+$analyticNum+$doctypeNum+$encodingNum+$dphtmlNum;
 
+        $correctNum = 0;
+        $warningNum = 0;
+        $errorNum = 0;
+
+        if($pageAuthNum == 5) {
+            $correctNum++;
+        }elseif ($pageAuthNum == 3) {
+            $warningNum++;
+        }elseif ($pageAuthNum == 0) {
+            $errorNum++;
+        }
+
+        if($domainAuthNum == 5) {
+            $correctNum++;
+        }elseif ($domainAuthNum == 3) {
+            $warningNum++;
+        }elseif ($domainAuthNum == 0) {
+            $errorNum++;
+        }
+
+        if($titleNum == 5) {
+            $correctNum++;
+        }elseif ($titleNum == 3) {
+            $warningNum++;
+        }elseif ($titleNum == 0) {
+            $errorNum++;
+        }
+
+        if($descNum == 5) {
+            $correctNum++;
+        }elseif ($descNum == 3) {
+            $warningNum++;
+        }elseif ($descNum == 0) {
+            $errorNum++;
+        }
+
+        if($headingNum == 5) {
+            $correctNum++;
+        }elseif ($headingNum == 3) {
+            $warningNum++;
+        }elseif ($headingNum == 0) {
+            $errorNum++;
+        }
+
+        if($altNum == 5) {
+            $correctNum++;
+        }elseif ($altNum == 3) {
+            $warningNum++;
+        }elseif ($altNum == 0) {
+            $errorNum++;
+        }
+
+        if($ratioNum == 5) {
+            $correctNum++;
+        }elseif ($ratioNum == 3) {
+            $warningNum++;
+        }elseif ($ratioNum == 0) {
+            $errorNum++;
+        }
+
+        if($gzipNum == 5) {
+            $correctNum++;
+        }elseif ($gzipNum == 3) {
+            $warningNum++;
+        }elseif ($gzipNum == 0) {
+            $errorNum++;
+        }
+
+        if($robotsNum == 5) {
+            $correctNum++;
+        }elseif ($robotsNum == 3) {
+            $warningNum++;
+        }elseif ($robotsNum == 0) {
+            $errorNum++;
+        }
+
+        if($sitemapNum == 5) {
+            $correctNum++;
+        }elseif ($sitemapNum == 3) {
+            $warningNum++;
+        }elseif ($sitemapNum == 0) {
+            $errorNum++;
+        }
+
+        if($iframeNum == 5) {
+            $correctNum++;
+        }elseif ($iframeNum == 3) {
+            $warningNum++;
+        }elseif ($iframeNum == 0) {
+            $errorNum++;
+        }
+
+        if($flashNum == 5) {
+            $correctNum++;
+        }elseif ($flashNum == 3) {
+            $warningNum++;
+        }elseif ($flashNum == 0) {
+            $errorNum++;
+        }
+
+        if($loadTimeNum == 5) {
+            $correctNum++;
+        }elseif ($loadTimeNum == 3) {
+            $warningNum++;
+        }elseif ($loadTimeNum == 0) {
+            $errorNum++;
+        }
+
+        if($langNum == 5) {
+            $correctNum++;
+        }elseif ($langNum == 3) {
+            $warningNum++;
+        }elseif ($langNum == 0) {
+            $errorNum++;
+        }
+
+        if($sslNum == 5) {
+            $correctNum++;
+        }elseif ($sslNum == 3) {
+            $warningNum++;
+        }elseif ($sslNum == 0) {
+            $errorNum++;
+        }
+
+        if($safeNum == 5) {
+            $correctNum++;
+        }elseif ($safeNum == 3) {
+            $warningNum++;
+        }elseif ($safeNum == 0) {
+            $errorNum++;
+        }
+
+        if($nestedNum == 5) {
+            $correctNum++;
+        }elseif ($nestedNum == 3) {
+            $warningNum++;
+        }elseif ($nestedNum == 0) {
+            $errorNum++;
+        }
+
+        if($speedNum == 5) {
+            $correctNum++;
+        }elseif ($speedNum == 3) {
+            $warningNum++;
+        }elseif ($speedNum == 0) {
+            $errorNum++;
+        }
+
+        if($analyticNum == 5) {
+            $correctNum++;
+        }elseif ($analyticNum == 3) {
+            $warningNum++;
+        }elseif ($analyticNum == 0) {
+            $errorNum++;
+        }
+
+        if($doctypeNum == 5) {
+            $correctNum++;
+        }elseif ($doctypeNum == 3) {
+            $warningNum++;
+        }elseif ($doctypeNum == 0) {
+            $errorNum++;
+        }
+
+        if($encodingNum == 5) {
+            $correctNum++;
+        }elseif ($encodingNum == 3) {
+            $warningNum++;
+        }elseif ($encodingNum == 0) {
+            $errorNum++;
+        }
+
+        if($dphtmlNum == 5) {
+            $correctNum++;
+        }elseif ($dphtmlNum == 3) {
+            $warningNum++;
+        }elseif ($dphtmlNum == 0) {
+            $errorNum++;
+        }
+
         $initseo = InitSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
         $offseo = OffSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
+
+        $correct_num = $correctNum;
+        $warning_num = $correctNum;
+        $error_num = $correctNum;
 
         return view('home', compact(
             'initseo',
@@ -234,6 +418,10 @@ class HomeController extends Controller
             'dphtmlNum',
             //TotalPercent
             'totalPercent',
+            //Error Number
+            'correct_num',
+            'warning_num',
+            'error_num'
         ));
     }
 }

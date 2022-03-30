@@ -203,14 +203,14 @@ class Analyztic
         $pageAuthority = $json_a->upa;
 
         if ($pageAuthority > 30) {
-            $pageAuthNum=5;
-        }else if ($pageAuthority > 10 && $pageAuthority < 30) {
-            $pageAuthNum=3;
-        }else if ($pageAuthority < 10) {
-            $pageAuthNum=0;
+            $pageAuthNum = 5;
+        } else if ($pageAuthority > 10 && $pageAuthority < 30) {
+            $pageAuthNum = 3;
+        } else if ($pageAuthority < 10) {
+            $pageAuthNum = 0;
         }
 
-        return [$pageAuthority,$pageAuthNum];
+        return [$pageAuthority, $pageAuthNum];
     }
 
     public function domainAuthority($domain)
@@ -257,14 +257,14 @@ class Analyztic
         $domainAuthority = round($json_a->pda, 0);
 
         if ($domainAuthority > 30) {
-            $domainAuthNum=5;
-        }else if ($domainAuthority > 10 && $domainAuthority < 30) {
-            $domainAuthNum=3;
-        }else if ($domainAuthority < 10) {
-            $domainAuthNum=0;
+            $domainAuthNum = 5;
+        } else if ($domainAuthority > 10 && $domainAuthority < 30) {
+            $domainAuthNum = 3;
+        } else if ($domainAuthority < 10) {
+            $domainAuthNum = 0;
         }
 
-        return [$domainAuthority,$domainAuthNum];
+        return [$domainAuthority, $domainAuthNum];
     }
 
     public function externalLinks($domain)
@@ -474,7 +474,11 @@ class Analyztic
     public function getDescription($url)
     {
         $metatagarray = get_meta_tags($url);
-        $description = $metatagarray["description"];
+        try {
+            $description = $metatagarray["description"];
+        }catch (\Throwable $e) {
+            report($e);
+        }
         $descLen = strlen($description);
 
         if ($descLen > 70 && $descLen < 120) {
@@ -518,8 +522,8 @@ class Analyztic
     {
         $html = file_get_contents($url);
         $getheading = $this->get_headings_tag($html);
-        $headingNum=6;
-        return [$getheading,$headingNum];
+        $headingNum = 6;
+        return [$getheading, $headingNum];
     }
 
     public function getAltImage($url)
@@ -536,19 +540,20 @@ class Analyztic
         if ($missing_alt > 1 && $missing_alt < 5) {
             $checkMissingAlt = 'alert alert-warning';
             $altNum = 3;
-        }else if ($missing_alt > 5){
+        } else if ($missing_alt > 5) {
             $checkMissingAlt = 'alert alert-danger';
             $altNum = 0;
-        }else{
+        } else {
             $checkMissingAlt = 'alert alert-success';
             $altNum = 5;
         }
         $missingAltImage = $total_images . 'عکس موجود می باشد' . $missing_alt . 'عکس بدون ویژگی alt می باشند ';
-        return [$missingAltImage,$checkMissingAlt,$altNum];
+        return [$missingAltImage, $checkMissingAlt, $altNum];
     }
 
 
-    function ratio_file_get_contents_curl($url) {
+    function ratio_file_get_contents_curl($url)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -561,7 +566,8 @@ class Analyztic
         return $data;
     }
 
-    function ratio_strip_html_tags($text) {
+    function ratio_strip_html_tags($text)
+    {
         $text = preg_replace(
             array(
                 '@<head[^>]*?>.*?</head>@siu',
@@ -592,7 +598,8 @@ class Analyztic
     }
 
 
-    function ratio_check_ratio($url) {
+    function ratio_check_ratio($url)
+    {
         $real_content = $this->ratio_file_get_contents_curl($url);
         $page_size = mb_strlen($real_content, '8bit');
         $content = $this->ratio_strip_html_tags($real_content);
@@ -601,13 +608,13 @@ class Analyztic
 
         $len_real = strlen($real_content);
         $len_strip = strlen($content);
-        return round((($len_strip/$len_real)*100), 2);
+        return round((($len_strip / $len_real) * 100), 2);
     }
 
     public function getRatio($url)
     {
-        $page_size=0;
-        $text_size=0;
+        $page_size = 0;
+        $text_size = 0;
         $real_content = $this->ratio_file_get_contents_curl($url);
         $page_size = mb_strlen($real_content, '8bit');
         $content = $this->ratio_strip_html_tags($real_content);
@@ -615,19 +622,19 @@ class Analyztic
         $getRatio = $this->ratio_check_ratio($url);
 
 
-        if($getRatio > 8){
-            $ratioNum=5;
+        if ($getRatio > 8) {
+            $ratioNum = 5;
             $checkRatio = 'alert alert-success';
-        }else if ($getRatio >5 && $getRatio < 8){
-            $ratioNum=3;
+        } else if ($getRatio > 5 && $getRatio < 8) {
+            $ratioNum = 3;
             $checkRatio = 'alert alert-warning';
-        }else if ($getRatio < 5) {
-            $ratioNum=0;
+        } else if ($getRatio < 5) {
+            $ratioNum = 0;
             $checkRatio = 'alert alert-danger';
         }
         $getRatio .= '%';
 
-        return [$getRatio,$text_size,$page_size,$checkRatio,$ratioNum];
+        return [$getRatio, $text_size, $page_size, $checkRatio, $ratioNum];
     }
 
     public function gzip($url)
@@ -644,9 +651,9 @@ class Analyztic
         curl_close($curl);
 
         if ($resp) {
-            $gzipNum=4;
+            $gzipNum = 4;
             return ['عالی سایت شما GZIP است.', $gzipNum];
-        }else {
+        } else {
             $gzipNum = 0;
             return ['اوه سایت شما GZIP نیست.', $gzipNum];
         }
@@ -774,16 +781,16 @@ class Analyztic
     {
         $robots = $url . "/robots.txt";
         $check_robots_txt = 'alert alert-success';
-        $robotsNum=5;
-        return [$robots, $check_robots_txt,$robotsNum];
+        $robotsNum = 5;
+        return [$robots, $check_robots_txt, $robotsNum];
     }
 
     public function getSitemap($url)
     {
         $site_map = $url . '/sitemap.xml';
         $check_xml_sitemaps = 'alert alert-success';
-        $sitemapNum=5;
-        return [$site_map, $check_xml_sitemaps,$sitemapNum];
+        $sitemapNum = 5;
+        return [$site_map, $check_xml_sitemaps, $sitemapNum];
     }
 
     function is_Iframe($html)
@@ -802,14 +809,14 @@ class Analyztic
         if ($issetIframe == 0) {
             $check_Iframe = 'alert alert-success';
             $isIframe = 'iFrame در سایت شما یافت نشد :)';
-            $iframeNum=4;
+            $iframeNum = 4;
         } else {
             $check_Iframe = 'alert alert-danger';
             $isIframe = 'متاسفانه iFrame در سایت شما یافت شد :(';
-            $iframeNum=0;
+            $iframeNum = 0;
         }
 
-        return [$isIframe, $check_Iframe,$iframeNum];
+        return [$isIframe, $check_Iframe, $iframeNum];
     }
 
     function is_Flash($html)
@@ -827,14 +834,14 @@ class Analyztic
         if ($issetFlash == 0) {
             $check_Flash = 'alert alert-success';
             $isFlash = 'ایول فایل Flash یافت نشد';
-            $flashNum=4;
+            $flashNum = 4;
         } else {
             $check_Flash = 'alert alert-danger';
             $isFlash = 'اوپس سایت شما دارای فایل Flash می باشد';
-            $flashNum=0;
+            $flashNum = 0;
         }
 
-        return [$isFlash, $check_Flash,$flashNum];
+        return [$isFlash, $check_Flash, $flashNum];
     }
 
     public function urlCheck($url)
@@ -862,16 +869,16 @@ class Analyztic
         $pageSize = strlen(file_get_contents($url));
         if ($pageSize < 300000) {
             $checkPageSize = 'alert alert-success';
-            $pageSizeNum=5;
-        }elseif ($pageSize > 300000 && $pageSize < 500000) {
+            $pageSizeNum = 5;
+        } elseif ($pageSize > 300000 && $pageSize < 500000) {
             $checkPageSize = 'alert alert-warning';
-            $pageSizeNum=3;
-        }elseif ($pageSize > 500000) {
+            $pageSizeNum = 3;
+        } elseif ($pageSize > 500000) {
             $checkPageSize = 'alert alert-danger';
-            $pageSizeNum=0;
+            $pageSizeNum = 0;
         }
 
-        return [$pageSize,$checkPageSize,$pageSizeNum];
+        return [$pageSize, $checkPageSize, $pageSizeNum];
     }
 
     public function getSpeed($url)
@@ -882,16 +889,16 @@ class Analyztic
 
         if ($response_time < 1) {
             $check_load_time = 'alert alert-success';
-            $loadTimeNum=5;
+            $loadTimeNum = 5;
         } else if ($response_time > 1 && $response_time < 3) {
             $check_load_time = 'alert alert-warning';
-            $loadTimeNum=3;
+            $loadTimeNum = 3;
         } else {
             $check_load_time = 'alert alert-danger';
-            $loadTimeNum=0;
+            $loadTimeNum = 0;
         }
 
-        return [$response_time, $check_load_time,$loadTimeNum];
+        return [$response_time, $check_load_time, $loadTimeNum];
     }
 
     function getLanguageID($html)
@@ -915,14 +922,14 @@ class Analyztic
         if ($getLanguageID != '') {
             $check_language = 'alert alert-success';
             $isLanguage = 'خیلی هم عالیییی ،زبان انتخابی شما' . ' ' . ucwords($getLanguageID);
-            $langNum=3;
+            $langNum = 3;
         } else {
             $check_language = 'alert alert-danger';
             $isLanguage = 'وب سایت شما زبان انتخابی ندارد :|';
-            $langNum=0;
+            $langNum = 0;
         }
 
-        return [$isLanguage, $check_language,$langNum];
+        return [$isLanguage, $check_language, $langNum];
     }
 
     public function getSSL($url)
@@ -935,13 +942,13 @@ class Analyztic
         if (strpos($get_redirect, 'https') !== false) {
             $is_https = 'عالی ،وبسایت شما دارای گواهی اس اس ال است.';
             $check_https = 'alert alert-success';
-            $sslNum=5;
+            $sslNum = 5;
         } else {
             $is_https = ':| اوپس ،وبسایت شما از گواهی اس اس ال استفاده نمی کند.';
             $check_https = 'alert alert-danger';
-            $sslNum=0;
+            $sslNum = 0;
         }
-        return [$is_https, $check_https,$sslNum];
+        return [$is_https, $check_https, $sslNum];
     }
 
     function isEmail($html)
@@ -997,28 +1004,28 @@ class Analyztic
 
             $check_safe_browsing = 'alert alert-success';
             $isSafe = 'The website is not blacklisted and looks safe to use.';
-            $safeNum =3;
+            $safeNum = 3;
 
         } else if ($safe_value == 501) {
 
             $check_safe_browsing = 'alert alert-info';
             $isSafe = 'Something went wrong on the server. Please try again.';
-            $safeNum =3;
+            $safeNum = 3;
 
         } else if ($safe_value == 200) {
 
             $check_safe_browsing = 'alert alert-danger';
             $isSafe = 'The website is blacklisted.';
-            $safeNum =0;
+            $safeNum = 0;
 
         } else {
 
             $check_safe_browsing = 'alert alert-info';
             $isSafe = 'Please enter URL.';
-            $safeNum =3;
+            $safeNum = 3;
 
         }
-        return [$isSafe, $check_safe_browsing,$safeNum];
+        return [$isSafe, $check_safe_browsing, $safeNum];
     }
 
     function issetNestedTables($html)
@@ -1035,14 +1042,14 @@ class Analyztic
         if ($issetNestedTables == 0) {
             $isNestedTable = 'Excellent, your website doesn\'t use nested tables.';
             $check_NestedTable = 'alert alert-success';
-            $nestedNum=2;
+            $nestedNum = 2;
         } else {
             $isNestedTable = 'Bad, your website does use nested tables.';
             $check_NestedTable = 'alert alert-info';
-            $nestedNum=2;
+            $nestedNum = 2;
         }
 
-        return [$isNestedTable, $check_NestedTable,$nestedNum];
+        return [$isNestedTable, $check_NestedTable, $nestedNum];
     }
 
 
@@ -1098,13 +1105,13 @@ class Analyztic
 
         if ($issetInlineCss == 0 && $getJsFilesCount < 7 && $getCssFilesCount < 4) {
             $check_speed_tips = 'alert alert-success';
-            $speedNum=5;
+            $speedNum = 5;
         } else {
             $check_speed_tips = 'alert alert-danger';
-            $speedNum=3;
+            $speedNum = 3;
         }
 
-        return [$getCssFilesCount, $getJsFilesCount, $issetInlineCss, $check_speed_tips,$speedNum];
+        return [$getCssFilesCount, $getJsFilesCount, $issetInlineCss, $check_speed_tips, $speedNum];
     }
 
     public function getGoogleAnalystic($url)
@@ -1116,13 +1123,13 @@ class Analyztic
         if (preg_match("/\bua-\d{4,9}-\d{1,4}\b/i", $html)) {
             $analytics_technologies = 'Google Analytics was found.';
             $check_analytics_technologies = 'alert alert-success';
-            $analyticNum=4;
+            $analyticNum = 4;
         } else {
             $analytics_technologies = 'Google Analytics was not found.';
             $check_analytics_technologies = 'alert alert-danger';
-            $analyticNum=0;
+            $analyticNum = 0;
         }
-        return [$analytics_technologies, $check_analytics_technologies,$analyticNum];
+        return [$analytics_technologies, $check_analytics_technologies, $analyticNum];
     }
 
     function Doctype($html)
@@ -1151,13 +1158,13 @@ class Analyztic
         if ($getDocument == '') {
             $check_doctype = 'alert alert-danger';
             $doctype = 'Not Found Doctype';
-            $doctypeNum=0;
+            $doctypeNum = 0;
         } else {
             $check_doctype = 'alert alert-info';
             $doctype = $getDocument;
-            $doctypeNum=2;
+            $doctypeNum = 2;
         }
-        return [$doctype, $check_doctype,$doctypeNum];
+        return [$doctype, $check_doctype, $doctypeNum];
     }
 
     function getCharset($html)
@@ -1175,13 +1182,13 @@ class Analyztic
         if ($getMetaTags_class == 'UTF-8') {
             $check_encoding = 'alert alert-success';
             $encoding = 'Good, language/character encoding is specified:  UTF-8';
-            $encodingNum=2;
+            $encodingNum = 2;
         } else {
             $check_encoding = 'alert alert-danger';
             $encoding = 'Bad, language/character encoding is specified:  No UTF-8';
-            $encodingNum=0;
+            $encodingNum = 0;
         }
-        return [$encoding, $check_encoding,$encodingNum];
+        return [$encoding, $check_encoding, $encodingNum];
     }
 
     function getDeprecatedTags($html)
@@ -1210,22 +1217,23 @@ class Analyztic
         if (!empty($deprecated)) {
             $dphtml = 'Good! We haven\'t found deprecated HTML tags in your HTML';
             $check_dphtml = 'alert alert-danger';
-            $dphtmlNum=0;
+            $dphtmlNum = 0;
         } else {
             $check_dphtml = 'alert alert-success';
             $dphtml = 'Check if web page is using old tag or deprecated HTML tags. Deprecated tags and attributes are those that have been replaced by other, newer HTML constructs.';
-            $dphtmlNum=2;
+            $dphtmlNum = 2;
         }
 
-        return [$dphtml, $check_dphtml,$dphtmlNum];
+        return [$dphtml, $check_dphtml, $dphtmlNum];
     }
 
-    public function getIp(){
-        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
-            if (array_key_exists($key, $_SERVER) === true){
-                foreach (explode(',', $_SERVER[$key]) as $ip){
+    public function getIp()
+    {
+        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+            if (array_key_exists($key, $_SERVER) === true) {
+                foreach (explode(',', $_SERVER[$key]) as $ip) {
                     $ip = trim($ip); // just to be safe
-                    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
+                    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
                         return $ip;
                     }
                 }

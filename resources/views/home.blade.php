@@ -542,7 +542,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <p>
-                                    {{$description}}
+                                    {{($description) ? $description : 'سایت شما فاقد تگ متا توضیحات می باشد :('}}
                                 </p>
 
                                 <div class="{{$descCssStyle}} p-1">

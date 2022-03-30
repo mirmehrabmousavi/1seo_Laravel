@@ -11,7 +11,7 @@ class RelatedKey extends Model
 
     protected $table = 'related_key';
 
-    protected $fillable = ['keyword_id','related_site'];
+    protected $fillable = ['site_id','keyword_id','related_site'];
 
     public function initSeo()
     {

@@ -7,6 +7,7 @@ use App\Models\InitSeoAction;
 use App\Models\OffSeoAction;
 use App\Models\Site;
 use Illuminate\Support\Str;
+use TheSeer\Tokenizer\Exception;
 use Throwable;
 
 class HomeController extends Controller
@@ -73,11 +74,7 @@ class HomeController extends Controller
         $alexaRank = $domain->getAlexaRank($url);
         $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
         [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
-        try {
-            [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
-        } catch (Throwable $e) {
-            report($e);
-        }
+        [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
         [$getheading,$headingNum] = $domain->getHeader('http://'.$url);
         [$missingAltImage,$checkMissingAlt,$altNum]=$domain->getAltImage('http://'.$url);
         [$getRatio,$textSize,$ratioPageSize,$checkRatio,$ratioNum]=$domain->getRatio($url);
@@ -108,8 +105,12 @@ class HomeController extends Controller
         [$encoding,$check_encoding,$encodingNum]=$domain->getEncoding('http://'.$url);
         [$dphtml,$check_dphtml,$dphtmlNum]=$domain->getDeprecatedHTML('http://'.$url);
 
-        $totalPercent = $pageAuthNum+$domainAuthNum+$titleNum+$descNum+$headingNum+$altNum+$ratioNum+$gzipNum+$robotsNum+$sitemapNum+$iframeNum
-            +$flashNum+$pageSizeNum+$loadTimeNum+$langNum+$sslNum+$safeNum+$nestedNum+$speedNum+$analyticNum+$doctypeNum+$encodingNum+$dphtmlNum;
+        try {
+            $totalPercent = $pageAuthNum+$domainAuthNum+$titleNum+$descNum+$headingNum+$altNum+$ratioNum+$gzipNum+$robotsNum+$sitemapNum+$iframeNum
+                +$flashNum+$pageSizeNum+$loadTimeNum+$langNum+$sslNum+$safeNum+$nestedNum+$speedNum+$analyticNum+$doctypeNum+$encodingNum+$dphtmlNum;
+        } catch (Throwable $e) {
+            report($e);
+        }
 
         $correctNum = 0;
         $warningNum = 0;
@@ -139,13 +140,18 @@ class HomeController extends Controller
             $errorNum++;
         }
 
-        if($descNum == 5) {
-            $correctNum++;
-        }elseif ($descNum == 3) {
-            $warningNum++;
-        }elseif ($descNum == 0) {
-            $errorNum++;
+        try {
+            if($descNum == 5) {
+                $correctNum++;
+            }elseif ($descNum == 3) {
+                $warningNum++;
+            }elseif ($descNum == 0) {
+                $errorNum++;
+            }
+        } catch (Throwable $e) {
+            report($e);
         }
+
 
         if($headingNum == 5) {
             $correctNum++;

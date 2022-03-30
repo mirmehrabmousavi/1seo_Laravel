@@ -114,10 +114,19 @@ class InitSeoController extends Controller
         //$initSeo->type_site = $request->type_site;
         $initSeo->keyword_site = $request->keyword_site;
         $initSeo->local_site = $request->local_site;
-        $rel = RelatedKey::find($id);
-        $rel->keyword_id = explode("\r\n", $request->keyword_site);
-        $rel->update();
         $initSeo->update();
+
+        $allInit = InitSeo::all();
+        $key = explode("\r\n", $request->keyword_site);
+        foreach ($key as $val) {
+            if(!RelatedKey::where('keyword_id',$val)->first()) {
+                RelatedKey::create([
+                    'site_id' => $url,
+                    'keyword_id' => $val
+                ]);
+            }
+
+        }
 
         $init_seo_ = InitSeo::where('site_id', $url)->first();
         $related_key = DB::table('related_key')->get();

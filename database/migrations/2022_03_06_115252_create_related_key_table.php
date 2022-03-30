@@ -17,7 +17,7 @@ class CreateRelatedKeyTable extends Migration
             $table->id();
             $table->string('site_id');
             $table->string('keyword_id')->unique();
-            $table->text('related_site');
+            $table->text('related_site')->nullable();
             $table->timestamps();
         });
     }

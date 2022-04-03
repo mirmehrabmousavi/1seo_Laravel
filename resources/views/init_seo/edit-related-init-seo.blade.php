@@ -4,7 +4,7 @@
 
     <section id="basic-horizontal-layouts">
         <div class="row">
-            <div class="col-md-9 col-9">
+            <div class="col-md-9 col-xs-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">اطلاعات زیر را تکمیل کنید</h4>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-3">
+            <div class="col-md-3 col-xs-12 col-sm-12">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">

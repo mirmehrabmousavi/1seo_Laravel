@@ -53,12 +53,24 @@
             <li class=" navigation-header"><span>پشتیبانی</span>
             </li>
             <li class="nav-item"><a
-                    href="{{route('internal.seo',['url' => $url])}}"><i
+                    href="{{route('myTickets',['url' => $url])}}"><i
                         class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تیکت ها</span></a>
             </li>
             <li class="nav-item"><a
-                    href="{{route('internal.seo',['url' => $url])}}"><i
+                    href="{{route('ticket.create',['url' => $url])}}"><i
+                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">ارسال تیکت پشتیبانی</span></a>
+            </li>
+            <li class="nav-item"><a
+                    href="{{route('myTickets',['url' => $url])}}"><i
                         class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تماس با ما</span></a>
+            </li>
+
+
+            <li class=" navigation-header"><span>تنظیمات</span>
+            </li>
+            <li class="nav-item"><a
+                    href="{{url('/settings/' . $url)}}"><i
+                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تنظیمات</span></a>
             </li>
         </ul>
     </div>

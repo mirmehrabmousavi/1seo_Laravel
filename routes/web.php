@@ -49,11 +49,15 @@ Route::group([['middleware' => 'auth']], function () {
     //OffSeo Controller
     Route::get('/offSeo/index/{url}', [\App\Http\Controllers\OffSeoController::class, 'OffSeoIndex'])->name('off.seo.index');
     //Ticket System
-    Route::get('new-ticket/{url}',[\App\Http\Controllers\TicketsController::class, 'create']);
+    Route::get('new-ticket/{url}',[\App\Http\Controllers\TicketsController::class, 'create'])->name('ticket.create');
     Route::post('new-ticket/{url}',[\App\Http\Controllers\TicketsController::class, 'store'])->name('ticket.store');
-    Route::get('my-tickets/{url}',[\App\Http\Controllers\TicketsController::class, 'index']);
+    Route::get('my-tickets/{url}',[\App\Http\Controllers\TicketsController::class, 'index'])->name('myTickets');
     Route::get('tickets/{ticket}/{url}',[\App\Http\Controllers\TicketsController::class, 'show']);
     Route::post('comment/{url}', [\App\Http\Controllers\CommentsController::class, 'postComment']);
+    //Settings System
+    Route::get('settings/{url}',[\App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+    Route::patch('settings/updateSettings/{url}',[\App\Http\Controllers\SettingsController::class, 'updateSettings'])->name('update.settings');
+    Route::patch('settings/updatePassword/{url}',[\App\Http\Controllers\SettingsController::class, 'updatePassword'])->name('update.password');
 });
 
 //Adm in Template

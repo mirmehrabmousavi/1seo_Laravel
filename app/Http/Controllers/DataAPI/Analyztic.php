@@ -476,26 +476,26 @@ class Analyztic
         $metatagarray = get_meta_tags($url);
         try {
             $description = $metatagarray["description"];
+            $descLen = strlen($description);
+
+            if ($descLen > 70 && $descLen < 120) {
+                $dataDesc = 'طول متن : ' . $descLen;
+                $descCssStyle = 'alert alert-success';
+                $descNum = 5;
+            } else if ($descLen > 120 && $descLen < 170) {
+                $dataDesc = 'طول متن : ' . $descLen;
+                $descCssStyle = 'alert alert-warning';
+                $descNum = 3;
+            } else {
+                $dataDesc = 'طول توضیحات شما مناسب نیست';
+                $descCssStyle = 'alert alert-danger';
+                $descNum = 0;
+            }
+
+            return [$description, $dataDesc, $descCssStyle, $descNum];
         }catch (\Throwable $e) {
             report($e);
         }
-        $descLen = strlen($description);
-
-        if ($descLen > 70 && $descLen < 120) {
-            $dataDesc = 'طول متن : ' . $descLen;
-            $descCssStyle = 'alert alert-success';
-            $descNum = 5;
-        } else if ($descLen > 120 && $descLen < 170) {
-            $dataDesc = 'طول متن : ' . $descLen;
-            $descCssStyle = 'alert alert-warning';
-            $descNum = 3;
-        } else {
-            $dataDesc = 'طول توضیحات شما مناسب نیست';
-            $descCssStyle = 'alert alert-danger';
-            $descNum = 0;
-        }
-
-        return [$description, $dataDesc, $descCssStyle, $descNum];
     }
 
     function get_headings_tag($html)

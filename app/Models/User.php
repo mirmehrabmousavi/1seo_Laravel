@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Site::class);
     }
+
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

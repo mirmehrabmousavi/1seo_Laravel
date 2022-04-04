@@ -48,6 +48,12 @@ Route::group([['middleware' => 'auth']], function () {
     Route::patch('/offSeo/addUrl/{url}/{id}',[\App\Http\Controllers\OffSeoController::class, 'addUrl'])->name('off.seo.add.url');
     //OffSeo Controller
     Route::get('/offSeo/index/{url}', [\App\Http\Controllers\OffSeoController::class, 'OffSeoIndex'])->name('off.seo.index');
+    //Ticket System
+    Route::get('new-ticket/{url}',[\App\Http\Controllers\TicketsController::class, 'create']);
+    Route::post('new-ticket/{url}',[\App\Http\Controllers\TicketsController::class, 'store'])->name('ticket.store');
+    Route::get('my-tickets/{url}',[\App\Http\Controllers\TicketsController::class, 'index']);
+    Route::get('tickets/{ticket}/{url}',[\App\Http\Controllers\TicketsController::class, 'show']);
+    Route::post('comment/{url}', [\App\Http\Controllers\CommentsController::class, 'postComment']);
 });
 
 //Adm in Template
@@ -62,4 +68,6 @@ Route::group(['prefix' => 'admin', ['middleware' => 'admin']], function () {
     Route::get('/domain', [\App\Http\Controllers\Admin\AdminController::class, 'domainManagement'])->name('domain.management');
     Route::get('/users', [\App\Http\Controllers\Admin\AdminController::class, 'userManagement'])->name('user.management');
     Route::get('/request', [\App\Http\Controllers\Admin\AdminController::class, 'requestManagement'])->name('request.management');
+    Route::get('/tickets', [\App\Http\Controllers\TicketsController::class, 'userTickets']);
+    Route::post('close_ticket/{ticket_id}', [\App\Http\Controllers\TicketsController::class, 'close']);
 });

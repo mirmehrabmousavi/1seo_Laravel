@@ -17,7 +17,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" navigation-header"><span>ورژن v1.0.2</span>
+            <li class=" navigation-header"><span>ورژن v1.1.2</span>
             </li>
             <li class="nav-item has-sub"><a href="{{route('home',['url' => auth()->user()->url])}}"><i
                         class="feather icon-layout"></i><span class="menu-title"
@@ -48,6 +48,17 @@
             <li class="nav-item"><a
                     href="{{(\App\Models\InitSeo::all()->isEmpty()) ? route('internal.seo',['url' => $url]) : route('off.seo.index',['url' => $url])}}"><i
                         class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a>
+            </li>
+
+            <li class=" navigation-header"><span>پشتیبانی</span>
+            </li>
+            <li class="nav-item"><a
+                    href="{{route('internal.seo',['url' => $url])}}"><i
+                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تیکت ها</span></a>
+            </li>
+            <li class="nav-item"><a
+                    href="{{route('internal.seo',['url' => $url])}}"><i
+                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تماس با ما</span></a>
             </li>
         </ul>
     </div>

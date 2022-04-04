@@ -81,7 +81,7 @@
                                        height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{route('settings',['url' => $url])}}"><i class="feather icon-user"></i>ویرایش پروفایل</a>
+                            <a class="dropdown-item" href="{{route('settings',['url' => $url])}}"><i class="feather icon-user"></i>تنظیمات</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i

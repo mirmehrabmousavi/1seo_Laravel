@@ -58,11 +58,11 @@
             </li>
             <li class="nav-item"><a
                     href="{{route('ticket.create',['url' => $url])}}"><i
-                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">ارسال تیکت پشتیبانی</span></a>
+                        class="fa fa-send"></i><span class="menu-title" data-i18n="Calender">ارسال تیکت پشتیبانی</span></a>
             </li>
             <li class="nav-item"><a
                     href="{{route('myTickets',['url' => $url])}}"><i
-                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تماس با ما</span></a>
+                        class="fa fa-phone-square"></i><span class="menu-title" data-i18n="Calender">تماس با ما</span></a>
             </li>
 
 
@@ -70,7 +70,7 @@
             </li>
             <li class="nav-item"><a
                     href="{{url('/settings/' . $url)}}"><i
-                        class="fa fa-support"></i><span class="menu-title" data-i18n="Calender">تنظیمات</span></a>
+                        class="feather icon-settings"></i><span class="menu-title" data-i18n="Calender">تنظیمات</span></a>
             </li>
         </ul>
     </div>

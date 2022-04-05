@@ -56,7 +56,7 @@
                             </li>
                             <li class="scrollable-container media-list">
                                 @foreach($notif as $val)
-                                <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                <a class="d-flex justify-content-between" href="{{route('show.notif',['url' => $url,'id' => $val->id])}}">
                                     <div class="media d-flex align-items-start">
                                         <div class="media-left"><i
                                                 class="feather icon-plus-square font-medium-5 primary"></i></div>

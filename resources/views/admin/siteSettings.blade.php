@@ -122,7 +122,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{route('update.user',['id' => auth()->user()->id])}}" class="form form-vertical" method="POST">
+                            <form action="{{route('admin.update.user',['id' => auth()->user()->id])}}" class="form form-vertical" method="POST">
                                 @csrf
                                 @method('patch')
                                 <div class="form-body">
@@ -149,23 +149,6 @@
                                             <div class="form-group">
                                                 <input type="text" id="email-id-vertical" class="form-control"
                                                        name="url" value="{{$user->url}}" placeholder="آدرس سایت">
-                                            </div>
-                                        </div>
-                                        <div class="divider">
-                                            <div class="divider-text">تغییر رمز عبور</div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <input type="password" id="password-vertical" class="form-control"
-                                                       name="new_password" autocomplete="new_password"
-                                                       placeholder="رمز عبور">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <input type="password" id="password-vertical" class="form-control"
-                                                       name="new_confirm_password" autocomplete="new_confirm_password"
-                                                       placeholder="تایید رمز عبور">
                                             </div>
                                         </div>
                                         <div class="col-12">

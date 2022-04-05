@@ -48,7 +48,7 @@
                             </li>
                             <li class="scrollable-container media-list">
                                 @foreach($notif as $val)
-                                    <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                    <a class="d-flex justify-content-between" href="{{route('admin.notif.show',['id' => $val->id])}}">
                                         <div class="media d-flex align-items-start">
                                             <div class="media-left"><i
                                                     class="feather icon-plus-square font-medium-5 primary"></i></div>
@@ -65,7 +65,7 @@
                                 @endforeach
                             </li>
                             <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center"
-                                                                href="javascript:void(0)">نمایش تمام اعلان ها</a>
+                                                                href="{{route('admin.notification')}}">نمایش تمام اعلان ها</a>
                             </li>
                         </ul>
                     </li>

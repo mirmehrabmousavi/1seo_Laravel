@@ -33,29 +33,52 @@ class AdminController extends Controller
         return view('admin.siteSettings', compact('user', 'settings'));
     }
 
-    public function updateUser($id,Request $request)
+    public function updateUser(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'number' => 'required|unique:users',
+            'email' => 'required',
+            'number' => 'required',
             'url' => 'required',
-            'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
         ]);
 
-        User::find($id)->update([
+        User::find(auth()->user()->id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'number' => $request->number,
             'url' => $request->url,
-            'password' => Hash::make($request->new_password),
         ]);
+
+        if (Site::all() != $request->url) {
+            Site::create([
+                'user_id' => auth()->user()->email,
+                'sites' => $request->url,
+            ]);
+        }
+
+        return redirect()->back()->with('res', 'با موفقیت انجام شد.');
+    }
+
+    public function editPassword($id)
+    {
+        $user = User::find($id);
+        return view('admin.password', compact('user'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
         return redirect()->back()->with('res', 'با موفقیت انجام شد');
     }
 
-    public function storeSettings(Settings $settings,Request $request)
+    public function storeSettings(Settings $settings, Request $request)
     {
         $settings->title = $request->title;
         $settings->meta_desc = $request->meta_desc;
@@ -65,7 +88,7 @@ class AdminController extends Controller
         return redirect()->back()->with('res', 'با موفقیت انجام شد.');
     }
 
-    public function adminUpdateSettings($id,Request $request)
+    public function adminUpdateSettings($id, Request $request)
     {
         $settings = Settings::find($id);
         $settings->title = $request->title;
@@ -97,7 +120,7 @@ class AdminController extends Controller
     public function notificationManagement()
     {
         $notification = Notification::all();
-        return view('admin.notification.index',compact('notification'));
+        return view('admin.notification.index', compact('notification'));
     }
 
     public function createNotif()
@@ -105,7 +128,7 @@ class AdminController extends Controller
         return view('admin.notification.create');
     }
 
-    public function storeNotif(Notification $notification,Request $request)
+    public function storeNotif(Notification $notification, Request $request)
     {
         $notification->title = $request->title;
         $notification->desc = $request->desc;
@@ -117,29 +140,29 @@ class AdminController extends Controller
     public function showNotif($id)
     {
         $notif = Notification::find($id);
-        return view('admin.notification.show',compact('notif'));
+        return view('admin.notification.show', compact('notif'));
     }
 
     public function editNotif($id)
     {
         $notification = Notification::find($id);
-        return view('admin.notification.edit',compact('notification'));
+        return view('admin.notification.edit', compact('notification'));
     }
 
-    public function updateNotif($id,Request $request)
+    public function updateNotif($id, Request $request)
     {
         $notif = Notification::find($id);
         $notif->title = $request->title;
         $notif->desc = $request->desc;
         $notif->update();
 
-        return redirect()->back()->with('res','با موفقیت انجام شد .');
+        return redirect()->back()->with('res', 'با موفقیت انجام شد .');
     }
 
     public function deleteNotif($id)
     {
         $notif = Notification::find($id);
         $notif->delete();
-        return redirect()->back()->with('rse','با موفقیت انجام شد.');
+        return redirect()->back()->with('rse', 'با موفقیت انجام شد.');
     }
 }

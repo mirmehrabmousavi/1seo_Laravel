@@ -73,7 +73,9 @@ Route::group(['prefix' => 'admin', ['middleware' => 'admin']], function () {
     Route::get('/settings', [\App\Http\Controllers\Admin\AdminController::class, 'siteSettings'])->name('settings.management');
     Route::post('/settings/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'storeSettings'])->name('store.settings');
     Route::patch('/settings/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'adminUpdateSettings'])->name('admin.update.settings');
-    Route::patch('/settings/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'updateUser'])->name('update.user');
+    Route::patch('/settings/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'updateUser'])->name('admin.update.user');
+    Route::get('/password/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'editPassword'])->name('admin.edit.password');
+    Route::patch('/password/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'updatePassword'])->name('admin.update.password');
     //Domain
     Route::get('/domain', [\App\Http\Controllers\Admin\AdminController::class, 'domainManagement'])->name('domain.management');
     //User
@@ -89,5 +91,5 @@ Route::group(['prefix' => 'admin', ['middleware' => 'admin']], function () {
     Route::delete('/notification/{id}/delete', [\App\Http\Controllers\Admin\AdminController::class, 'deleteNotif'])->name('admin.notif.delete');
     //Ticket
     Route::get('/tickets', [\App\Http\Controllers\TicketsController::class, 'userTickets'])->name('admin.tickets');
-    Route::post('close_ticket/{ticket_id}', [\App\Http\Controllers\TicketsController::class, 'close'])->name('admin.tickets.delete');
+    Route::post('/close_ticket/{ticket_id}', [\App\Http\Controllers\TicketsController::class, 'close'])->name('admin.tickets.delete');
 });

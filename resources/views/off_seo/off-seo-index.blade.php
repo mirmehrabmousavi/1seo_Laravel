@@ -22,7 +22,7 @@
                                 @if($actions->done === '0')
                                     <div class="alert alert-light" role="alert">
                                         <h4 class="alert-heading"><span
-                                                class="float-right">{{$actions->created_at->diffForHumans()}}</span>فعالیت {{$actions->id}}
+                                                class="float-right">{{$actions->created_at->toJalali()->formatDifference()}}</span>فعالیت {{$actions->id}}
                                         </h4>
                                         <p class="mb-0">{!! $actions->action !!}</p>
                                         <div class="row">
@@ -68,7 +68,7 @@
                                 @elseif($actions->done === '1')
                                     <div class="alert alert-dark" role="alert">
                                     <h4 class="alert-heading"><span
-                                            class="float-right">{{$actions->created_at->diffForHumans()}}</span>  فعالیت {{$actions->id}}
+                                            class="float-right">{{$actions->created_at->toJalali()->formatDifference()}}</span>  فعالیت {{$actions->id}}
                                     </h4>
                                     <p class="mb-0">{!! $actions->action !!}</p>
                                     <div class="row">

@@ -36,11 +36,11 @@
                                             @else
                                                 <div class="badge badge-pill badge-danger">{{ $ticket->status }}</div>
                                             @endif</td>
-                                        <td>{{$ticket->updated_at->diffForHumans()}}</td>
+                                        <td>{{$ticket->updated_at->toJalali()->formatDifference()}}</td>
                                         <td>
                                              @if($ticket->status === 'باز است')
                                                  <a href="{{ url('tickets/' . $ticket->ticket_id . '/' . $url) }}"
-                                                    class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">کامنت</a>
+                                                    class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">پاسخ</a>
                                                  <form action="{{ url('admin/close_ticket/' . $ticket->ticket_id) }}"
                                                        method="POST">
                                                      @csrf

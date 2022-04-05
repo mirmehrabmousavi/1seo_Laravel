@@ -25,7 +25,7 @@
                                 <th scope="row">{{$loop->index+1}}</th>
                                 <td>{{$val->sites}}</td>
                                 <td>{{$val->user_id}}</td>
-                                <td>{{$val->created_at->diffForHumans()}}</td>
+                                <td>{{$val->created_at->toJalali()->formatDifference()}}</td>
                                 <td>
                                     <a href="{{route('home',auth()->user()->url)}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
                                 </td>

@@ -29,7 +29,7 @@
                                     <td>{{$val->email}}</td>
                                     <td>{{$val->number}}</td>
                                     <td>{{$val->url}}</td>
-                                    <td>{{$val->created_at->diffForHumans()}}</td>
+                                    <td>{{$val->created_at->toJalali()->formatDifference()}}</td>
                                     <td>
                                         <a href="{{route('admin.showUser',auth()->user()->id)}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
                                     </td>

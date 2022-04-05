@@ -19,7 +19,7 @@
                             </div>
                             <textarea name="comment"
                                       class="form-control char-textarea" rows="10"
-                                      placeholder="کامنت" required></textarea>
+                                      placeholder="متن پیام خود را وارد کنید" required></textarea>
                             @if ($errors->has('comment'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('comment') }}</strong>

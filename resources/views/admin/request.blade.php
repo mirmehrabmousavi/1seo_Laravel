@@ -27,7 +27,7 @@
                                     <td>مهراب</td>
                                     <td>09369949693</td>
                                     <td>{{$val->request}}</td>
-                                    <td>{{$val->created_at->diffForHumans()}}</td>
+                                    <td>{{$val->created_at->toJalali()->formatDifference()}}</td>
                                     <td>
                                         <a href="#" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
                                         <a href="#" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>

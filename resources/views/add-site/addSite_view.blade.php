@@ -41,7 +41,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>{{$site_fi->sites}}</td>
-                                <td>{{$site_fi->created_at->diffForHumans()}}</td>
+                                <td>{{$site_fi->created_at->toJalali()->formatDifference()}}</td>
                                 <td><button type="button" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light" disabled>حذف</button></td>
                             </tr>
                             @foreach($sites_ex as $val)

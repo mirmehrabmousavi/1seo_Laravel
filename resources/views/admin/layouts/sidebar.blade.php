@@ -22,9 +22,9 @@
             </li>
             <li class="nav-item"><a href="{{route('user.management')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">کاربران</span></a>
             </li>
-            <li class="nav-item"><a href="{{route('request.management')}}"><i class="feather icon-git-pull-request"></i><span class="menu-title" data-i18n="Calender">درخواست ها</span></a>
+            <li class="nav-item"><a href="{{route('admin.tickets')}}"><i class="fa fa-ticket"></i><span class="menu-title" data-i18n="Calender">تیکت ها</span></a>
             </li>
-            <li class="nav-item"><a href="#"><i class="feather icon-bell"></i><span class="menu-title" data-i18n="Calender">اعلان ها</span></a>
+            <li class="nav-item"><a href="{{route('admin.notification')}}"><i class="feather icon-bell"></i><span class="menu-title" data-i18n="Calender">اعلان ها</span></a>
             </li>
         </ul>
     </div>

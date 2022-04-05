@@ -33,6 +33,13 @@ class SettingsController extends Controller
             'url' => $request->url,
         ]);
 
+        if (Site::all() != $request->url) {
+            Site::create([
+                'user_id' => auth()->user()->email,
+                'sites' => $request->url,
+            ]);
+        }
+
         return redirect()->back()->with('res','با موفقیت انجام شد.');
     }
 

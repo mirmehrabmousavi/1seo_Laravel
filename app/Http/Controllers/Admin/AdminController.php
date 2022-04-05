@@ -3,83 +3,143 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Settings;
 use App\Models\Site;
 use App\Models\User;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
     public function handleAdmin()
     {
-        $sites=Site::all();
-        return view('admin.handleAdmin',compact('sites'));
+        $sites = Site::all();
+        return view('admin.handleAdmin', compact('sites'));
     }
 
-    public function siteSettings(Settings $settings)
+    public function siteSettings()
     {
         $user = Auth::user();
-        return view('admin.siteSettings',compact('user','settings'));
+        $settings = Settings::all();
+        return view('admin.siteSettings', compact('user', 'settings'));
     }
 
-    public function updateUser(User $user)
+    public function updateUser($id,Request $request)
     {
-        $this->validate(request(), [
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'number' => 'required|unique:users',
             'url' => 'required',
-            'password' => 'required|min:6|confirmed'
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
         ]);
 
-        $user->name = request('name');
-        $user->email = request('email');
-        $user->number = request('number');
-        $user->url = request('url');
-        $user->password = bcrypt(request('password'));
+        User::find($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'url' => $request->url,
+            'password' => Hash::make($request->new_password),
+        ]);
 
-        $user->save();
-
-        return back();
+        return redirect()->back()->with('res', 'با موفقیت انجام شد');
     }
 
-    public function settingsAdd(Settings $settings)
+    public function storeSettings(Settings $settings,Request $request)
     {
-        $settings->title = \request('title');
-        $settings->meta_desc = \request('meta_desc');
-        $settings->meta_key = \request('meta_key');
+        $settings->title = $request->title;
+        $settings->meta_desc = $request->meta_desc;
+        $settings->meta_key = $request->meta_key;
         $settings->save();
 
-        return redirect(route('settings.management'));
+        return redirect()->back()->with('res', 'با موفقیت انجام شد.');
+    }
+
+    public function adminUpdateSettings($id,Request $request)
+    {
+        $settings = Settings::find($id);
+        $settings->title = $request->title;
+        $settings->meta_desc = $request->meta_desc;
+        $settings->meta_key = $request->meta_key;
+        $settings->update();
+
+        return redirect()->back()->with('res', 'با موفقیت انجام شد.');
     }
 
     public function domainManagement()
     {
         $domains = Site::all();
-        return view('admin.domain',compact('domains'));
+        return view('admin.domain', compact('domains'));
     }
 
     public function userManagement()
     {
         $users = User::all();
-        return view('admin.users',compact('users'));
+        return view('admin.users', compact('users'));
     }
 
-    public function showUser()
+    public function showUser($id)
     {
-        $user = Auth::user();
-        return view('admin.show_user',compact('user'));
+        $user = User::find($id);
+        return view('admin.show_user', compact('user'));
     }
 
-    public function requestManagement()
+    public function notificationManagement()
     {
+        $notification = Notification::all();
+        return view('admin.notification.index',compact('notification'));
+    }
 
+    public function createNotif()
+    {
+        return view('admin.notification.create');
+    }
+
+    public function storeNotif(Notification $notification,Request $request)
+    {
+        $notification->title = $request->title;
+        $notification->desc = $request->desc;
+        $notification->save();
+
+        return redirect()->back()->with('res', 'با موفقیت انجام شد.');
+    }
+
+    public function showNotif($id)
+    {
+        $notif = Notification::find($id);
+        return view('admin.notification.show',compact('notif'));
+    }
+
+    public function editNotif($id)
+    {
+        $notification = Notification::find($id);
+        return view('admin.notification.edit',compact('notification'));
+    }
+
+    public function updateNotif($id,Request $request)
+    {
+        $notif = Notification::find($id);
+        $notif->title = $request->title;
+        $notif->desc = $request->desc;
+        $notif->update();
+
+        return redirect()->back()->with('res','با موفقیت انجام شد .');
+    }
+
+    public function deleteNotif($id)
+    {
+        $notif = Notification::find($id);
+        $notif->delete();
+        return redirect()->back()->with('rse','با موفقیت انجام شد.');
     }
 }

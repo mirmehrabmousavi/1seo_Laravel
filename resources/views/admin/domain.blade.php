@@ -27,7 +27,7 @@
                                 <td>{{$val->user_id}}</td>
                                 <td>{{$val->created_at->toJalali()->formatDifference()}}</td>
                                 <td>
-                                    <a href="{{route('home',auth()->user()->url)}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
+                                    <a href="{{route('home',['url' => $val->sites])}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light">نمایش</a>
                                 </td>
                             </tr>
                             @endforeach

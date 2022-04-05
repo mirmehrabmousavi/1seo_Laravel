@@ -35,29 +35,34 @@
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                 class="ficon feather icon-bell"></i><span
-                                class="badge badge-pill badge-primary badge-up">1</span></a>
+                                @php
+                                    $notif = \App\Models\Notification::all()
+                                @endphp
+                                class="badge badge-pill badge-primary badge-up">{{$notif->count()}}</span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
                                 <div class="dropdown-header m-0 p-2">
-                                    <h3 class="white">1 پیام جدید</h3><span
+                                    <h3 class="white">{{(empty($notif->count()) ? 'بدون پیام' : $notif->count() . ' پیام جدید')}}</h3><span
                                         class="notification-title">اعلان ها</span>
                                 </div>
                             </li>
                             <li class="scrollable-container media-list">
-                                <a class="d-flex justify-content-between" href="javascript:void(0)">
-                                    <div class="media d-flex align-items-start">
-                                        <div class="media-left"><i
-                                                class="feather icon-plus-square font-medium-5 primary"></i></div>
-                                        <div class="media-body">
-                                            <h6 class="primary media-heading">درخواست جدیدی دارید!</h6><small
-                                                class="notification-text"> امشب میری بیرون؟</small>
+                                @foreach($notif as $val)
+                                    <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                        <div class="media d-flex align-items-start">
+                                            <div class="media-left"><i
+                                                    class="feather icon-plus-square font-medium-5 primary"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="primary media-heading">{{$val->title}}</h6><small
+                                                    class="notification-text">{{$val->desc}}</small>
+                                            </div>
+                                            <small>
+                                                <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">{{$val->created_at->toJalali()->formatDifference()}}
+                                                </time>
+                                            </small>
                                         </div>
-                                        <small>
-                                            <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">9 ساعت پیش
-                                            </time>
-                                        </small>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
                             </li>
                             <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center"
                                                                 href="javascript:void(0)">نمایش تمام اعلان ها</a>
@@ -73,7 +78,7 @@
                                        height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#"><i class="feather icon-user"></i>ویرایش پروفایل</a>
+                            <a class="dropdown-item" href="{{route('settings.management')}}"><i class="feather icon-user"></i>تنظیمات</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i

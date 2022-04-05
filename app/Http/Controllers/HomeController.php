@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\InitSeoAction;
+use App\Models\Notification;
 use App\Models\OffSeoAction;
 use App\Models\Site;
 use Illuminate\Support\Str;
@@ -429,5 +430,19 @@ class HomeController extends Controller
             'warning_num',
             'error_num'
         ));
+    }
+
+    public function notification($url)
+    {
+        $notif = Notification::all();
+        $sites = Site::all();
+        return view('notification.notification',compact('url','sites','notif'));
+    }
+
+    public function notificationShow($url,$id)
+    {
+        $notif = Notification::where('id',$id)->first();
+        $sites = Site::all();
+        return view('notification.show',compact('url','sites','notif'));
     }
 }

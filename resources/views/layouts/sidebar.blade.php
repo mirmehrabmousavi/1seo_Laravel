@@ -50,6 +50,13 @@
                         class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a>
             </li>
 
+            <li class=" navigation-header"><span>اعلان ها</span>
+            </li>
+            <li class="nav-item"><a
+                    href="{{route('notification',['url' => $url])}}"><i
+                        class="ficon feather icon-bell"></i><span class="menu-title" data-i18n="Calender">اعلان ها</span></a>
+            </li>
+
             <li class=" navigation-header"><span>پشتیبانی</span>
             </li>
             <li class="nav-item"><a
@@ -61,10 +68,9 @@
                         class="fa fa-send"></i><span class="menu-title" data-i18n="Calender">ارسال تیکت پشتیبانی</span></a>
             </li>
             <li class="nav-item"><a
-                    href="{{route('myTickets',['url' => $url])}}"><i
+                    href="tel://02166095138"><i
                         class="fa fa-phone-square"></i><span class="menu-title" data-i18n="Calender">تماس با ما</span></a>
             </li>
-
 
             <li class=" navigation-header"><span>تنظیمات</span>
             </li>

@@ -28,6 +28,9 @@
                             <tr>
                                 <td>{{$user->url}}</td>
                             </tr>
+                            <tr>
+                                <td>{{$user->created_at->toJalali()->formatDifference()}}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -35,5 +38,5 @@
             </div>
         </div>
     </div>
-    <a href="#" style="text-decoration: none" class="btn btn-outline-danger round mr-1 mb-1 waves-effect waves-light">بازگشت</a>
+    <button type="button" class="btn btn-outline-danger round mr-1 mb-1 waves-effect waves-light" onclick="window.location='{{ route("user.management") }}'">بازگشت</button>
 @endsection

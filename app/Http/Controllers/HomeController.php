@@ -39,7 +39,7 @@ class HomeController extends Controller
                 'user_id' => $email
             ]);
         }
-        $sites = Site::all();
+        $sites = Site::where('user_id',auth()->user()->email)->paginate(10);
 
         $domain = new Analyztic();
         $supported_domain = [

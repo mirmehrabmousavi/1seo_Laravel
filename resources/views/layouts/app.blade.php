@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/shepherd-theme-default.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/animate/animate.css">
     <!-- END: Vendor CSS-->
-
+    <link rel="canonical" href="https://1seo.site">
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/bootstrap-extended.css">
@@ -37,7 +37,6 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/pages/dashboard-analytics.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/pages/card-analytics.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css-rtl/plugins/tour/tour.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->

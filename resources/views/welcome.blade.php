@@ -5,6 +5,7 @@
     <meta name="keywords" content="وان سئو سایت">
     <meta name="author" content="وان سئو سایت">
     <meta name="description" content="وان سئو سایت آنالیز هوشمند سئو سایت و ارائه برنامه سئو با هوش مصنوعی">
+    <link rel="canonical" href="https://1seo.site">
     <!-- For IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- For Resposive Device -->

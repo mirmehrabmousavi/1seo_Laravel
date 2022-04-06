@@ -23,6 +23,9 @@
                         class="feather icon-layout"></i><span class="menu-title"
                                                               data-i18n="Content">آنالیز</span></a>
                 <ul class="menu-content" style="">
+                    @php
+                        $sites = \App\Models\Site::where('user_id',auth()->user()->email)->paginate(10)
+                    @endphp
                     @foreach($sites as $site)
                         <li class="{{ request()->input($site->sites) ? 'active' : '' }}"><a
                                 href="{{route('home',['url'=>$site->sites])}}"><i class="feather icon-circle"></i><span
@@ -49,6 +52,14 @@
                     href="{{(\App\Models\InitSeo::all()->isEmpty()) ? route('internal.seo',['url' => $url]) : route('off.seo.index',['url' => $url])}}"><i
                         class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a>
             </li>
+
+            <li class=" navigation-header"><span>رتبه کلمات</span>
+            </li>
+            <li class="nav-item"><a
+                    href="#"><i
+                        class="fa fa-columns"></i><span class="menu-title" data-i18n="Calender">رتبه کلمات</span></a>
+            </li>
+
 
             <li class=" navigation-header"><span>اعلان ها</span>
             </li>

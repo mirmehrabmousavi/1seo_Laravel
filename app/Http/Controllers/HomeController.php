@@ -74,6 +74,76 @@ class HomeController extends Controller
         $speed = $domain->getPageSpeed($url);
         $alexaRank = $domain->getAlexaRank($url);
         $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
+
+        $initseo = InitSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
+        $offseo = OffSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
+
+
+        return view('home', compact(
+            'initseo',
+            'offseo',
+            'sites',
+            'url',
+            //Page Authority
+            'pageAuthority',
+            'pageAuthNum',
+            //Domain Authority
+            'domainAuthority',
+            'domainAuthNum',
+            'externalLinks',
+            'speed',
+            'domainAge',
+            'online',
+            'alexaRank',
+        ));
+    }
+
+    public function tahlilTech($url)
+    {
+        $baseUrl = \auth()->user()->url;
+        $email = \auth()->user()->email;
+        $site = Site::where('sites',$baseUrl)->get();
+        if(!Str::contains($site, $baseUrl)) {
+            Site::create([
+                'sites' => $baseUrl,
+                'user_id' => $email
+            ]);
+        }
+        $sites = Site::where('user_id',auth()->user()->email)->paginate(10);
+
+        $domain = new Analyztic();
+        $supported_domain = [
+            '.com', '.net',
+            '.org', '.info',
+            '.biz', '.us',
+            '.uk', '.ca',
+            '.tel', '.ie',
+            '.it', '.cc',
+            '.ws', '.sc',
+            '.mobi', '.pro',
+            '.edu', '.tv',
+            '.travel', '.in',
+            '.me', '.cn',
+            '.asia', '.ro',
+            '.aero', '.nu'
+        ];
+        if (Str::contains($url, $supported_domain)) {
+            $domainAge = $domain->age($url);
+        } else {
+            $domainAge = 'پشتیبانی نمی شود';
+        }
+
+        if ($domain->checkOnline($url)) {
+            $online = 'آنلاین';
+        } else {
+            $online = 'آفلاین';
+        }
+        [$pageAuthority,$pageAuthNum] = $domain->pageAuthority($url);
+        [$domainAuthority,$domainAuthNum] = $domain->domainAuthority($url);
+        $externalLinks = $domain->externalLinks($url);
+        $speed = $domain->getPageSpeed($url);
+        $alexaRank = $domain->getAlexaRank($url);
+        $alexaRank = ($alexaRank == '' ? "N/A" : $alexaRank);
         [$siteTitle,$dataTitle,$titleCssStyle,$titleNum]=$domain->getTitle('http://'.$url);
         [$description,$dataDesc,$descCssStyle,$descNum]=$domain->getDescription('http://'.$url);
         [$getheading,$headingNum] = $domain->getHeader('http://'.$url);
@@ -305,7 +375,8 @@ class HomeController extends Controller
         $warning_num = $correctNum;
         $error_num = $correctNum;
 
-        return view('home', compact(
+
+        return view('tahlilTech',compact(
             'initseo',
             'offseo',
             'sites',

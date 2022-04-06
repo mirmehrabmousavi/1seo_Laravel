@@ -34,7 +34,6 @@
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-header row">
         </div>
@@ -99,7 +98,6 @@
                                                         </fieldset>
                                                     </div>
                                                 </div>
-                                                <a href="{{route('login')}}" class="btn btn-outline-primary float-left btn-inline mb-50">ورود</a>
                                                 <button type="submit" class="btn btn-primary float-right btn-inline mb-50">ثبت نام</button>
                                             </form>
                                         </div>

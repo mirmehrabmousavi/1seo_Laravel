@@ -43,7 +43,7 @@
         </div>
         <div class="content-body">
             <section class="row flexbox-container">
-                <div class="col-xl-8 col-11 d-flex justify-content-center">
+                <div class="col-xl-8 col-sm-8 col-11 d-flex justify-content-center">
                     <div class="card bg-authentication rounded-0 mb-0">
                         <div class="row m-0">
                             <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
@@ -88,7 +88,6 @@
                                                     </div>
                                                     <div class="text-right"><a href="{{route('password.request')}}" class="card-link">رمز عبورمو فراموش کردم:(</a></div>
                                                 </div>
-                                                <a href="{{route('register')}}" class="btn btn-outline-primary float-left btn-inline">ثبت نام</a>
                                                 <button type="submit" class="btn btn-primary float-right btn-inline">ورود</button>
                                             </form>
                                         </div>

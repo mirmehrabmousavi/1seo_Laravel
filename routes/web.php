@@ -24,6 +24,7 @@ Auth::routes();
 //Seo Analyzer
 Route::group([['middleware' => 'auth']], function () {
     Route::get('/home/{url}', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('page-cache');
+    Route::get('/tahlilTech/{url}', [\App\Http\Controllers\HomeController::class, 'tahlilTech'])->name('tahlilTech');
     //Add Site Controller
     Route::get('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSiteView'])->name('addSiteView');
     Route::post('/addSite/{url}', [\App\Http\Controllers\AddSiteController::class, 'addSite'])->name('addSite');

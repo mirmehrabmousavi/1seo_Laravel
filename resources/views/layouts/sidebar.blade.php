@@ -21,7 +21,7 @@
             </li>
             <li class="nav-item has-sub"><a href="{{route('home',['url' => auth()->user()->url])}}"><i
                         class="feather icon-layout"></i><span class="menu-title"
-                                                              data-i18n="Content">آنالیز</span></a>
+                                                              data-i18n="Content">داشبورد</span></a>
                 <ul class="menu-content" style="">
                     @php
                         $sites = \App\Models\Site::where('user_id',auth()->user()->email)->paginate(10)
@@ -37,6 +37,14 @@
                                 class="menu-item"
                                 data-i18n="Helper Classes">افزودن سایت</span></a></li>
                 </ul>
+            </li>
+
+
+            <li class=" navigation-header"><span>آنالیز</span>
+            </li>
+            <li class="nav-item"><a
+                    href="{{route('tahlilTech',['url' => $url])}}"><i
+                        class="fa fa-columns"></i><span class="menu-title" data-i18n="Calender">تحلیل تکنیکال</span></a>
             </li>
 
             <li class=" navigation-header"><span>مارکتینگ پلن</span>

@@ -9,5 +9,5 @@ class InitSeoAction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['action','baseurl','url'];
+    protected $fillable = ['action','baseurl','keyword','local','related_keyword','url'];
 }

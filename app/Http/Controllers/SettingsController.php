@@ -13,7 +13,7 @@ class SettingsController extends Controller
     public function index($url)
     {
         $sites = Site::all();
-        $user = User::where('is_admin','0')->first();
+        $user = User::where('is_admin','0')->where('email',auth()->user()->email)->first();
         return view('settings.settings',compact('url','sites','user'));
     }
 

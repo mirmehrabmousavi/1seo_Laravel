@@ -202,6 +202,8 @@ class Analyztic
         // * Assign URL metrics to separate variables
         $pageAuthority = $json_a->upa;
 
+        $pageAuthNum = 0;
+
         if ($pageAuthority > 30) {
             $pageAuthNum = 5;
         } else if ($pageAuthority > 10 && $pageAuthority < 30) {

@@ -19,8 +19,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <a href="{{route('edit.init.seo',['url' => $url,'id' => $init_seo_->id])}}"
-                                           class="btn mb-1 btn-primary btn-lg btn-block waves-effect waves-light">مدیریت
-                                            کلمات کلیدی</a>
+                                           class="btn mb-1 btn-primary btn-lg btn-block waves-effect waves-light">مدیریت کلمات کلیدی</a>
                                     </div>
                                 </div>
                             </div>
@@ -52,6 +51,9 @@
                                                 class="float-right">{{$actions->created_at->toJalali()->formatDifference()}}</span>فعالیت {{$actions->id}}
                                         </h4>
                                         <p class="mb-0">{!! $actions->action !!}</p>
+                                        <p class="mb-0">{{ $actions->keyword }} : {{$actions->url}}</p>
+                                        <p class="mb-0">{{ $actions->local }}</p>
+                                        <p class="mb-0">{{ $actions->related_keyword }}</p>
                                         <div class="row">
                                             <div class="col-lg-1 col-md-12">
                                                 <a href="http://1seo.site/mag/"
@@ -118,8 +120,4 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('script')
-
 @endsection

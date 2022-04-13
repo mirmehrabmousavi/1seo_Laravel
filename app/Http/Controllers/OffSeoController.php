@@ -93,7 +93,7 @@ class OffSeoController extends Controller
             foreach($threeblog as $b) {
                 foreach(explode("\r\n",$off_seo_->keyword_site) as $key) {
                     OffSeoAction::create([
-                       'action' => '
+                        'action' => '
                                             محتوایی رو که با کلمه کلیدی <span
                                                 style="color : green">'.$key.'</span> ساخته بودی با یه
                                             تغییر کوچک در نگارش محتوا
@@ -101,14 +101,14 @@ class OffSeoController extends Controller
                                             و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
                                             منبع کوتاه کننده لینک آخر محتوا بزار. :)
                                         ',
-                       'baseurl' => $url,
+                        'baseurl' => $url,
                     ]);
                 }
                 foreach(explode("\r\n",$off_seo_->local_site) as $local) {
                     OffSeoAction::create([
                         'action' => '
                                             محتوایی رو که با کلمه کلیدی <span
-                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                                style="color : green">' . $key . ' در '.$local. '</span> ساخته بودی با یه
                                             تغییر کوچک در نگارش محتوا
                                             داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
                                             و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
@@ -155,7 +155,7 @@ class OffSeoController extends Controller
                     OffSeoAction::create([
                         'action' => '
                                             محتوایی رو که با کلمه کلیدی <span
-                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                                style="color : green">' . $key . ' در '.$local. '</span> ساخته بودی با یه
                                             تغییر کوچک در نگارش محتوا
                                             داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
                                             و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
@@ -189,19 +189,19 @@ class OffSeoController extends Controller
 
             foreach(explode("\r\n",$off_seo_->keyword_site) as $key) {
                 OffSeoAction::create([
-                   'action' => '
+                    'action' => '
                                         محتوایی با کللمه کلیدی <span style="color: green">'.$key.'</span> که
                                         ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
                                             href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
                                     ',
-                   'baseurl' => $url,
+                    'baseurl' => $url,
                 ]);
             }
 
             foreach(explode("\r\n",$off_seo_->local_site) as $local) {
                 OffSeoAction::create([
                     'action' => '
-                                        محتوایی با کللمه کلیدی <span style="color: green">' . $local . ' در '.$key. '</span>
+                                        محتوایی با کللمه کلیدی <span style="color: green">' . $key . ' در '.$local. '</span>
                                         که ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
                                             href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
                                     ',
@@ -285,7 +285,7 @@ class OffSeoController extends Controller
                     OffSeoAction::create([
                         'action' => '
                                             محتوایی رو که با کلمه کلیدی <span
-                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                                style="color : green">' . $key . ' در '.$local. '</span> ساخته بودی با یه
                                             تغییر کوچک در نگارش محتوا
                                             داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
                                             و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
@@ -332,7 +332,7 @@ class OffSeoController extends Controller
                     OffSeoAction::create([
                         'action' => '
                                             محتوایی رو که با کلمه کلیدی <span
-                                                style="color : green">' . $local . ' در '.$key. '</span> ساخته بودی با یه
+                                                style="color : green">' . $key . ' در '.$local. '</span> ساخته بودی با یه
                                             تغییر کوچک در نگارش محتوا
                                             داخل سایت <span style="color : blue">'.$b.'</span> قرار بده
                                             و یه لینک کوتاه از محتوای اصلی سایت بساز و با ذکر
@@ -378,7 +378,7 @@ class OffSeoController extends Controller
             foreach(explode("\r\n",$off_seo_->local_site) as $local) {
                 OffSeoAction::create([
                     'action' => '
-                                        محتوایی با کللمه کلیدی <span style="color: green">' . $local . ' در '.$key. '</span>
+                                        محتوایی با کللمه کلیدی <span style="color: green">' . $key . ' در '.$local. '</span>
                                         که ساخته بودی با یه تغییر کوچک نگارشی داخل سایت <a
                                             href="https://virgool.io">ویرگول</a> بدون هیچ لینکی قرار بده. :)
                                     ',

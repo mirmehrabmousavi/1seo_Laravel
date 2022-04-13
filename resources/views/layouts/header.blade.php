@@ -19,6 +19,9 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
+                                @php
+                                    $sites = \App\Models\Site::where('user_id',auth()->user()->email)->paginate(20);
+                                @endphp
                                 @foreach($sites as $site)
                                     <a class="dropdown-item p-1"
                                        href="{{route('home',['url'=>$site->sites])}}">{{$site->sites}}</a>

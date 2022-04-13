@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\BackLinkChart;
+use App\Charts\DomainAuthority;
 use App\Http\Controllers\DataAPI\Analyztic;
 use App\Models\InitSeoAction;
 use App\Models\Notification;
 use App\Models\OffSeoAction;
 use App\Models\Site;
 use Illuminate\Support\Str;
-use TheSeer\Tokenizer\Exception;
 use Throwable;
 
 class HomeController extends Controller
@@ -28,11 +29,11 @@ class HomeController extends Controller
      *
      * @return string
      */
-    public function index($url)
+    public function index($url, BackLinkChart $chart , DomainAuthority $chart2)
     {
         $baseUrl = \auth()->user()->url;
         $email = \auth()->user()->email;
-        $site = Site::where('sites',$baseUrl)->get();
+        $site = Site::where('sites',$baseUrl)->where('user_id',$email)->get();
         if(!Str::contains($site, $baseUrl)) {
             Site::create([
                 'sites' => $baseUrl,
@@ -79,7 +80,7 @@ class HomeController extends Controller
         $offseo = OffSeoAction::where('done','0')->where('baseurl',$url)->paginate(2);
 
 
-        return view('home', compact(
+        return view('home', ['chart' => $chart->build(),'chart2' => $chart2->build()], compact(
             'initseo',
             'offseo',
             'sites',

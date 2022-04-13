@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\AppMail;
 use App\Models\Category;
 use App\Models\Site;
 use App\Models\Ticket;
@@ -46,7 +45,7 @@ class TicketsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($url,Request $request,AppMail $mailer)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
@@ -64,7 +63,6 @@ class TicketsController extends Controller
             'status' => "باز است"
         ]);
         $ticket->save();
-        $mailer->sendTicketInformation(Auth::user(), $ticket);
         return redirect()->back()->with("status", "A ticket with ID: #$ticket->ticket_id has been opened.");
     }
 
@@ -88,13 +86,11 @@ class TicketsController extends Controller
         return view('tickets.show', compact('url','sites','ticket'));
     }
 
-    public function close($ticket_id, AppMail $mailer)
+    public function close($ticket_id)
     {
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
         $ticket->status = "بسته شده";
         $ticket->save();
-        $ticketOwner = $ticket->user;
-        $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
         return redirect()->back()->with("status", "شما تیکت را بستید.");
     }
 }

@@ -48,7 +48,7 @@
                                 <tr>
                                     <th scope="row">{{$loop->index+2}}</th>
                                     <td>{{$val->sites}}</td>
-                                    <td>{{$val->created_at->diffForHumans()}}</td>
+                                    <td>{{$val->created_at->toJalali()->formatDifference()}}</td>
                                     <td>
                                         {{--<a href="{{route('delSite',['url' => $url,'id' => $val->id])}}" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light">حذف</a>--}}
 

@@ -143,18 +143,21 @@ class InitSeoController extends Controller
                                         قرار بده بعدش یه لینک با کلمه <span
                                             style="color: green">' . $siteTitle . '</span> بده به صفحه اصلی سایتت. :)
                                     ',
-                'baseurl' => $url
+                'baseurl' => $url,
+                'keyword' => $key,
             ]);
             foreach (explode("\r\n", $init_seo_->local_site) as $local) {
                 InitSeoAction::create([
                     'action' => '
                                             یه محتوا با کلمه کلیدی <span
-                                                style="color: red">' . $local . ' در ' . $key . '</span> بنویس و
+                                                style="color: red">' . $key . ' در ' . $local . '</span> بنویس و
                                             داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span
                                                 style="color: green">' . $key . '</span> بده به صفحه <span
                                                 style="color: green">' . $key . '</span> ساخته بودی. :)
                                         ',
-                    'baseurl' => $url
+                    'baseurl' => $url,
+                    'keyword' => $key,
+                    'local' => $key . 'در' . $local,
                 ]);
                 foreach ($related_key as $related_val) {
                     foreach (explode("\r\n", $related_val->related_site) as $related_site) {
@@ -171,7 +174,10 @@ class InitSeoController extends Controller
                                                     صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که
                                                     ساخته بودی. :)
                                                 ',
-                            'baseurl' => $url
+                            'baseurl' => $url,
+                            'keyword' => $key,
+                            'local' => $key . 'در' . $local,
+                            'related_keyword' => $related_site,
                         ]);
                     }
                 }
@@ -214,18 +220,21 @@ class InitSeoController extends Controller
                                         قرار بده بعدش یه لینک با کلمه <span
                                             style="color: green">' . $siteTitle . '</span> بده به صفحه اصلی سایتت. :)
                                     ',
-                'baseurl' => $url
+                'baseurl' => $url,
+                'keyword' => $key
             ]);
             foreach (explode("\r\n", $init_seo_->local_site) as $local) {
                 InitSeoAction::create([
                     'action' => '
                                             یه محتوا با کلمه کلیدی <span
-                                                style="color: red">' . $local . ' در ' . $key . '</span> بنویس و
+                                                style="color: red">' . $key . ' در ' . $local . '</span> بنویس و
                                             داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span
                                                 style="color: green">' . $key . '</span> بده به صفحه <span
                                                 style="color: green">' . $key . '</span> ساخته بودی. :)
                                         ',
-                    'baseurl' => $url
+                    'baseurl' => $url,
+                    'keyword' => $key,
+                    'local' => $key . 'در' . $local,
                 ]);
                 foreach ($related_key as $related_val) {
                     foreach (explode("\r\n", $related_val->related_site) as $related_site) {
@@ -242,7 +251,10 @@ class InitSeoController extends Controller
                                                     صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که
                                                     ساخته بودی. :)
                                                 ',
-                            'baseurl' => $url
+                            'baseurl' => $url,
+                            'keyword' => $key,
+                            'local' => $key . 'در' . $local,
+                            'related_keyword' => $related_site,
                         ]);
                     }
                 }
@@ -270,18 +282,21 @@ class InitSeoController extends Controller
                                         قرار بده بعدش یه لینک با کلمه <span
                                             style="color: green">' . $siteTitle . '</span> بده به صفحه اصلی سایتت. :)
                                     ',
-                    'baseurl' => $url
+                    'baseurl' => $url,
+                    'keyword' => $key
                 ]);
                 foreach (explode("\r\n", $init_seo_->local_site) as $local) {
                     InitSeoAction::create([
                         'action' => '
                                             یه محتوا با کلمه کلیدی <span
-                                                style="color: red">' . $local . ' در ' . $key . '</span> بنویس و
+                                                style="color: red">' . $key . ' در ' . $local . '</span> بنویس و
                                             داخل سایتت قرار بده بعدش یه لینک با کلمه کلیدی <span
                                                 style="color: green">' . $key . '</span> بده به صفحه <span
                                                 style="color: green">' . $key . '</span> ساخته بودی. :)
                                         ',
-                        'baseurl' => $url
+                        'baseurl' => $url,
+                        'keyword' => $key,
+                        'local' => $key . 'در' . $local,
                     ]);
                     foreach ($related_key as $related_val) {
                         foreach (explode("\r\n", $related_val->related_site) as $related_site) {
@@ -298,7 +313,10 @@ class InitSeoController extends Controller
                                                     صفحه <span style="color: blue">' . $key . ' در ' . $local . '</span> که
                                                     ساخته بودی. :)
                                                 ',
-                                'baseurl' => $url
+                                'baseurl' => $url,
+                                'keyword' => $key,
+                                'local' => $key . 'در' . $local,
+                                'related_keyword' => $related_site,
                             ]);
                         }
                     }

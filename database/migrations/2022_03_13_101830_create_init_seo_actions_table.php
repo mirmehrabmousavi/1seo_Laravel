@@ -17,6 +17,9 @@ class CreateInitSeoActionsTable extends Migration
             $table->id();
             $table->text('action');
             $table->string('baseurl');
+            $table->string('keyword');
+            $table->string('local')->nullable();
+            $table->string('related_keyword')->nullable();
             $table->string('url')->nullable();
             $table->string('done')->default('0');
             $table->timestamps();

@@ -60,6 +60,10 @@
                     href="{{(\App\Models\InitSeo::all()->isEmpty()) ? route('internal.seo',['url' => $url]) : route('off.seo.index',['url' => $url])}}"><i
                         class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a>
             </li>
+            <li class="nav-item"><a
+                    href="{{route('internal.seo',['url' => $url])}}"><i
+                        class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">لینک سازی</span></a>
+            </li>
 
             <li class=" navigation-header"><span>رتبه کلمات</span>
             </li>

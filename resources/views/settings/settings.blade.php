@@ -96,7 +96,7 @@
                                                     <div class="controls">
                                                         <label for="account-username">نام کاربری</label>
                                                         <input type="text" name="name" class="form-control"
-                                                               value="{{$user->name}}" id="account-username" required=""
+                                                               value="{{auth()->user()->name}}" id="account-username" required=""
                                                                data-validation-required-message="This username field is required">
                                                     </div>
                                                 </div>
@@ -106,7 +106,7 @@
                                                     <div class="controls">
                                                         <label for="account-e-mail">ایمیل</label>
                                                         <input type="email" name="email" class="form-control"
-                                                               value="{{$user->email}}" id="account-e-mail" required=""
+                                                               value="{{auth()->user()->email}}" id="account-e-mail" required=""
                                                                data-validation-required-message="This email field is required">
                                                     </div>
                                                 </div>
@@ -116,7 +116,7 @@
                                                     <div class="controls">
                                                         <label for="account-phone">شماره تماس</label>
                                                         <input type="text" name="number" class="form-control"
-                                                               id="account-phone" required="" value="{{$user->number}}"
+                                                               id="account-phone" required="" value="{{auth()->user()->number}}"
                                                                data-validation-required-message="This phone number field is required">
                                                     </div>
                                                 </div>
@@ -125,7 +125,7 @@
                                                 <div class="form-group">
                                                     <label for="account-company">URL</label>
                                                     <input type="text" name="url" class="form-control"
-                                                           id="account-company" value="{{$user->url}}">
+                                                           id="account-company" value="{{auth()->user()->url}}">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">

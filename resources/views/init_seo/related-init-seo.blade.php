@@ -18,7 +18,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="type">
-                                                    نوع سایت
+                                                    کلمه کلیدی اصلی
                                                 </label>
                                                 <select class="custom-select form-control" id="type" name="keyword_id">
                                                     @foreach(explode("\r\n",$init_seo_key->keyword_site) as $val)

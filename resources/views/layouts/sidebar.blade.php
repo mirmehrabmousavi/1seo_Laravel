@@ -61,15 +61,15 @@
                         class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">سئو خارجی</span></a>
             </li>
             <li class="nav-item"><a
-                    href="{{route('internal.seo',['url' => $url])}}"><i
-                        class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">لینک سازی</span></a>
+                    href="{{route('link.building.index',['url' => $url])}}"><i
+                        class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">لینک سازی (به زودی)</span></a>
             </li>
 
             <li class=" navigation-header"><span>رتبه کلمات</span>
             </li>
             <li class="nav-item"><a
                     href="#"><i
-                        class="fa fa-columns"></i><span class="menu-title" data-i18n="Calender">رتبه کلمات</span></a>
+                        class="fa fa-columns"></i><span class="menu-title" data-i18n="Calender">رتبه کلمات (به زودی)</span></a>
             </li>
 
 

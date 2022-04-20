@@ -51,9 +51,9 @@
                                                 class="float-right">{{$actions->created_at->toJalali()->formatDifference()}}</span>فعالیت {{$actions->id}}
                                         </h4>
                                         <p class="mb-0">{!! $actions->action !!}</p>
-                                        <p class="mb-0">{{ $actions->keyword }} : {{$actions->url}}</p>
+                                        @if(!empty($actions->url))<p class="mb-0"> لینک : <a href="{{$actions->url}}">مشاهده</a> </p>@endif{{--
                                         <p class="mb-0">{{ $actions->local }}</p>
-                                        <p class="mb-0">{{ $actions->related_keyword }}</p>
+                                        <p class="mb-0">{{ $actions->related_keyword }}</p>--}}
                                         <div class="row">
                                             <div class="col-lg-1 col-md-12">
                                                 <a href="http://1seo.site/mag/"
@@ -100,6 +100,9 @@
                                                 class="float-right">{{$actions->created_at->toJalali()->formatDifference()}}</span>فعالیت {{$actions->id}}
                                         </h4>
                                         <p class="mb-0">{!! $actions->action !!}</p>
+                                        @if(!empty($actions->url))<p class="mb-0"> لینک : <a href="{{$actions->url}}">مشاهده</a> </p>@endif{{--
+                                        <p class="mb-0">{{ $actions->local }}</p>
+                                        <p class="mb-0">{{ $actions->related_keyword }}</p>--}}
                                         <div class="row">
                                             <div class="col-lg-1 col-md-12"></div>
                                             <div class="col-lg-9 col-md-12"></div>

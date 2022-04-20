@@ -49,6 +49,8 @@ Route::group([['middleware' => 'auth']], function () {
     Route::patch('/offSeo/addUrl/{url}/{id}', [\App\Http\Controllers\OffSeoController::class, 'addUrl'])->name('off.seo.add.url');
     //OffSeo Controller
     Route::get('/offSeo/index/{url}', [\App\Http\Controllers\OffSeoController::class, 'OffSeoIndex'])->name('off.seo.index');
+    //Link Building
+    Route::get('/linkBuilding/index/{url}',[\App\Http\Controllers\LinkBuildingController::class, 'index'])->name('link.building.index');
     //Ticket System
     Route::get('new-ticket/{url}', [\App\Http\Controllers\TicketsController::class, 'create'])->name('ticket.create');
     Route::post('new-ticket/{url}', [\App\Http\Controllers\TicketsController::class, 'store'])->name('ticket.store');

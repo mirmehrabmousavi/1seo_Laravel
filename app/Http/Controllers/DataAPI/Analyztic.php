@@ -372,11 +372,15 @@ class Analyztic
 
     public function getAlexaRank($url)
     {
-        $request = "http://data.alexa.com/data?cli=10&amp;dat=s&amp;url=" . $url;
-        $data = $this->get_Page_Data($request);
-        preg_match('/<POPULARITY URL="(.*?)" TEXT="([\d]+)"/si', $data, $p);
-        $value = ($p[2]) ? number_format($p[2]) : "n/a";
-        return $value;
+        try {
+            $request = "http://data.alexa.com/data?cli=10&amp;dat=s&amp;url=" . $url;
+            $data = $this->get_Page_Data($request);
+            preg_match('/<POPULARITY URL="(.*?)" TEXT="([\d]+)"/si', $data, $p);
+            $value = ($p[2]) ? number_format($p[2]) : "n/a";
+            return $value;
+        }catch (\Throwable $e) {
+            //
+        }
     }
 
     public function StrToNum($Str, $Check, $Magic)
@@ -1242,5 +1246,56 @@ class Analyztic
             }
         }
         return request()->ip(); // it will return server ip when no client ip found
+    }
+
+    function get_a_href($url){
+        $url = htmlentities(strip_tags($url));
+        $ExplodeUrlInArray = explode('/',$url);
+        $DomainName = $ExplodeUrlInArray[2];
+        $file = @file_get_contents($url);
+        $h1count = preg_match_all('/(href=["|\'])(.*?)(["|\'])/i',$file,$patterns);
+        $linksInArray = $patterns[2];
+        $CountOfLinks = count($linksInArray);
+        $InternalLinkCount = 0;
+        $ExternalLinkCount = 0;
+        for($Counter=0;$Counter<$CountOfLinks;$Counter++){
+            if($linksInArray[$Counter] == "" || $linksInArray[$Counter] == "#")
+                continue;
+            preg_match('/javascript:/', $linksInArray[$Counter],$CheckJavascriptLink);
+            if($CheckJavascriptLink != NULL)
+                continue;
+            $Link = $linksInArray[$Counter];
+            preg_match('/\?/', $linksInArray[$Counter],$CheckForArgumentsInUrl);
+            if($CheckForArgumentsInUrl != NULL)
+            {
+                $ExplodeLink = explode('?',$linksInArray[$Counter]);
+                $Link = $ExplodeLink[0];
+            }
+            preg_match('/'.$DomainName.'/',$Link,$Check);
+            if($Check == NULL)
+            {
+                preg_match('/http:\/\//',$Link,$ExternalLinkCheck);
+                if($ExternalLinkCheck == NULL)
+                {
+                    $InternalDomainsInArray[$InternalLinkCount] = $Link;
+                    $InternalLinkCount++;
+                }
+                else
+                {
+                    $ExternalDomainsInArray[$ExternalLinkCount] = $Link;
+                    $ExternalLinkCount++;
+                }
+            }
+            else
+            {
+                $InternalDomainsInArray[$InternalLinkCount] = $Link;
+                $InternalLinkCount++;
+            }
+        }
+        /*$LinksResultsInArray = array(
+            'ExternalLinks'=>$ExternalDomainsInArray,
+            'InternalLinks'=>$InternalDomainsInArray
+        );*/
+        return [$ExternalDomainsInArray,$InternalDomainsInArray];
     }
 }
